@@ -1,0 +1,1 @@
+visible = oPlayer.controls.input < 0;
