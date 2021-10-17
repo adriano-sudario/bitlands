@@ -33,7 +33,7 @@ if (is_dead && is_on_floor) {
 }
 
 if (is_dead) {
-	sprite_index = sPlayerD;
+	sprite_index = sprites_indexes.dead;
 	image_speed = 0;
 	image_index = has_fallen ? 1 : 0;
 	if (has_fallen) {
@@ -47,11 +47,11 @@ if (is_dead) {
 			}
 	}
 } else if (!is_on_floor) {
-	sprite_index = sPlayerA;
+	sprite_index = sprites_indexes.air;
 	image_speed = 0;
 	image_index = vertical_force > 0 ? 1 : 0;
 } else {
-	if (sprite_index == sPlayerA) {
+	if (sprite_index == sprites_indexes.air) {
 		//audio_sound_pitch(sfxLand, choose(.8, 1, 1.2));
 		//audio_play_sound(sfxLand, 5, false);
 		repeat(round(random_range(4, 7)))
@@ -62,9 +62,9 @@ if (is_dead) {
 	image_speed = 1;
 	
 	if (horizontal_direction != 0)
-		sprite_index = sPlayerR;
-	else if (!is_aiming && !is_reloading && sprite_index != spr_drop_weapon)
-		sprite_index = sPlayer;
+		sprite_index = sprites_indexes.run;
+	else if (!is_aiming && !is_reloading && sprite_index != sprites_indexes.drop_weapon)
+		sprite_index = sprites_indexes.idle;
 	
 	//if (sprite_index == sPlayerR && image_index == 0)
 	//	audio_play_sound(choose(sfxFoot1, sfxFoot2, sfxFoot3, sfxFoot4), 2, false);

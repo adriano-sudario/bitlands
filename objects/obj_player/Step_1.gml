@@ -3,15 +3,16 @@ if (has_fallen)
 	
 if (has_gun && controls.is_reload_pressed() 
 	&& !is_reloading && bullets_count < cartrige_capacity
-	&& sprite_index != spr_drop_weapon && sprite_index != sPlayerA ) {
+	&& sprite_index != sprites_indexes.drop_weapon
+	&& sprite_index != sprites_indexes.air ) {
 	is_reloading = true;
-	sprite_index = spr_reload;
+	sprite_index = sprites_indexes.reload;
 	cancel_movement();
 	if (is_aiming)
 		remove_aiming_instance();
 }
 
-if (!is_aiming && !is_reloading && sprite_index != spr_drop_weapon)
+if (!is_aiming && !is_reloading && sprite_index != sprites_indexes.drop_weapon)
 	update_movement();
 
 if (is_dead)

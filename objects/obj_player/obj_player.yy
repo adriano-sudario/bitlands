@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "sPlayer",
-    "path": "sprites/sPlayer/sPlayer.yy",
+    "name": "spr_severino_aim",
+    "path": "sprites/spr_severino_aim/spr_severino_aim.yy",
   },
   "solid": false,
   "visible": true,

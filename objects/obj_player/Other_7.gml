@@ -1,6 +1,6 @@
-if (sprite_index == spr_drop_weapon) {
+if (sprite_index == sprites_indexes.drop_weapon) {
 	begin_aiming();
-} else if (sprite_index == spr_reload) {
+} else if (sprite_index == sprites_indexes.reload) {
 	bullets_count = cartrige_capacity;
 	is_reloading = false;
 	if (is_aiming)

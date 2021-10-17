@@ -18,7 +18,8 @@ bullets_count = cartrige_capacity;
 controls = controller(0, true);
 has_gun = false;
 aiming_instance = noone;
-	
+sprites_indexes = obj_game.get_character_sprites(CHARACTER.SEBASTIAO);
+
 function update_movement() {
 	if (!is_dead) {
 		if (!controls.is_disabled)
@@ -62,17 +63,17 @@ function update_aim() {
 	if (controls.is_aiming_held()) {
 		if (is_reloading)
 			is_aiming = true;
-		else if (sprite_index != spr_drop_weapon
-			&& sprite_index != sPlayerA
+		else if (sprite_index != sprites_indexes.drop_weapon
+			&& sprite_index != sprites_indexes.air
 			&& !is_aiming) {
-			sprite_index = spr_drop_weapon;
+			sprite_index = sprites_indexes.drop_weapon;
 			cancel_movement();
 		}
 	} else {
 		if (is_aiming) {
 			is_aiming = false;
 			if (!is_reloading) {
-				sprite_index = sPlayer;
+				sprite_index = sprites_indexes.idle;
 				remove_aiming_instance()
 			}
 		}
@@ -130,7 +131,7 @@ function begin_aiming() {
 			angle = 360 - (90 * image_index);
 			image_angle = angle;
 		}
-		sprite_index = spr_idle_aiming;
+		sprite_index = sprites_indexes.aim;
 		if (controls.input >= 0) {
 			if (image_xscale < 0) {
 				controls.aiming_angle = 180;
