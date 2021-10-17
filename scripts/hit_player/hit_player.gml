@@ -10,5 +10,9 @@ function hit_player(_player, _horizontal_gunpoint, _angle) {
 		_player.y += _player.vertical_force;
 	
 	_player.is_dead = true;
-	_player.is_on_floor = false;
+	_player.sprite_index = _player.sprites_indexes.dead;
+	
+	if (_player.is_on_floor) {
+		_player.is_on_floor = false;
+	}
 }

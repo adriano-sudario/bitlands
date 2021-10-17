@@ -12,7 +12,7 @@ aiming = {
 function shoot() {
 	if (recoil == 0)
 		recoil = 4;
-		
+	
 	if (aiming.target == noone)
 		return;
 	

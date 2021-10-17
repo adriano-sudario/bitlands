@@ -1,10 +1,7 @@
 {
-  "spriteId": {
-    "name": "spr_severino_aim",
-    "path": "sprites/spr_severino_aim/spr_severino_aim.yy",
-  },
+  "spriteId": null,
   "solid": false,
-  "visible": false,
+  "visible": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": null,
@@ -21,17 +18,18 @@
   "physicsKinematic": false,
   "physicsShapePoints": [],
   "eventList": [
+    {"isDnD":false,"eventNum":2,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":4,"eventType":7,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":64,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "SpawnPoints",
-    "path": "folders/Objects/Hiddens/SpawnPoints.yy",
+    "name": "Helpers",
+    "path": "folders/Objects/Helpers.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_player_spawn_point",
+  "name": "obj_shooting_room",
   "tags": [],
   "resourceType": "GMObject",
 }

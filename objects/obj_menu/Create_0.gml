@@ -47,7 +47,7 @@ new_game_item = {
 
 items = [quit_item, fullscreen_item, new_game_item];
 
-controls = controller(0, true);
+controls = controller(0);
 current_up_held = controls.is_up_held();
 current_down_held = controls.is_down_held();
 previous_up_held = current_up_held;

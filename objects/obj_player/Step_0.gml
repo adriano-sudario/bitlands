@@ -62,7 +62,7 @@ if (is_dead) {
 		if (image_index > 2)
 			image_index = 2;
 	} else {
-		if (image_index > 4)
+		if (image_index < 3 || image_index > 4)
 			image_index = 3;
 	}
 } else if (!is_on_floor) {
