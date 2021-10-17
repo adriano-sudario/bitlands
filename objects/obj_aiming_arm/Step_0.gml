@@ -1,3 +1,27 @@
+function set_target(_target) {
+	aiming.target = _target;
+	
+	aiming.length = 0;
+	var target_id = _target.id;
+	_target = noone
+	
+	var endline_x = aiming.x + lengthdir_x(aiming.length, image_angle);
+	var endline_y = aiming.y + lengthdir_y(aiming.length, image_angle);
+	
+	while (_target == noone) {
+		aiming.length++;
+		endline_x = aiming.x + lengthdir_x(aiming.length, image_angle);
+		endline_y = aiming.y + lengthdir_y(aiming.length, image_angle);
+
+		_target = collision_line(aiming.x, aiming.y, 
+			endline_x, endline_y,
+			target_id, false, false);
+	}
+	
+	aiming.endline_x = endline_x;
+	aiming.endline_y = endline_y;
+}
+
 if (image_angle > 90 && image_angle <= 270)
 	image_yscale = -1;
 else
@@ -26,38 +50,41 @@ var endline_x = aiming.x + lengthdir_x(aiming.length, image_angle);
 var endline_y = aiming.y + lengthdir_y(aiming.length, image_angle);
 
 var target = noone;
-	
-var targets_found = ds_list_create();
-collision_line_list(aiming.x, aiming.y, endline_x, endline_y,
-	obj_wall, false, true, targets_found, true);
 
-for (var i = 0; i < ds_list_size(targets_found); i++) {
-	var item = targets_found[| i];
+var blocks_found = ds_list_create();
+collision_line_list(aiming.x, aiming.y, endline_x, endline_y,
+	obj_wall, false, true, blocks_found, true);
+
+for (var i = 0; i < ds_list_size(blocks_found); i++) {
+	var item = blocks_found[| i];
 	if (item.object_index != obj_plank) {
 		target = item;
 		break;
 	}
 }
 
-ds_list_destroy(targets_found);
-	
-if (target != noone) {
-	aiming.target = target;
-	
-	aiming.length = 0;
-	var wall_id = target.id;
-	target = noone
-	
-	while (target == noone) {
-		aiming.length++;
-		endline_x = aiming.x + lengthdir_x(aiming.length, image_angle);
-		endline_y = aiming.y + lengthdir_y(aiming.length, image_angle);
+ds_list_destroy(blocks_found);
 
-		target = collision_line(aiming.x, aiming.y, 
-			endline_x, endline_y,
-			wall_id, true, false);
+var targets_found = ds_list_create();
+collision_line_list(aiming.x, aiming.y,
+	endline_x, endline_y, obj_player, false, false, targets_found, true);
+var enemy_on_target = noone;
+
+for (var i = 0; i < ds_list_size(targets_found); i++) {
+	var item = targets_found[| i];
+	if (item.id != owner.id) {
+		enemy_on_target = item;
+		break;
 	}
 }
+	
+if (target != noone)
+	set_target(target);
+
+if (enemy_on_target != noone && 
+	collision_line(aiming.x, aiming.y, endline_x, endline_y,
+		enemy_on_target.id, false, false))
+	set_target(enemy_on_target);
 	
 if (image_yscale < 0)
 	owner.image_xscale = -1;

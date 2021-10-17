@@ -36,6 +36,7 @@ function update_movement() {
 		&& is_holding_jump) {
 		is_on_floor = false;
 		is_passing_through_plank = true;
+		y++;
 	}
 	var has_released_jump = is_jump_held && !is_holding_jump;
 	is_jump_held = is_holding_jump;

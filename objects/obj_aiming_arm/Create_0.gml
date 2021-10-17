@@ -4,7 +4,9 @@ aiming = {
 	x: 0,
 	y: 0,
 	length: 3,
-	target: noone
+	target: noone,
+	endline_x: 0,
+	endline_y: 0
 };
 
 function shoot() {
@@ -25,6 +27,9 @@ function shoot() {
 	
 	var dust_direction = image_angle - 180;
 	var direction_margin = 20;
+	var dust_type = 
+		aiming.target.object_index == obj_player ? PARTICLE_TYPE.BLOOD
+		: aiming.target.terrain;
 	repeat(round(random_range(4, 7)))
 		with (instance_create_layer(dust_x, dust_y, "Dusts", obj_particle)) {
 			var dust_speed = random_range(1, 3);
@@ -33,6 +38,6 @@ function shoot() {
 				dust_direction + direction_margin);
 			horizontal_speed = lengthdir_x(dust_speed, dir);
 			vertical_speed = lengthdir_y(dust_speed, dir);
-			set_type(other.aiming.target.terrain);
+			set_type(dust_type);
 		}
 }
