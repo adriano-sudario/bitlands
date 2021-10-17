@@ -19,6 +19,9 @@ function shoot() {
 	//audio_sound_pitch(sfxShoot, choose(.8, 1, 1.2));
 	//audio_play_sound(sfxShoot, 5, false);
 	
+	if (aiming.target.object_index == obj_player)
+		hit_player(aiming.target, aiming.x, image_angle);
+	
 	if (!layer_exists("Dusts"))
 		layer_create(-1, "Dusts");
 	

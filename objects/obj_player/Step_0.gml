@@ -57,17 +57,13 @@ if (is_dead && is_on_floor) {
 
 if (is_dead) {
 	sprite_index = sprites_indexes.dead;
-	image_speed = 0;
-	image_index = has_fallen ? 1 : 0;
-	if (has_fallen) {
-		//audio_sound_pitch(sfxLand, .5);
-		//audio_play_sound(sfxLand, 5, false);
-		repeat(30)
-			with (instance_create_layer(x, bbox_bottom, layer, obj_particle)) {
-				vertical_speed = 0;
-				horizontal_speed = random_range(-10, 10);
-				set_type(PARTICLE_TYPE.BLOOD);
-			}
+	
+	if (vertical_force < 0) {
+		if (image_index > 2)
+			image_index = 2;
+	} else {
+		if (image_index > 4)
+			image_index = 3;
 	}
 } else if (!is_on_floor) {
 	sprite_index = sprites_indexes.air;
@@ -95,7 +91,7 @@ if (is_dead) {
 }
 
 if (horizontal_direction != 0) {
-	image_xscale = horizontal_direction;
+	image_xscale = is_dead ? -horizontal_direction : horizontal_direction;
 	
 	if (!is_dead && aiming_instance != noone && !controls.is_disabled) {
 		var is_looking_right = sign(aiming_instance.image_yscale) > 0;
