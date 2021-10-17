@@ -32,7 +32,6 @@ new_game_item = {
 	text: "New Game",
 	on_selected: function() {
 		with(obj_game) {
-			reset_game_state();
 			audio_sound_gain(current_soundtrack, 0, 500);
 		}
 		with(obj_menu) {
@@ -40,7 +39,7 @@ new_game_item = {
 			horizontal_position = gui_width + starting_position_offset;
 		}
 		slide_transition(TRANSITION_MODE.CLOSE, function() {
-			room_goto(Room1);
+			room_goto(Shooting);
 			slide_transition(TRANSITION_MODE.OPEN);
 		}, 250);
 	}

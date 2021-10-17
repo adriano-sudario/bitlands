@@ -13,17 +13,20 @@ display_set_gui_size(RESOLUTION_WIDTH, RESOLUTION_HEIGHT);
 current_soundtrack = noone;
 
 global.game_state = {
-	current_room: noone,
-	weapons: [],
-	kills: 0
-}
-
-function reset_game_state() {
-	global.game_state = {
-		current_room: noone,
-		weapons: [],
-		kills: 0
-	}
+	players: [
+		{
+			input: 0,
+			character: CHARACTER.GERALDO
+		},
+		{
+			input: 1,
+			character: CHARACTER.RAIMUNDO
+		},
+		{
+			input: 2,
+			character: CHARACTER.SEBASTIAO
+		}
+	]
 }
 
 function toggle_fullscreen() {

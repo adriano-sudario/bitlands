@@ -15,19 +15,18 @@ cartrige_capacity = 4;
 cartrige = noone;
 is_passing_through_plank = false;
 bullets_count = cartrige_capacity;
-controls = controller(0, true);
 has_gun = false;
 aiming_instance = noone;
-sprites_indexes = obj_game.get_character_sprites(CHARACTER.SEBASTIAO);
-teste = false;
+sprites_indexes = noone;
+controls = noone;
+player_info = noone;
+
 function update_movement() {
 	if (!is_dead) {
-		if (!controls.is_disabled)
-			horizontal_direction = controls.is_right_held() - controls.is_left_held();
+		horizontal_direction = controls.is_right_held() - controls.is_left_held();
 		horizontal_force = horizontal_direction * walk_speed;
 	}
 
-	var was_on_floor = is_on_floor;
 	var platform = instance_place(x, y + 1, obj_wall);
 	is_on_floor = platform != noone && !is_passing_through_plank;
 	var is_holding_jump = controls.is_jump_held();
@@ -37,16 +36,12 @@ function update_movement() {
 		&& is_holding_jump) {
 		is_on_floor = false;
 		is_passing_through_plank = true;
-		teste = true;
 	}
 	var has_released_jump = is_jump_held && !is_holding_jump;
 	is_jump_held = is_holding_jump;
 
-	//if (!has_jump && was_on_floor && !is_on_floor)
-	//	alarm[1] = 5;
-
 	if (is_on_floor && !is_dead) {
-		if (!controls.is_disabled && is_holding_jump && !has_jump) {
+		if (is_holding_jump && !has_jump) {
 			vertical_force = JUMP_FORCE;
 			has_jump = true;
 		} else {
@@ -91,11 +86,6 @@ function update_aim() {
 	
 	if (aiming_instance == noone || is_reloading)
 		return;
-	
-	if (controls.is_disabled) {
-		aiming_instance.image_angle = sign(horizontal_direction) > 0 ? 0 : 180;
-		return;
-	}
 	
 	controls.update_aiming_angle(x, y);
 	aiming_instance.image_angle = controls.aiming_angle;

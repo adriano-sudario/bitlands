@@ -38,6 +38,8 @@ for (var i = 0; i < ds_list_size(targets_found); i++) {
 		break;
 	}
 }
+
+ds_list_destroy(targets_found);
 	
 if (target != noone) {
 	aiming.target = target;

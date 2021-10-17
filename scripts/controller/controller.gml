@@ -1,16 +1,7 @@
-/// @function controller(_start_with_default)
+/// @function controller()
 
 function controller(_input) {
-	if (variable_global_exists("controls")) {
-		if (argument_count > 1 && argument[1]) {
-			global.controls.is_disabled = false;
-			global.controls.aiming_angle = 0;
-		}
-		return global.controls;
-	}
-	
-	global.controls = {
-		is_disabled: false,
+	return {
 		aiming_angle: 0,
 		input: _input,
 		is_left_held: function() {
@@ -86,6 +77,4 @@ function controller(_input) {
 					keyboard_check_pressed(vk_enter);
 		},
 	};
-	
-	return global.controls;
 }

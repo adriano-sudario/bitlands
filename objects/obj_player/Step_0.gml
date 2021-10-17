@@ -1,8 +1,16 @@
 if (has_fallen)
 	return;
 
-var horizontal_block = instance_place(x + horizontal_force, y, obj_wall);
-if (horizontal_block != noone) {
+var horizontal_blocks = ds_list_create();
+instance_place_list(x + horizontal_force, y, obj_wall, horizontal_blocks, false);
+var was_blocked_by_plank_horizontally = false;
+
+for (var i = 0; i < ds_list_size(horizontal_blocks); ++i;)
+{
+	var horizontal_block = horizontal_blocks[| i];
+	if (!was_blocked_by_plank_horizontally)
+		was_blocked_by_plank_horizontally = 
+			horizontal_block.object_index == obj_plank;
 	if (horizontal_block.object_index == obj_plank) {
 		is_passing_through_plank = true;
 	} else {
@@ -15,9 +23,16 @@ if (horizontal_block != noone) {
 	}
 }
 
-var vertical_block = instance_place(x, y + vertical_force, obj_wall);
-	
-if (vertical_block != noone) {
+var vertical_blocks = ds_list_create();
+instance_place_list(x, y + vertical_force, obj_wall, vertical_blocks, false);
+var was_blocked_by_plank_vertically = false;
+
+for (var i = 0; i < ds_list_size(vertical_blocks); ++i;)
+{
+	var vertical_block = vertical_blocks[| i];
+	if (!was_blocked_by_plank_vertically)
+		was_blocked_by_plank_vertically = 
+			vertical_block.object_index == obj_plank;
 	var vertical_direction = sign(vertical_force);
 	if (vertical_direction < 0) {
 		if (vertical_block.object_index == obj_plank) {
@@ -35,10 +50,13 @@ if (vertical_block != noone) {
 	}
 }
 
-if ((horizontal_block == noone || horizontal_block.object_index != obj_plank)
-	&& (vertical_block == noone || vertical_block.object_index != obj_plank)
-	&& is_passing_through_plank)
+if (is_passing_through_plank
+	&& (ds_list_size(horizontal_blocks) == 0 || !was_blocked_by_plank_horizontally)
+	&& (ds_list_size(vertical_blocks) == 0 || !was_blocked_by_plank_vertically))
 	is_passing_through_plank = false;
+
+ds_list_destroy(horizontal_blocks);
+ds_list_destroy(vertical_blocks);
 
 x += horizontal_force;
 y += vertical_force;
