@@ -27,11 +27,17 @@ var endline_y = aiming.y + lengthdir_y(aiming.length, image_angle);
 
 var target = noone;
 	
-var list = ds_list_create();
-var targets_found_count = collision_line_list(aiming.x, aiming.y,
-	endline_x, endline_y, obj_wall, false, true, list, true);
-if (targets_found_count > 0)
-	target = list[| 0];
+var targets_found = ds_list_create();
+collision_line_list(aiming.x, aiming.y, endline_x, endline_y,
+	obj_wall, false, true, targets_found, true);
+
+for (var i = 0; i < ds_list_size(targets_found); i++) {
+	var item = targets_found[| i];
+	if (item.object_index != obj_plank) {
+		target = item;
+		break;
+	}
+}
 	
 if (target != noone) {
 	aiming.target = target;

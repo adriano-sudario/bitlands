@@ -1,28 +1,44 @@
 if (has_fallen)
 	return;
 
-var wall = instance_place(x + horizontal_force, y, obj_wall);
-if (wall != noone) {
-	if (horizontal_direction < 0)
-		x = wall.bbox_right + (x - bbox_left) + 1;
-	else if (horizontal_direction > 0)
-		x = wall.bbox_left - (bbox_right - x) - 1;
+var horizontal_block = instance_place(x + horizontal_force, y, obj_wall);
+if (horizontal_block != noone) {
+	if (horizontal_block.object_index == obj_plank) {
+		is_passing_through_plank = true;
+	} else {
+		if (horizontal_direction < 0)
+			x = horizontal_block.bbox_right + (x - bbox_left) + 1;
+		else if (horizontal_direction > 0)
+			x = horizontal_block.bbox_left - (bbox_right - x) - 1;
 	
-	horizontal_force = 0;
+		horizontal_force = 0;
+	}
 }
 
-wall = instance_place(x, y + vertical_force, obj_wall);
+var vertical_block = instance_place(x, y + vertical_force, obj_wall);
 	
-if (wall != noone) {
+if (vertical_block != noone) {
 	var vertical_direction = sign(vertical_force);
-	if (vertical_direction < 0)
-		y = wall.bbox_bottom - (bbox_top - y) + 1;
-	else if (vertical_direction > 0)
-		y = wall.bbox_top + (y - bbox_bottom) - 1;
+	if (vertical_direction < 0) {
+		if (vertical_block.object_index == obj_plank) {
+			is_passing_through_plank = true;
+		} else {
+			y = vertical_block.bbox_bottom - (bbox_top - y) + 1;
+		}
+	}
+	else if (vertical_direction > 0 && !is_passing_through_plank)
+		y = vertical_block.bbox_top + (y - bbox_bottom) - 1;
 	
-	vertical_force = 0;
-	is_on_floor = vertical_direction > 0;
+	if (!is_passing_through_plank) {
+		vertical_force = 0;
+		is_on_floor = vertical_direction > 0;
+	}
 }
+
+if ((horizontal_block == noone || horizontal_block.object_index != obj_plank)
+	&& (vertical_block == noone || vertical_block.object_index != obj_plank)
+	&& is_passing_through_plank)
+	is_passing_through_plank = false;
 
 x += horizontal_force;
 y += vertical_force;
@@ -51,7 +67,7 @@ if (is_dead) {
 	image_speed = 0;
 	image_index = vertical_force > 0 ? 1 : 0;
 } else {
-	if (sprite_index == sprites_indexes.air) {
+	if (sprite_index == sprites_indexes.air && !is_passing_through_plank) {
 		//audio_sound_pitch(sfxLand, choose(.8, 1, 1.2));
 		//audio_play_sound(sfxLand, 5, false);
 		repeat(round(random_range(4, 7)))
@@ -63,7 +79,8 @@ if (is_dead) {
 	
 	if (horizontal_direction != 0)
 		sprite_index = sprites_indexes.run;
-	else if (!is_aiming && !is_reloading && sprite_index != sprites_indexes.drop_weapon)
+	else if (!is_aiming && !is_reloading 
+		&& sprite_index != sprites_indexes.drop_weapon)
 		sprite_index = sprites_indexes.idle;
 	
 	//if (sprite_index == sPlayerR && image_index == 0)

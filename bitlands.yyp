@@ -54,6 +54,7 @@
     {"id":{"name":"obj_cartrige","path":"objects/obj_cartrige/obj_cartrige.yy",},"order":5,},
     {"id":{"name":"spr_sebastiao_air","path":"sprites/spr_sebastiao_air/spr_sebastiao_air.yy",},"order":1,},
     {"id":{"name":"spr_geraldo_dead","path":"sprites/spr_geraldo_dead/spr_geraldo_dead.yy",},"order":7,},
+    {"id":{"name":"obj_plank","path":"objects/obj_plank/obj_plank.yy",},"order":2,},
     {"id":{"name":"sfx_menu_confirm","path":"sounds/sfx_menu_confirm/sfx_menu_confirm.yy",},"order":8,},
     {"id":{"name":"obj_bridge","path":"objects/obj_bridge/obj_bridge.yy",},"order":1,},
     {"id":{"name":"obj_aiming_arm","path":"objects/obj_aiming_arm/obj_aiming_arm.yy",},"order":1,},
