@@ -1,8 +1,5 @@
 {
-  "spriteId": {
-    "name": "spr_aiming_gun",
-    "path": "sprites/spr_aiming_gun/spr_aiming_gun.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
