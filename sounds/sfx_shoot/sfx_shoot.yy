@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "sfx_shoot.wav",
-  "duration": 0.147268,
+  "duration": 0.265578,
   "parent": {
     "name": "Sfxs",
     "path": "folders/Sounds/Sfxs.yy",

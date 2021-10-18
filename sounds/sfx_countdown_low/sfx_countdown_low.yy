@@ -10,14 +10,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sfx_menu_change.wav",
+  "soundFile": "sfx_countdown_low.wav",
   "duration": 0.265578,
   "parent": {
     "name": "Sfxs",
     "path": "folders/Sounds/Sfxs.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sfx_menu_change",
+  "name": "sfx_countdown_low",
   "tags": [],
   "resourceType": "GMSound",
 }

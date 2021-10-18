@@ -26,13 +26,6 @@ function get_menu_items(){
 		y: 0,
 		text: "New match",
 		on_selected: function(_menu_id) {
-			//with(obj_game) {
-			//	audio_sound_gain(current_soundtrack, 0, 500);
-			//}
-			//with(obj_menu) {
-			//	has_all_items_arrived = false;
-			//	horizontal_position = gui_width + starting_position_offset;
-			//}
 			instance_destroy(_menu_id);
 		
 			slide_transition(TRANSITION_MODE.CLOSE, function() {

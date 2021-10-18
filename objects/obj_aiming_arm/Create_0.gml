@@ -16,8 +16,8 @@ function shoot() {
 	if (aiming.target == noone)
 		return;
 	
-	//audio_sound_pitch(sfxShoot, choose(.8, 1, 1.2));
-	//audio_play_sound(sfxShoot, 5, false);
+	audio_sound_pitch(sfx_shoot, choose(.8, 1, 1.2));
+	audio_play_sound(sfx_shoot, 5, false);
 	
 	if (aiming.target.object_index == obj_player)
 		hit_player(aiming.target, aiming.x, image_angle);

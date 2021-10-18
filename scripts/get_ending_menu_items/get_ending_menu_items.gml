@@ -6,6 +6,7 @@ function get_ending_menu_items(){
 		y: 0,
 		text: "Rematch",
 		on_selected: function() {
+			audio_stop_all();
 			room_restart();
 		}
 	};
@@ -14,6 +15,7 @@ function get_ending_menu_items(){
 		y: 0,
 		text: "Back to main menu",
 		on_selected: function(_menu_id) {
+			audio_stop_all();
 			instance_destroy(_menu_id);
 			slide_transition(TRANSITION_MODE.CLOSE, function() {
 				room_goto(Menu);

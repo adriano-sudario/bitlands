@@ -10,14 +10,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sfx_menu_confirm.wav",
-  "duration": 0.900533,
+  "soundFile": "sfx_countdown_high.wav",
+  "duration": 0.265578,
   "parent": {
     "name": "Sfxs",
     "path": "folders/Sounds/Sfxs.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sfx_menu_confirm",
+  "name": "sfx_countdown_high",
   "tags": [],
   "resourceType": "GMSound",
 }

@@ -34,6 +34,7 @@ for (var i = 0; i < array_length(controls); i++;) {
 			}
 		}
 		if (last_selection_with_input != noone) {
+			audio_play_sound(sfx_menu_change, 5, false);
 			last_selection_with_input.input = control;
 			last_selection_with_input.spawn_point = last_spawn_with_input;
 			last_selection_with_input.spawn_point.visible = true;
@@ -76,6 +77,7 @@ for (var i = 0; i < array_length(controls); i++;) {
 			}
 			
 			if (control.is_select_pressed() || control.is_enter_pressed()) {
+				audio_play_sound(sfx_menu_change, 5, false);
 				selection_with_input.is_ready = true;
 				selection_with_input.chosen_index = array_length(chosen_characters);
 				array_insert(chosen_characters, selection_with_input.chosen_index,
@@ -116,6 +118,7 @@ for (var i = 0; i < array_length(controls); i++;) {
 				}
 				
 				global.game_state = { players: _players };
+				audio_stop_sound(stk_crujoa);
 				room_goto(Shooting);
 			}
 		}
