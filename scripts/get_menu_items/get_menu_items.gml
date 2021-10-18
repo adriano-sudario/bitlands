@@ -12,19 +12,19 @@ function get_menu_items(){
 	var fullscreen_item = {
 		x: 0,
 		y: 0,
-		text: "Fullscreen: on",
+		text: window_get_fullscreen() ? "Fullscreen: on" : "Fullscreen: off",
 		on_selected: function() {
 			obj_game.toggle_fullscreen();
 			if (window_get_fullscreen())
-				text = "Fullscreen: off";
-			else
 				text = "Fullscreen: on";
+			else
+				text = "Fullscreen: off";
 		}
 	};
 	var show_aim_item = {
 		x: 0,
 		y: 0,
-		text: "Show aim: off",
+		text: obj_game.show_aim ? "Show aim: on" : "Show aim: off",
 		on_selected: function() {
 			obj_game.show_aim = !obj_game.show_aim;
 			if (obj_game.show_aim)

@@ -1,1 +1,0 @@
-visible = obj_player.controls.input < 0 && obj_game.show_aim;

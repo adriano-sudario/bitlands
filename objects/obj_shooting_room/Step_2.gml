@@ -48,7 +48,7 @@ if (has_match_ended && !has_menu_appeared
 		if (winning_player.is_aiming)
 			winning_player.remove_aiming_instance();
 	}
-	with (instance_create_layer(0, 0, "EndMenu", obj_menu_simple)) {
+	with (instance_create_layer(0, 0, "Helpers", obj_menu_simple)) {
 		margin = 0;
 		horizontal_position = gui_width * .5;
 		vertical_position = gui_height * .5 - font_height - 25;

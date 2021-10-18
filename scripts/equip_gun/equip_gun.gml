@@ -5,9 +5,5 @@ function equip_gun(_owner){
 	weapon.owner = _owner;
 	weapon.depth = -1;
 	weapon.sprite_index = _owner.sprites_indexes.aiming_gun;
-		
-	if (_owner.controls.input < 0 && !instance_exists(obj_target))
-		instance_create_layer(mouse_x, mouse_y, layer, obj_target);
-		
 	return weapon;
 }

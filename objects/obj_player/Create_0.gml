@@ -114,6 +114,10 @@ function remove_aiming_instance() {
 	with (cartrige)
 		instance_destroy();
 	cartrige = noone;
+	
+	if (controls.input < 0 && obj_game.show_aim)
+		with(obj_target)
+			instance_destroy();
 }
 
 function begin_aiming() {
@@ -141,6 +145,8 @@ function begin_aiming() {
 				controls.aiming_angle = 0;
 				aiming_instance.image_angle = 0;
 			}
+		} else if (obj_game.show_aim) {
+			instance_create_layer(mouse_x, mouse_y, layer, obj_target);
 		}
 	}
 }
