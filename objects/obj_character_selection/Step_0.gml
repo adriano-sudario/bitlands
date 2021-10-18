@@ -99,12 +99,6 @@ for (var i = 0; i < array_length(controls); i++;) {
 			}
 			
 			if (control.is_enter_pressed() && can_start) {
-				//	players: [
-				//		//{
-				//		//	input: 2,
-				//		//	character: CHARACTER.SEBASTIAO,
-				//		//	index: 3
-				//		//}
 				var _players = [];
 				for (var i = 0; i < array_length(selections); i++;) {
 					var selection = selections[i];

@@ -75,6 +75,7 @@
     {"id":{"name":"spr_dust","path":"sprites/spr_dust/spr_dust.yy",},"order":4,},
     {"id":{"name":"spr_severino_run","path":"sprites/spr_severino_run/spr_severino_run.yy",},"order":2,},
     {"id":{"name":"spr_geraldo_aiming_gun","path":"sprites/spr_geraldo_aiming_gun/spr_geraldo_aiming_gun.yy",},"order":5,},
+    {"id":{"name":"fnt_mono_big","path":"fonts/fnt_mono_big/fnt_mono_big.yy",},"order":4,},
     {"id":{"name":"prepare_text_draw","path":"scripts/prepare_text_draw/prepare_text_draw.yy",},"order":3,},
     {"id":{"name":"spr_sebastiao_drop_weapon","path":"sprites/spr_sebastiao_drop_weapon/spr_sebastiao_drop_weapon.yy",},"order":3,},
     {"id":{"name":"spr_gun","path":"sprites/spr_gun/spr_gun.yy",},"order":4,},

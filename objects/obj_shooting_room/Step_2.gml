@@ -1,3 +1,21 @@
+if (!has_begun) {
+	countdown_scale += countdown_growth_speed;
+	if (countdown_scale >= 1) {
+		countdown_scale = 1;
+		current_countdown_fps_stopped++;
+		if (current_countdown_fps_stopped >= countdown_fps_stopped) {
+			countdown++;
+			if (countdown > 3) {
+				has_begun = true;
+			} else {
+				countdown_scale = 0;
+				current_countdown_fps_stopped = 0;
+			}
+		}
+	}
+	return;
+}
+
 var players_length = array_length(players);
 
 if (players_length == 0)

@@ -1,4 +1,4 @@
-if (has_fallen || obj_shooting_room.has_match_ended)
+if (has_fallen || obj_shooting_room.has_match_ended || !obj_shooting_room.has_begun)
 	return;
 	
 if (has_gun && controls.is_reload_pressed() 
