@@ -12,13 +12,25 @@ function get_menu_items(){
 	var fullscreen_item = {
 		x: 0,
 		y: 0,
-		text: "Fs On",
+		text: "Fullscreen: on",
 		on_selected: function() {
 			obj_game.toggle_fullscreen();
 			if (window_get_fullscreen())
-				text = "Fs Off";
+				text = "Fullscreen: off";
 			else
-				text = "Fs On";
+				text = "Fullscreen: on";
+		}
+	};
+	var show_aim_item = {
+		x: 0,
+		y: 0,
+		text: "Show aim: off",
+		on_selected: function() {
+			obj_game.show_aim = !obj_game.show_aim;
+			if (obj_game.show_aim)
+				text = "Show aim: on";
+			else
+				text = "Show aim: off";
 		}
 	};
 	var new_game_item = {
@@ -38,6 +50,7 @@ function get_menu_items(){
 	return {
 		new_game: new_game_item,
 		fullscreen: fullscreen_item,
+		show_aim: show_aim_item,
 		quit: quit_item
 	};
 }

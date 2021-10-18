@@ -3,7 +3,7 @@
 
 display_set_gui_size(RESOLUTION_WIDTH, RESOLUTION_HEIGHT);
 
-//current_soundtrack = noone;
+show_aim = false;
 
 function toggle_fullscreen() {
 	window_set_fullscreen(!window_get_fullscreen());

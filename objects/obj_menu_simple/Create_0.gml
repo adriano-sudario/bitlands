@@ -5,21 +5,33 @@ margin = 32;
 font = fnt_mono;
 outline_border_color = c_black;
 font_height = font_get_size(font);
-horizontal_position = gui_width - margin;
-vertical_position = gui_height - margin;
+horizontal_position = gui_width * .5;
+vertical_position = (gui_height * .5) + 100;
 alpha = 1;
 show_arrow = false;
-horizontal_align = fa_right;
-vertical_align = fa_bottom;
+horizontal_align = fa_center;
+vertical_align = fa_center;
 
 options = get_menu_items();
-items = [options.quit, options.fullscreen, options.new_game];
+items = [options.quit, options.show_aim, options.fullscreen, options.new_game];
 
-controls = controller(0);
-current_up_held = controls.is_up_held();
-current_down_held = controls.is_down_held();
-previous_up_held = current_up_held;
-previous_down_held = current_down_held;
+controls = [
+	controller(-1), controller(0),
+	controller(1), controller(2),
+	controller(3)
+];
+
+current_down_controls = [];
+current_up_controls = [];
+previous_down_controls = [];
+previous_up_controls = [];
+
+for (var i = 0; i < array_length(controls); i++;) {
+	array_insert(current_down_controls, i, controls[i]);
+	array_insert(current_up_controls, i, controls[i]);
+	array_insert(previous_down_controls, i, controls[i]);
+	array_insert(previous_up_controls, i, controls[i]);
+}
 
 function mount_items() {
 	var vertical_margin = (font_height * .5);
