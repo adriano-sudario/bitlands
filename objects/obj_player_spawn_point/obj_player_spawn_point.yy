@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_severino_aim",
-    "path": "sprites/spr_severino_aim/spr_severino_aim.yy",
+    "name": "spr_severino_idle",
+    "path": "sprites/spr_severino_idle/spr_severino_idle.yy",
   },
   "solid": false,
   "visible": false,

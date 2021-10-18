@@ -76,5 +76,17 @@ function controller(_input) {
 				return keyboard_check_pressed(vk_space) || 
 					keyboard_check_pressed(vk_enter);
 		},
+		is_enter_pressed: function() {
+			if (input >= 0)
+				return gamepad_button_check_pressed(input, gp_start);
+			else
+				return keyboard_check_pressed(vk_enter);
+		},
+		is_back_pressed: function() {
+			if (input >= 0)
+				return gamepad_button_check_pressed(input, gp_face2);
+			else
+				return keyboard_check_pressed(vk_escape);
+		}
 	};
 }

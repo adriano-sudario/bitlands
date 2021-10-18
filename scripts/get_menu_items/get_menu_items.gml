@@ -24,7 +24,7 @@ function get_menu_items(){
 	var new_game_item = {
 		x: 0,
 		y: 0,
-		text: "New Game",
+		text: "New match",
 		on_selected: function(_menu_id) {
 			//with(obj_game) {
 			//	audio_sound_gain(current_soundtrack, 0, 500);
@@ -36,7 +36,7 @@ function get_menu_items(){
 			instance_destroy(_menu_id);
 		
 			slide_transition(TRANSITION_MODE.CLOSE, function() {
-				room_goto(Shooting);
+				room_goto(ShootingCharacterSelection);
 				slide_transition(TRANSITION_MODE.OPEN);
 			}, 250);
 		}

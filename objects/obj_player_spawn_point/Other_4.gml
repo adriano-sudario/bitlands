@@ -1,3 +1,6 @@
+if (is_selection)
+	return;
+
 if (player != noone)
 	array_insert(obj_shooting_room.players, 
 		array_length(obj_shooting_room.players), player);
