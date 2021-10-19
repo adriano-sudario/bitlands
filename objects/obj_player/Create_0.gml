@@ -41,7 +41,7 @@ function update_movement() {
 	var has_released_jump = is_jump_held && !is_holding_jump;
 	is_jump_held = is_holding_jump;
 
-	if (is_on_floor && !is_dead) {
+	if (is_on_floor && !is_dead && !controls.is_aiming_held()) {
 		if (is_holding_jump && !has_jump) {
 			vertical_force = JUMP_FORCE;
 			has_jump = true;

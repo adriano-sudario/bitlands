@@ -49,7 +49,7 @@ if (owner == noone)
 var endline_x = aiming.x + lengthdir_x(aiming.length, image_angle);
 var endline_y = aiming.y + lengthdir_y(aiming.length, image_angle);
 
-var target = noone;
+var block_on_target = noone;
 
 var blocks_found = ds_list_create();
 collision_line_list(aiming.x, aiming.y, endline_x, endline_y,
@@ -58,12 +58,18 @@ collision_line_list(aiming.x, aiming.y, endline_x, endline_y,
 for (var i = 0; i < ds_list_size(blocks_found); i++) {
 	var item = blocks_found[| i];
 	if (item.object_index != obj_plank) {
-		target = item;
+		block_on_target = item;
 		break;
 	}
 }
 
 ds_list_destroy(blocks_found);
+
+if (block_on_target != noone)
+	set_target(block_on_target);
+	
+var endline_x = aiming.x + lengthdir_x(aiming.length, image_angle);
+var endline_y = aiming.y + lengthdir_y(aiming.length, image_angle);
 
 var targets_found = ds_list_create();
 collision_line_list(aiming.x, aiming.y,
@@ -77,9 +83,6 @@ for (var i = 0; i < ds_list_size(targets_found); i++) {
 		break;
 	}
 }
-	
-if (target != noone)
-	set_target(target);
 
 if (enemy_on_target != noone && 
 	collision_line(aiming.x, aiming.y, endline_x, endline_y,

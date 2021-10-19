@@ -15,4 +15,9 @@ function hit_player(_player, _horizontal_gunpoint, _angle) {
 	if (_player.is_on_floor) {
 		_player.is_on_floor = false;
 	}
+	
+	if (_player.is_aiming) {
+		_player.is_aiming = false;
+		_player.remove_aiming_instance();
+	}
 }
