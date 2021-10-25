@@ -29,7 +29,7 @@ function update_movement() {
 
 	var platform = instance_place(x, y + 1, obj_wall);
 	is_on_floor = platform != noone && !is_passing_through_plank;
-	var is_holding_jump = controls.is_jump_held();
+	var is_holding_jump = controls.is_jump_held() && !is_dead;
 	if (is_on_floor 
 		&& platform.object_index == obj_plank
 		&& controls.is_down_held()

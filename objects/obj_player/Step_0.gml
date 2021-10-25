@@ -52,7 +52,7 @@ y += vertical_force;
 
 if (is_dead && is_on_floor) {
 	has_fallen = true;
-	alarm[0] = 30;
+	image_index = 5;
 }
 
 if (is_dead) {

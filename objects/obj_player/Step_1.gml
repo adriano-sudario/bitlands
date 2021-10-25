@@ -1,4 +1,6 @@
-if (has_fallen || obj_shooting_room.has_match_ended || !obj_shooting_room.has_begun)
+if (has_fallen 
+	|| obj_shooting_room.has_match_ended 
+	|| !obj_shooting_room.has_begun)
 	return;
 	
 if (has_gun && controls.is_reload_pressed() 
@@ -12,7 +14,8 @@ if (has_gun && controls.is_reload_pressed()
 		remove_aiming_instance();
 }
 
-if (!is_aiming && !is_reloading && sprite_index != sprites_indexes.drop_weapon)
+if (!is_aiming && !is_reloading 
+	&& sprite_index != sprites_indexes.drop_weapon)
 	update_movement();
 
 if (is_dead)
