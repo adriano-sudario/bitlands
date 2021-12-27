@@ -5,7 +5,4 @@ if (sprite_index == sprites_indexes.drop_weapon) {
 	is_reloading = false;
 	if (is_aiming)
 		begin_aiming();
-} else if (sprite_index == sprites_indexes.dead) {
-	image_speed = 0;
-	image_index = 6;
 }

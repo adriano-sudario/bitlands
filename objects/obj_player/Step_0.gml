@@ -1,6 +1,10 @@
-if (has_fallen)
+if (has_fallen) {
+	if (image_speed != 0 &&
+		image_index == sprite_get_number(sprites_indexes.dead))
+		image_speed = 0;
 	return;
-	
+}
+
 if (is_passing_through_plank)
 	is_passing_through_plank = place_meeting(x, y, obj_plank);
 
@@ -52,7 +56,7 @@ y += vertical_force;
 
 if (is_dead && is_on_floor) {
 	has_fallen = true;
-	image_index = 5;
+	cancel_movement();
 }
 
 if (is_dead) {
