@@ -20,7 +20,7 @@
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_player_spawn_point","path":"objects/obj_player_spawn_point/obj_player_spawn_point.yy",},"inheritCode":false,"hasCreationCode":true,"colour":4294967295,"rotation":0.0,"scaleX":-1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":352.0,"y":299.0,"resourceVersion":"1.0","name":"inst_5D63331D_1_1","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],"resourceVersion":"1.0","name":"SpawnPoints","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_character_selection","path":"objects/obj_character_selection/obj_character_selection.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":416.0,"y":160.0,"resourceVersion":"1.0","name":"inst_7C65F556_1","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[],"isDnd":false,"objectId":{"name":"obj_character_selection_host","path":"objects/obj_character_selection_host/obj_character_selection_host.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":416.0,"y":160.0,"resourceVersion":"1.0","name":"inst_4F487229","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":100,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],"resourceVersion":"1.0","name":"Helpers","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_rock","path":"objects/obj_rock/obj_rock.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.5,"scaleY":17.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":24.0,"y":352.0,"resourceVersion":"1.0","name":"inst_3AF25567_1_1","tags":[],"resourceType":"GMRInstance",},
@@ -74,7 +74,7 @@
     {"name":"inst_3A6E0848_1_1","path":"rooms/ShootingCharacterSelectionMultiplayer/ShootingCharacterSelectionMultiplayer.yy",},
     {"name":"inst_6B05C238_1_1","path":"rooms/ShootingCharacterSelectionMultiplayer/ShootingCharacterSelectionMultiplayer.yy",},
     {"name":"inst_5D63331D_1_1","path":"rooms/ShootingCharacterSelectionMultiplayer/ShootingCharacterSelectionMultiplayer.yy",},
-    {"name":"inst_7C65F556_1","path":"rooms/ShootingCharacterSelectionMultiplayer/ShootingCharacterSelectionMultiplayer.yy",},
+    {"name":"inst_4F487229","path":"rooms/ShootingCharacterSelectionMultiplayer/ShootingCharacterSelectionMultiplayer.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,
