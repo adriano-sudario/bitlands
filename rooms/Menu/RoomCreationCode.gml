@@ -1,1 +1,1 @@
-audio_play_sound(stk_crujoa, 100, true);
+//audio_play_sound(stk_crujoa, 100, true);
