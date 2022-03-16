@@ -13,3 +13,4 @@ milliseconds_before_start = 500;
 mode = TRANSITION_MODE.OFF;
 percent = 0;
 on_finish = function() { };
+depth = -999;

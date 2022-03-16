@@ -13,7 +13,14 @@ horizontal_align = fa_center;
 vertical_align = fa_center;
 
 options = get_menu_items();
-items = [options.quit, options.show_aim, options.fullscreen, options.new_game];
+items = [
+	options.quit,
+	options.show_aim,
+	options.fullscreen,
+	options.join_game,
+	options.host_game,
+	options.new_game
+];
 
 controls = [
 	controller(-1), controller(0),

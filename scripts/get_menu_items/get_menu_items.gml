@@ -33,6 +33,32 @@ function get_menu_items(){
 				text = "Show aim: off";
 		}
 	};
+	var join_game_item = {
+		x: 0,
+		y: 0,
+		text: "Join match",
+		on_selected: function(_menu_id) {
+			instance_destroy(_menu_id);
+		
+			slide_transition(TRANSITION_MODE.CLOSE, function() {
+				room_goto(JoinGame);
+				slide_transition(TRANSITION_MODE.OPEN);
+			}, 250);
+		}
+	};
+	var host_game_item = {
+		x: 0,
+		y: 0,
+		text: "Host match",
+		on_selected: function(_menu_id) {
+			instance_destroy(_menu_id);
+		
+			slide_transition(TRANSITION_MODE.CLOSE, function() {
+				room_goto(ShootingCharacterSelectionMultiplayer);
+				slide_transition(TRANSITION_MODE.OPEN);
+			}, 250);
+		}
+	};
 	var new_game_item = {
 		x: 0,
 		y: 0,
@@ -49,6 +75,8 @@ function get_menu_items(){
 	
 	return {
 		new_game: new_game_item,
+		host_game: host_game_item,
+		join_game: join_game_item,
 		fullscreen: fullscreen_item,
 		show_aim: show_aim_item,
 		quit: quit_item
