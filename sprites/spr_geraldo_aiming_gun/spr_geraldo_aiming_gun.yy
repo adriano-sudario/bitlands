@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_geraldo_aiming_gun","path":"sprites/spr_geraldo_aiming_gun/spr_geraldo_aiming_gun.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_geraldo_aiming_gun",
     "tags": [],
     "resourceType": "GMSequence",

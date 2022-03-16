@@ -83,7 +83,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_sebastiao_dead","path":"sprites/spr_sebastiao_dead/spr_sebastiao_dead.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_sebastiao_dead",
     "tags": [],
     "resourceType": "GMSequence",

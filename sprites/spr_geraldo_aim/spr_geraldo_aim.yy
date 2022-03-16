@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_geraldo_aim","path":"sprites/spr_geraldo_aim/spr_geraldo_aim.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_geraldo_aim",
     "tags": [],
     "resourceType": "GMSequence",

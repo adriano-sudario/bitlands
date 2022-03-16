@@ -99,7 +99,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_dust","path":"sprites/spr_dust/spr_dust.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_dust",
     "tags": [],
     "resourceType": "GMSequence",

@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_raimundo_aim","path":"sprites/spr_raimundo_aim/spr_raimundo_aim.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_raimundo_aim",
     "tags": [],
     "resourceType": "GMSequence",

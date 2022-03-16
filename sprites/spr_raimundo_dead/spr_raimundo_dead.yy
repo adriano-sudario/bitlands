@@ -83,7 +83,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_raimundo_dead","path":"sprites/spr_raimundo_dead/spr_raimundo_dead.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_raimundo_dead",
     "tags": [],
     "resourceType": "GMSequence",

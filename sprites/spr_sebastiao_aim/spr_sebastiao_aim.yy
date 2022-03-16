@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_sebastiao_aim","path":"sprites/spr_sebastiao_aim/spr_sebastiao_aim.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_sebastiao_aim",
     "tags": [],
     "resourceType": "GMSequence",

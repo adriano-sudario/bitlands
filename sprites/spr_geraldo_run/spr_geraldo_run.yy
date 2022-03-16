@@ -71,7 +71,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_geraldo_run","path":"sprites/spr_geraldo_run/spr_geraldo_run.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_geraldo_run",
     "tags": [],
     "resourceType": "GMSequence",

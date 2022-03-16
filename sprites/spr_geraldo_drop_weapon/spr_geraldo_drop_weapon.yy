@@ -79,7 +79,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_geraldo_drop_weapon","path":"sprites/spr_geraldo_drop_weapon/spr_geraldo_drop_weapon.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_geraldo_drop_weapon",
     "tags": [],
     "resourceType": "GMSequence",

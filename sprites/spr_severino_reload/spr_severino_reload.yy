@@ -103,7 +103,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_severino_reload","path":"sprites/spr_severino_reload/spr_severino_reload.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_severino_reload",
     "tags": [],
     "resourceType": "GMSequence",

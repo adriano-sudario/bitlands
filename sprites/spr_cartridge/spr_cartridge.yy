@@ -75,7 +75,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_cartridge","path":"sprites/spr_cartridge/spr_cartridge.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_cartridge",
     "tags": [],
     "resourceType": "GMSequence",

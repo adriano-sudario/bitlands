@@ -103,7 +103,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_geraldo_reload","path":"sprites/spr_geraldo_reload/spr_geraldo_reload.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_geraldo_reload",
     "tags": [],
     "resourceType": "GMSequence",

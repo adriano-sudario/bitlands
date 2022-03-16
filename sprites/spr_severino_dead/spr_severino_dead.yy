@@ -83,7 +83,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_severino_dead","path":"sprites/spr_severino_dead/spr_severino_dead.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_severino_dead",
     "tags": [],
     "resourceType": "GMSequence",

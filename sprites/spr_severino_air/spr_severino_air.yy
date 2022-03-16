@@ -63,7 +63,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_severino_air","path":"sprites/spr_severino_air/spr_severino_air.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_severino_air",
     "tags": [],
     "resourceType": "GMSequence",

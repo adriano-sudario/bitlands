@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_severino_aiming_gun","path":"sprites/spr_severino_aiming_gun/spr_severino_aiming_gun.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_severino_aiming_gun",
     "tags": [],
     "resourceType": "GMSequence",

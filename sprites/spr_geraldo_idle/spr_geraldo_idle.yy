@@ -71,7 +71,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_geraldo_idle","path":"sprites/spr_geraldo_idle/spr_geraldo_idle.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_geraldo_idle",
     "tags": [],
     "resourceType": "GMSequence",

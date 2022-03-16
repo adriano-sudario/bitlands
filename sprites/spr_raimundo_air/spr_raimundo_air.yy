@@ -63,7 +63,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_raimundo_air","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_raimundo_air",
     "tags": [],
     "resourceType": "GMSequence",

@@ -103,7 +103,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_raimundo_reload","path":"sprites/spr_raimundo_reload/spr_raimundo_reload.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_raimundo_reload",
     "tags": [],
     "resourceType": "GMSequence",

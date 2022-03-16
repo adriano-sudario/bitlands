@@ -63,7 +63,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_sebastiao_air","path":"sprites/spr_sebastiao_air/spr_sebastiao_air.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_sebastiao_air",
     "tags": [],
     "resourceType": "GMSequence",

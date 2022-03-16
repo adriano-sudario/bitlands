@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_severino_aim","path":"sprites/spr_severino_aim/spr_severino_aim.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_severino_aim",
     "tags": [],
     "resourceType": "GMSequence",

@@ -71,7 +71,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_raimundo_run","path":"sprites/spr_raimundo_run/spr_raimundo_run.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_raimundo_run",
     "tags": [],
     "resourceType": "GMSequence",

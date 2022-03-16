@@ -71,7 +71,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_severino_idle","path":"sprites/spr_severino_idle/spr_severino_idle.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_severino_idle",
     "tags": [],
     "resourceType": "GMSequence",
