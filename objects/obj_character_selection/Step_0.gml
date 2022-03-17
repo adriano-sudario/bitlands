@@ -90,7 +90,7 @@ for (var i = 0; i < array_length(controls); i++;) {
 				selection_with_input.spawn_point.visible = false;
 				selection_with_input.vertical_margin -= 25;
 				selection_with_input.character_index = -1;
-				last_selection_with_input.index = -1;
+				last_selection_with_input = noone;
 			}
 		} else {
 			if (control.is_back_pressed()) {
