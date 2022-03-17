@@ -23,9 +23,9 @@ items = [
 ];
 
 controls = [
-	controller(-1), controller(0),
-	controller(1), controller(2),
-	controller(3)
+	input_manager(-1), input_manager(0),
+	input_manager(1), input_manager(2),
+	input_manager(3)
 ];
 
 current_down_controls = [];

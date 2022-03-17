@@ -115,7 +115,7 @@ function remove_aiming_instance() {
 		instance_destroy();
 	cartrige = noone;
 	
-	if (controls.input < 0 && obj_game.show_aim)
+	if (!controls.is_gamepad && obj_game.show_aim)
 		with(obj_target)
 			instance_destroy();
 }
@@ -136,7 +136,7 @@ function begin_aiming() {
 			image_angle = angle;
 		}
 		sprite_index = sprites_indexes.aim;
-		if (controls.input >= 0) {
+		if (controls.is_gamepad) {
 			if (image_xscale < 0) {
 				controls.aiming_angle = 180;
 				aiming_instance.image_angle = 180;

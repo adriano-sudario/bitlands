@@ -13,7 +13,7 @@ for (var i = 0; i < array_length(controls); i++;) {
 	current_right_controls[i] = control.is_right_held();
 	
 	var selection_with_input = array_find(selections, function(s, c) {
-		return s.input != noone && s.input.input == c.input;
+		return s.input != noone && s.input.input_id == c.input_id;
 	}, control);
 	
 	if (control.is_enter_pressed() && selection_with_input == noone) {
@@ -109,7 +109,7 @@ for (var i = 0; i < array_length(controls); i++;) {
 					}, i);
 					if (selection_ready != noone)
 						array_insert(_players, array_length(_players), {
-							input: selection_ready.input.input,
+							input: selection_ready.input.input_id,
 							character: characters_list[selection_ready.character_index],
 							index: selection_ready.index
 						});

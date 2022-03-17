@@ -1,7 +1,7 @@
-/// @description string_replace_at(str, pos, insert)
-/// @param _value
-/// @param _index
-/// @param _replace_text
+/// @function string_replace_at(string, position, replace_text);
+/// @param {string} string to be replaced
+/// @param {position} position of replacement
+/// @param {replace_text} text to replace
 
 function string_replace_at(_string, _position, _replace_text) {
 	if (_position > string_length(_string) || _position <= 0)
