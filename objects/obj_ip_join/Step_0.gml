@@ -1,12 +1,12 @@
-if (string_length(ip) == 11 && keyboard_check_pressed(vk_enter)) {
+if (keyboard_check_pressed(vk_enter) && is_valid_ip_format()) {
 	room_goto(ShootingCharacterSelectionMultiplayer);
 	return;
 }
 
-if (keyboard_check_pressed(vk_backspace))
+if (keyboard_check_pressed(vk_backspace) && string_length(ip) != 0)
 	ip = string_copy(ip, 1, string_length(ip) - 1);
 
-if (string_length(ip) >= 11)
+if (!can_insert_number())
 	return;
 
 var number_keys = [
@@ -23,9 +23,12 @@ var number_keys = [
 ];
 
 for (var i = 0; i < array_length(number_keys); i++) {
-	if (keyboard_check_pressed(ord(number_keys[i][0])) || keyboard_check_pressed(number_keys[i][1]))
+	if (keyboard_check_pressed(ord(number_keys[i][0])) || keyboard_check_pressed(number_keys[i][1])) {
 		ip += number_keys[i][0];
+		auto_insert_dot();
+		break;
+	}
 }
 
-if (string_length(ip) > 11)
-	ip = string_copy(ip, 1, 11);
+if (keyboard_check_pressed(190) && can_insert_dot())
+	ip += ".";
