@@ -32,3 +32,6 @@ for (var i = 0; i < array_length(number_keys); i++) {
 
 if (keyboard_check_pressed(190) && can_insert_dot())
 	ip += ".";
+	
+if (keyboard_check(vk_control) && keyboard_check_pressed(ord("V")))
+	insert_clipboard();

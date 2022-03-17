@@ -14,6 +14,33 @@ function get_underscores() {
 	}
 }
 
+function insert_clipboard() {
+	var clipboard_text = clipboard_get_text();
+	var acceptable_chars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+	
+	for (var i = 1; i <= string_length(clipboard_text); i++) {
+		var clip_char = string_char_at(clipboard_text, i);
+		var can_insert = false;
+		
+		for (var c = 0; c < array_length(acceptable_chars); c++) {
+			if (clip_char == acceptable_chars[c]) {
+				can_insert = true;
+				break;
+			}
+		}
+		
+		if (clip_char != ".") {
+			if (!can_insert_number())
+				break;
+			
+			ip += clip_char;
+			auto_insert_dot();
+		} else if (can_insert_dot()) {
+			ip += clip_char;
+		}
+	}
+}
+
 function can_insert_number() {
 	var ip_split = string_split(ip, ".");
 	var ip_last_block = ip_split[array_length(ip_split) - 1];
