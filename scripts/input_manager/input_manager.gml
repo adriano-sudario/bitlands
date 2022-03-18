@@ -1,122 +1,173 @@
 /// @function input_manager(input_id);
 /// @param {input_id} -1: keyboard / 0~3: gamepads
 
-function input_manager(_input_id) {
+function input_manager(_input_id = noone) {
 	return {
 		input_id: _input_id,
 		is_gamepad: _input_id != noone && _input_id >= 0,
 		aiming_angle: 0,
-		update_aiming_angle: function(_x, _y) {
-			if (input_id >= 0) {
-				var horizontal_axis = gamepad_axis_value(input_id, gp_axislh);
-				var vertical_axis = gamepad_axis_value(input_id, gp_axislv);
+		check_all_inputs: function(_bind_type, _gamepad_check, _keyboard_check) {
+			var inputs = [-1, 0, 1, 2, 3];
+			var is_true = false;
 			
-				if (abs(horizontal_axis) > .5 || abs(vertical_axis) > .5)
-					aiming_angle = point_direction(0, 0, 
-						horizontal_axis, vertical_axis);
-			}
-			else {
-				aiming_angle = point_direction(_x, _y, mouse_x, mouse_y);
-			}
-		},
-		directional_gamepad_check: function(bind_key) {
-			if (bind_key[1] == gp_padl || bind_key[1] == gp_padu)
-				var axis_result = gamepad_axis_value(input_id, bind_key[0]) < -.5;
-			else
-				var axis_result = gamepad_axis_value(input_id, bind_key[0]) > .5;
+			for (var i = 0; i < array_length(inputs); i++) {
+				input_id = inputs[i];
 				
-			return axis_result || gamepad_button_check(input_id, bind_key[1]);
+				if (input_id < 0) {
+					is_true = _keyboard_check(_bind_type.keyboard);
+					is_gamepad = !is_true;
+				} else {
+					is_true = _gamepad_check(_bind_type.gamepad);
+					is_gamepad = is_true;
+				}
+				
+				if (is_true)
+					break;
+			}
+			
+			input_id = noone;
+			return is_true;
 		},
-		directional_keyboard_check: function(bind_key) {
-			return keyboard_check(bind_key[0]) || keyboard_check(ord(bind_key[1]));
+		update_all_aiming_angle: function(_x, _y) {
+			var inputs = [-1, 0, 1, 2, 3];
+			
+			for (var i = 0; i < array_length(inputs); i++) {
+				if (i == 0) {
+					update_keyboard_aiming_angle(_x, _y);
+				} else {
+					if (update_gamepad_aiming_angle(_x, _y)) {
+						is_gamepad = true;
+						break;
+					}
+				}
+			}
 		},
-		directional_check: function(bind_type) {
-			if (input_id >= 0)
-				return directional_gamepad_check(bind_type.gamepad);
+		update_gamepad_aiming_angle: function(_x, _y) {
+			var horizontal_axis = gamepad_axis_value(input_id, gp_axislh);
+			var vertical_axis = gamepad_axis_value(input_id, gp_axislv);
+			
+			if (abs(horizontal_axis) > .5 || abs(vertical_axis) > .5) {
+				aiming_angle = point_direction(0, 0, 
+					horizontal_axis, vertical_axis);
+				return true;
+			}
+		},
+		update_keyboard_aiming_angle: function(_x, _y) {
+			aiming_angle = point_direction(_x, _y, mouse_x, mouse_y);
+		},
+		update_aiming_angle: function(_x, _y) {
+			if (input_id == noone)
+				update_all_aiming_angle(_x, _y);
+			else if (input_id >= 0)
+				update_gamepad_aiming_angle(_x, _y);
 			else
-				return directional_keyboard_check(bind_type.keyboard);
+				update_keyboard_aiming_angle(_x, _y);
 		},
-		held_gamepad_check: function(bind_key) {
-			if (typeof(bind_key) == "array") {
-				for (var i = 0; i < array_length(bind_key); i++)
-					if (gamepad_button_check(input_id, bind_key[i]))
+		directional_gamepad_check: function(_bind_key) {
+			if (_bind_key[1] == gp_padl || _bind_key[1] == gp_padu)
+				var axis_result = gamepad_axis_value(input_id, _bind_key[0]) < -.5;
+			else
+				var axis_result = gamepad_axis_value(input_id, _bind_key[0]) > .5;
+				
+			return axis_result || gamepad_button_check(input_id, _bind_key[1]);
+		},
+		directional_keyboard_check: function(_bind_key) {
+			return keyboard_check(_bind_key[0]) || keyboard_check(ord(_bind_key[1]));
+		},
+		directional_check: function(_bind_type) {
+			if (input_id == noone)
+				return check_all_inputs(_bind_type,
+					directional_gamepad_check, directional_keyboard_check);
+			else if (input_id >= 0)
+				return directional_gamepad_check(_bind_type.gamepad);
+			else
+				return directional_keyboard_check(_bind_type.keyboard);
+		},
+		held_gamepad_check: function(_bind_key) {
+			if (typeof(_bind_key) == "array") {
+				for (var i = 0; i < array_length(_bind_key); i++)
+					if (gamepad_button_check(input_id, _bind_key[i]))
 						return true;
 					
 				return false;
 			}
 				
-			return gamepad_button_check(input_id, bind_key);
+			return gamepad_button_check(input_id, _bind_key);
 		},
-		held_keyboard_check: function(bind_key) {
-			if (bind_key == mb_any || bind_key == mb_left || bind_key == mb_middle  ||
-				bind_key == mb_none || bind_key == mb_right || bind_key == mb_side1 || 
-				bind_key == mb_side2)
+		held_keyboard_check: function(_bind_key) {
+			if (_bind_key == mb_any || _bind_key == mb_left || _bind_key == mb_middle  ||
+				_bind_key == mb_none || _bind_key == mb_right || _bind_key == mb_side1 || 
+				_bind_key == mb_side2)
 				var check_function = mouse_check_button;
 			else
 				var check_function = keyboard_check;
 			
-			if (typeof(bind_key) == "array") {
-				for (var i = 0; i < array_length(bind_key); i++) {
-					var type = typeof(bind_key);
-					if ((type == "string" && check_function(ord(bind_key[i]))) ||
-						(type != "string" && check_function(bind_key[i])))
+			if (typeof(_bind_key) == "array") {
+				for (var i = 0; i < array_length(_bind_key); i++) {
+					var type = typeof(_bind_key);
+					if ((type == "string" && check_function(ord(_bind_key[i]))) ||
+						(type != "string" && check_function(_bind_key[i])))
 						return true;
 				}
 					
 				return false;
 			}
 				
-			if (typeof(bind_key) == "string")
-				return check_function(ord(bind_key));
+			if (typeof(_bind_key) == "string")
+				return check_function(ord(_bind_key));
 			else
-				return check_function(bind_key);
+				return check_function(_bind_key);
 		},
-		held_check: function(bind_type) {
-			if (input_id >= 0)
-				return held_gamepad_check(bind_type.gamepad);
+		held_check: function(_bind_type) {
+			if (input_id == noone)
+				return check_all_inputs(_bind_type, held_gamepad_check, held_keyboard_check);
+			else if (input_id >= 0)
+				return held_gamepad_check(_bind_type.gamepad);
 			else
-				return held_keyboard_check(bind_type.keyboard);
+				return held_keyboard_check(_bind_type.keyboard);
 		},
-		pressed_gamepad_check: function(bind_key) {
-			if (typeof(bind_key) == "array") {
-				for (var i = 0; i < array_length(bind_key); i++)
-					if (gamepad_button_check_pressed(input_id, bind_key[i]))
+		pressed_gamepad_check: function(_bind_key) {
+			if (typeof(_bind_key) == "array") {
+				for (var i = 0; i < array_length(_bind_key); i++)
+					if (gamepad_button_check_pressed(input_id, _bind_key[i]))
 						return true;
 					
 				return false;
 			}
 				
-			return gamepad_button_check_pressed(input_id, bind_key);
+			return gamepad_button_check_pressed(input_id, _bind_key);
 		},
-		pressed_keyboard_check: function(bind_key) {
-			if (bind_key == mb_any || bind_key == mb_left || bind_key == mb_middle  ||
-				bind_key == mb_none || bind_key == mb_right || bind_key == mb_side1 || 
-				bind_key == mb_side2)
+		pressed_keyboard_check: function(_bind_key) {
+			if (_bind_key == mb_any || _bind_key == mb_left || _bind_key == mb_middle  ||
+				_bind_key == mb_none || _bind_key == mb_right || _bind_key == mb_side1 || 
+				_bind_key == mb_side2)
 				var check_function = mouse_check_button_pressed;
 			else
 				var check_function = keyboard_check_pressed;
 			
-			if (typeof(bind_key) == "array") {
-				for (var i = 0; i < array_length(bind_key); i++) {
-					var type = typeof(bind_key);
-					if ((type == "string" && check_function(ord(bind_key[i]))) ||
-						(type != "string" && check_function(bind_key[i])))
+			if (typeof(_bind_key) == "array") {
+				for (var i = 0; i < array_length(_bind_key); i++) {
+					var type = typeof(_bind_key);
+					if ((type == "string" && check_function(ord(_bind_key[i]))) ||
+						(type != "string" && check_function(_bind_key[i])))
 						return true;
 				}
 					
 				return false;
 			}
 				
-			if (typeof(bind_key) == "string")
-				return check_function(ord(bind_key));
+			if (typeof(_bind_key) == "string")
+				return check_function(ord(_bind_key));
 			else
-				return check_function(bind_key);
+				return check_function(_bind_key);
 		},
-		pressed_check: function(bind_type) {
-			if (input_id >= 0)
-				return pressed_gamepad_check(bind_type.gamepad);
+		pressed_check: function(_bind_type) {
+			if (input_id == noone)
+				return check_all_inputs(_bind_type, pressed_gamepad_check, pressed_keyboard_check);
+			else if (input_id >= 0)
+				return pressed_gamepad_check(_bind_type.gamepad);
 			else
-				return pressed_keyboard_check(bind_type.keyboard);
+				return pressed_keyboard_check(_bind_type.keyboard);
 		},
 		input_bind: {
 			left: { gamepad: [gp_axislh, gp_padl], keyboard: [vk_left, "A"] },
@@ -127,7 +178,7 @@ function input_manager(_input_id) {
 			aiming: { gamepad: gp_shoulderr, keyboard: mb_right },
 			shooting: { gamepad: gp_face3, keyboard: mb_left },
 			reload: { gamepad: gp_shoulderl, keyboard: mb_middle },
-			select: { gamepad: gp_face1, keyboard: [vk_space, vk_enter] },
+			select: { gamepad: [gp_face1, gp_start], keyboard: [vk_space, vk_enter] },
 			enter: { gamepad: gp_start, keyboard: vk_enter },
 			back: { gamepad: gp_face2, keyboard: [vk_escape, vk_backspace] },
 		},

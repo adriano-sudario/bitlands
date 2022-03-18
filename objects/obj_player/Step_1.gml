@@ -3,7 +3,7 @@ if (has_fallen
 	|| !obj_shooting_room.has_begun)
 	return;
 	
-if (has_gun && controls.is_reload_pressed() 
+if (has_gun && input.is_reload_pressed() 
 	&& !is_reloading && bullets_count < cartrige_capacity
 	&& sprite_index != sprites_indexes.drop_weapon
 	&& sprite_index != sprites_indexes.air ) {
