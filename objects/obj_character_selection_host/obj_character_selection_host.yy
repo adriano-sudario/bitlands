@@ -26,8 +26,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Hiddens",
-    "path": "folders/Objects/Hiddens.yy",
+    "name": "Networking",
+    "path": "folders/Objects/Managers/Networking.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_character_selection_host",

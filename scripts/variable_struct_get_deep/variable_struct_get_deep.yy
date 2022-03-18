@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "Structs",
+    "path": "folders/Scripts/Extensions/Structs.yy",
   },
   "resourceVersion": "1.0",
   "name": "variable_struct_get_deep",

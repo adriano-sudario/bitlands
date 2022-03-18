@@ -27,8 +27,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "SpawnPoints",
-    "path": "folders/Objects/Hiddens/SpawnPoints.yy",
+    "name": "Helpers",
+    "path": "folders/Objects/Helpers.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_player_spawn_point",

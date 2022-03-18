@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "ArrayExtensions",
+    "path": "folders/Scripts/Extensions/ArrayExtensions.yy",
   },
   "resourceVersion": "1.0",
   "name": "array_order_by",

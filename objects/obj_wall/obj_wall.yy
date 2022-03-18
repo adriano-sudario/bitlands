@@ -31,8 +31,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Hiddens",
-    "path": "folders/Objects/Hiddens.yy",
+    "name": "Platforms",
+    "path": "folders/Objects/Platforms.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_wall",

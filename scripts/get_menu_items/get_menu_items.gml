@@ -52,11 +52,9 @@ function get_menu_items(){
 		text: "Host match",
 		on_selected: function(_menu_id) {
 			instance_destroy(_menu_id);
-		
-			slide_transition(TRANSITION_MODE.CLOSE, function() {
-				room_goto(ShootingCharacterSelectionMultiplayer);
-				slide_transition(TRANSITION_MODE.OPEN);
-			}, 250);
+			
+			var host = instance_create_layer(0, 0, other.layer, obj_host);
+			host.persistent = true;
 		}
 	};
 	var new_game_item = {

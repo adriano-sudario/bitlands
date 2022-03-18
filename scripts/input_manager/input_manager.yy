@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "Inputs",
+    "path": "folders/Scripts/Inputs.yy",
   },
   "resourceVersion": "1.0",
   "name": "input_manager",

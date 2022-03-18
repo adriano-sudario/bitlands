@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Extensions/StringExtensions.yy",
   },
   "resourceVersion": "1.0",
-  "name": "string_split",
+  "name": "string_starts_with",
   "tags": [],
   "resourceType": "GMScript",
 }

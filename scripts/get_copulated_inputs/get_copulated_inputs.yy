@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "StringExtensions",
-    "path": "folders/Scripts/Extensions/StringExtensions.yy",
+    "name": "Inputs",
+    "path": "folders/Scripts/Inputs.yy",
   },
   "resourceVersion": "1.0",
-  "name": "string_split",
+  "name": "get_copulated_inputs",
   "tags": [],
   "resourceType": "GMScript",
 }
