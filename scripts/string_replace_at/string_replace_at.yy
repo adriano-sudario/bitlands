@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "StringExtensions",
-    "path": "folders/Scripts/Extensions/StringExtensions.yy",
+    "name": "String",
+    "path": "folders/Scripts/Extensions/String.yy",
   },
   "resourceVersion": "1.0",
   "name": "string_replace_at",
