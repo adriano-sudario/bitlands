@@ -55,6 +55,7 @@ function get_menu_items(){
 			
 			var host = instance_create_layer(0, 0, other.layer, obj_host);
 			host.persistent = true;
+			host.create_server();
 		}
 	};
 	var new_game_item = {

@@ -31,7 +31,7 @@
     "path": "folders/Objects/Managers/Networking.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_character_selection_host",
+  "name": "obj_character_selection_client",
   "tags": [],
   "resourceType": "GMObject",
 }

@@ -19,6 +19,7 @@ previous_left_input = current_left_input;
 previous_right_input = current_right_input;
 players_in_room_count = 0;
 selections = [];
+host = noone;
 
 for (var i = 0; i < 4; i++;) {
 	array_insert(selections, i,
@@ -29,20 +30,29 @@ for (var i = 0; i < 4; i++;) {
 		character_index: -1,
 		chosen_index: -1,
 		index: -1,
-		vertical_margin: 15
+		vertical_margin: 15,
+		client: noone
 	});
 }
 
-function select_input(_selection) {
-	_selection.input = input_manager();
-	_selection.spawn_point = selections[players_in_room_count].spawn_point;
-	_selection.spawn_point.visible = true;
-	_selection.vertical_margin += 25;
-	_selection.character_index = 0;
+function select_input(_client_socket = noone) {
+	var selection = selections[players_in_room_count];
+	selection.input = input_manager();
+	selection.spawn_point.visible = true;
+	selection.vertical_margin += 25;
+	selection.character_index = 0;
 	var sprite = get_character_sprites(characters_list[0]);
-	_selection.spawn_point.sprite_index = sprite.idle;
-	_selection.spawn_point.image_speed = 0;
-	_selection.index = _selection.spawn_point.order;
+	selection.spawn_point.sprite_index = sprite.idle;
+	selection.spawn_point.image_speed = 0;
+	selection.index = selection.spawn_point.order;
+	selection.client = {
+		socket: _client_socket,
+		previous_left_input: false,
+		previous_right_input: false,
+		current_left_input: false,
+		current_right_input: false,
+		input: noone,
+	};
 	players_in_room_count++;
 }
 
@@ -76,11 +86,20 @@ function select_character(_selection) {
 	_selection.spawn_point.image_speed = 1;
 }
 
-function back_to_input_selection(_selection) {
-	_selection.input = noone;
-	_selection.spawn_point.visible = false;
-	_selection.vertical_margin -= 25;
-	_selection.character_index = -1;
+function get_client_selection(_client_socket) {
+	return array_find(selections, function(s, cs) {
+		return s.client != noone && s.client.socket == cs
+	}, _client_socket);
+}
+
+function leave_room(_client_socket) {
+	var selection = get_client_selection(_client_socket);
+	if (selection == noone)
+		return;
+	selection.client = noone;
+	selection.spawn_point.visible = false;
+	selection.vertical_margin -= 25;
+	selection.character_index = -1;
 }
 
 function back_to_character_selection(_selection) {
@@ -134,6 +153,40 @@ function update_selection(_selection) {
 			back_to_character_selection(_selection);
 			
 		if (input.is_enter_pressed() && can_start)
+			start();
+	}
+}
+
+function update_clients_selections(_client_socket, _client_input) {
+	var selection = get_client_selection(_client_socket);
+	
+	if (selection == noone || selection.client.input == noone)
+		return;
+		
+	var client = selection.client;
+	client.input = _client_input;
+	client.previous_left_input = current_left_input;
+	client.previous_right_input = current_right_input;
+	client.current_left_input = client.input.is_left_held;
+	client.current_right_input = client.input.is_right_held;
+	
+	if (!selection.is_ready) {
+		var is_left_pressed = !client.previous_left_input && client.current_left_input;
+		var is_right_pressed = !client.previous_right_input && client.current_right_input;
+			
+		if (is_left_pressed)
+			go_to_left_character(selection);
+			
+		if (is_right_pressed)
+			go_to_right_character(selection);
+			
+		if (client.input.is_select_pressed)
+			select_character(selection);
+	} else {
+		if (client.input.is_back_pressed)
+			back_to_character_selection(selection);
+			
+		if (client.input.is_enter_pressed && can_start)
 			start();
 	}
 }

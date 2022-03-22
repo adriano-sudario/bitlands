@@ -1,5 +1,7 @@
 if (keyboard_check_pressed(vk_enter) && is_valid_ip_format()) {
-	room_goto(ShootingCharacterSelectionMultiplayer);
+	var client = instance_create_layer(0, 0, other.layer, obj_client);
+	client.persistent = true;
+	client.connect(ip);
 	return;
 }
 
