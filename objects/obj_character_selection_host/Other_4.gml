@@ -11,4 +11,4 @@ for (var i = 0; i < 4; i++;)
 
 selections = array_order_by(selections, "spawn_point.order");
 
-select_input();
+self.select_input();

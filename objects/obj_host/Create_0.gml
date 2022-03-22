@@ -1,4 +1,4 @@
-enum HOST_EVENT { CLIENT_CONNECTED, UPDATE_CLIENT_SELECTION }
+enum HOST_EVENT { CLIENT_CONNECTED, UPDATE_CLIENT }
 
 handler_object = noone;
 socket_list = ds_list_create();
@@ -15,15 +15,6 @@ function create_server() {
 		room_goto(ShootingCharacterSelectionMultiplayer);
 		slide_transition(TRANSITION_MODE.OPEN);
 	}, 250);
-}
-
-function send_client_connection_packet() {
-	if (handler_object == noone) {
-		wait_for_milliseconds(300, send_client_connection_packet);
-		return;
-	}
-	
-	send_packet(HOST_EVENT.CLIENT_CONNECTED);
 }
 
 function send_packet(_command, _data = noone) {

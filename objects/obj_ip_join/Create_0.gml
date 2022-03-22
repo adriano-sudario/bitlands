@@ -2,6 +2,7 @@ gui_width = display_get_gui_width();
 gui_height = display_get_gui_height();
 is_blink_shown = false;
 ip = "";
+has_joined = false;
 
 function get_underscores() {
 	if (string_length(ip) == 0) {
@@ -29,12 +30,19 @@ function insert_clipboard() {
 			}
 		}
 		
+		if (!can_insert)
+			continue;
+		
 		if (clip_char != ".") {
 			if (!can_insert_number())
 				break;
 			
 			ip += clip_char;
-			auto_insert_dot();
+			var ip_split = string_split(ip, ".");
+			var ip_last_block = ip_split[array_length(ip_split) - 1];
+	
+			if (string_length(ip_last_block) == 4 && array_length(ip_split) < 4)
+				auto_insert_dot();
 		} else if (can_insert_dot()) {
 			ip += clip_char;
 		}

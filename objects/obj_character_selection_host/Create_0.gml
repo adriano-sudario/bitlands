@@ -25,7 +25,6 @@ for (var i = 0; i < 4; i++;) {
 	array_insert(selections, i,
 	{
 		spawn_point: noone,
-		input: noone,
 		is_ready: false,
 		character_index: -1,
 		chosen_index: -1,
@@ -37,7 +36,6 @@ for (var i = 0; i < 4; i++;) {
 
 function select_input(_client_socket = noone) {
 	var selection = selections[players_in_room_count];
-	selection.input = input_manager();
 	selection.spawn_point.visible = true;
 	selection.vertical_margin += 25;
 	selection.character_index = 0;
@@ -51,7 +49,6 @@ function select_input(_client_socket = noone) {
 		previous_right_input: false,
 		current_left_input: false,
 		current_right_input: false,
-		input: noone,
 	};
 	players_in_room_count++;
 }
@@ -160,15 +157,14 @@ function update_selection(_selection) {
 function update_clients_selections(_client_socket, _client_input) {
 	var selection = get_client_selection(_client_socket);
 	
-	if (selection == noone || selection.client.input == noone)
+	if (selection == noone)
 		return;
 		
 	var client = selection.client;
-	client.input = _client_input;
-	client.previous_left_input = current_left_input;
-	client.previous_right_input = current_right_input;
-	client.current_left_input = client.input.is_left_held;
-	client.current_right_input = client.input.is_right_held;
+	client.previous_left_input = client.current_left_input;
+	client.previous_right_input = client.current_right_input;
+	client.current_left_input = _client_input.is_left_held;
+	client.current_right_input = _client_input.is_right_held;
 	
 	if (!selection.is_ready) {
 		var is_left_pressed = !client.previous_left_input && client.current_left_input;
@@ -180,13 +176,13 @@ function update_clients_selections(_client_socket, _client_input) {
 		if (is_right_pressed)
 			go_to_right_character(selection);
 			
-		if (client.input.is_select_pressed)
+		if (_client_input.is_select_pressed)
 			select_character(selection);
 	} else {
-		if (client.input.is_back_pressed)
+		if (_client_input.is_back_pressed)
 			back_to_character_selection(selection);
 			
-		if (client.input.is_enter_pressed && can_start)
+		if (_client_input.is_enter_pressed && can_start)
 			start();
 	}
 }
