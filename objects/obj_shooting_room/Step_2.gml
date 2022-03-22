@@ -32,7 +32,7 @@ var players_standing = [];
 
 for (var i = 0; i < players_length; i++) {
 	var player = players[i];
-	if (!player.has_fallen)
+	if (!player.has_fallen_dead)
 		array_insert(players_standing, array_length(players_standing), player);
 }
 

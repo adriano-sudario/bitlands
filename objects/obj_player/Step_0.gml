@@ -1,4 +1,4 @@
-if (has_fallen)
+if (has_fallen_dead)
 	return;
 
 if (is_passing_through_plank)
@@ -51,7 +51,7 @@ x += horizontal_force;
 y += vertical_force;
 
 if (is_dead && is_on_floor) {
-	has_fallen = true;
+	has_fallen_dead = true;
 	image_speed = 1;
 	cancel_movement();
 }
