@@ -1,3 +1,6 @@
+if (obj_transition.mode != TRANSITION_MODE.OFF)
+	return;
+
 blink_current_frame++;
 
 if (blink_current_frame >= blink_frames_count) {
@@ -6,6 +9,7 @@ if (blink_current_frame >= blink_frames_count) {
 }
 
 var host_selection = selections[0];
-self.update_selection(host_selection);
+if (obj_transition.mode != TRANSITION_MODE.CLOSE)
+	self.update_selection(host_selection);
 
 can_start = array_length(chosen_characters) >= 2;

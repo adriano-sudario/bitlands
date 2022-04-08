@@ -1,11 +1,3 @@
-enum PARTICLE_TYPE {
-	DUST,
-	DIRT,
-	BLOOD,
-	WOOD,
-	ROCK
-}
-
 image_speed = random_range(.5, 1);
 image_index = random_range(0, 6);
 image_xscale = choose(-1, 1);

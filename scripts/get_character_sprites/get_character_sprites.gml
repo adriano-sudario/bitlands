@@ -1,12 +1,5 @@
 /// @function get_character_sprites(character)
 
-enum CHARACTER {
-	GERALDO,
-	RAIMUNDO,
-	SEBASTIAO,
-	SEVERINO
-}
-
 function get_character_sprites(_character) {
 	switch (_character) {
 		case CHARACTER.GERALDO:

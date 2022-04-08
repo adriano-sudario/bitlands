@@ -1,12 +1,7 @@
 if (!has_joined && keyboard_check_pressed(vk_enter) && is_valid_ip_format()) {
-	var client = instance_create_layer(0, 0, other.layer, obj_client);
-	client.persistent = true;
-	has_joined = client.connect(ip);
+	has_joined = create_client(ip);
 	if (has_joined) {
-		slide_transition(TRANSITION_MODE.CLOSE, function() {
-			room_goto(ShootingCharacterSelectionMultiplayer);
-			slide_transition(TRANSITION_MODE.OPEN);
-		}, 250);
+		transition_to_room(ShootingCharacterSelectionMultiplayer);
 	}
 	return;
 }

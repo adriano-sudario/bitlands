@@ -1,10 +1,5 @@
-if (!instance_exists(obj_host)) {
-	instance_destroy();
+if (check_for_host())
 	return;
-}
-
-host = instance_find(obj_host, 0);
-host.handler_object = self;
 
 for (var i = 0; i < 4; i++;)
 	selections[i].spawn_point = instance_find(obj_player_spawn_point, i);

@@ -39,11 +39,7 @@ function get_menu_items(){
 		text: "Join match",
 		on_selected: function(_menu_id) {
 			instance_destroy(_menu_id);
-		
-			slide_transition(TRANSITION_MODE.CLOSE, function() {
-				room_goto(JoinGame);
-				slide_transition(TRANSITION_MODE.OPEN);
-			}, 250);
+			transition_to_room(JoinGame);
 		}
 	};
 	var host_game_item = {
@@ -52,10 +48,8 @@ function get_menu_items(){
 		text: "Host match",
 		on_selected: function(_menu_id) {
 			instance_destroy(_menu_id);
-			
-			var host = instance_create_layer(0, 0, other.layer, obj_host);
-			host.persistent = true;
-			host.create_server();
+			if (create_host())
+				transition_to_room(ShootingCharacterSelectionMultiplayer);
 		}
 	};
 	var new_game_item = {
@@ -64,11 +58,7 @@ function get_menu_items(){
 		text: "New match",
 		on_selected: function(_menu_id) {
 			instance_destroy(_menu_id);
-		
-			slide_transition(TRANSITION_MODE.CLOSE, function() {
-				room_goto(ShootingCharacterSelection);
-				slide_transition(TRANSITION_MODE.OPEN);
-			}, 250);
+			transition_to_room(ShootingCharacterSelection);
 		}
 	};
 	

@@ -12,7 +12,7 @@ characters_list = [
 	CHARACTER.RAIMUNDO, CHARACTER.SEBASTIAO
 ];
 selections = [];
-client = noone;
+timeout_delay = noone;
 
 for (var i = 0; i < 4; i++;) {
 	array_insert(selections, i,
@@ -25,6 +25,11 @@ for (var i = 0; i < 4; i++;) {
 		index: -1,
 		vertical_margin: 15
 	});
+}
+
+function leave() {
+	global.client.send_packet_to_server(NETWORK_EVENT.REMOVE);
+	room_goto(Menu);
 }
 
 function update(_host_data) {
@@ -48,6 +53,5 @@ function update(_host_data) {
 		selection.index = host_selection.index;
 		selection.vertical_margin = host_selection.vertical_margin;
 		selection.is_on_room = host_selection.is_on_room;
-		//selection.input = host_selection.input;
 	}
 }

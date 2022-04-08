@@ -4,6 +4,7 @@
 function input_manager(_input_id = noone) {
 	return {
 		input_id: _input_id,
+		input_id_used: _input_id,
 		is_gamepad: _input_id != noone && _input_id >= 0,
 		aiming_angle: 0,
 		check_all_inputs: function(_bind_type, _gamepad_check, _keyboard_check) {
@@ -16,9 +17,11 @@ function input_manager(_input_id = noone) {
 				if (input_id < 0) {
 					is_true = _keyboard_check(_bind_type.keyboard);
 					is_gamepad = !is_true;
+					input_id_used = i;
 				} else {
 					is_true = _gamepad_check(_bind_type.gamepad);
 					is_gamepad = is_true;
+					input_id_used = i;
 				}
 				
 				if (is_true)
@@ -34,9 +37,11 @@ function input_manager(_input_id = noone) {
 			for (var i = 0; i < array_length(inputs); i++) {
 				if (i == 0) {
 					update_keyboard_aiming_angle(_x, _y);
+					input_id_used = i;
 				} else {
 					if (update_gamepad_aiming_angle(_x, _y)) {
 						is_gamepad = true;
+						input_id_used = i;
 						break;
 					}
 				}

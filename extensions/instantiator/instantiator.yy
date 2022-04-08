@@ -7,7 +7,7 @@
   "packageId": "",
   "productId": "",
   "author": "",
-  "date": "2020-10-08T04:07:53",
+  "date": "2022-04-07T21:53:16.5917012-03:00",
   "license": "",
   "description": "",
   "helpfile": "",
@@ -16,21 +16,17 @@
   "androidProps": false,
   "installdir": "",
   "files": [
-    {"filename":"execute_shell_simple.gml","origname":"","init":"","final":"","kind":2,"uncompress":false,"functions":[
-        {"externalName":"execute_shell_simple","kind":2,"help":"execute_shell_simple(path, args = \"\", action = \"open\", showCmd = 5/*SW_OPEN*/)","hidden":false,"returnType":2,"argCount":-1,"args":[],"resourceVersion":"1.0","name":"execute_shell_simple","tags":[],"resourceType":"GMExtensionFunction",},
-      ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
-    {"filename":"execute_shell_simple.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[
-        {"externalName":"execute_shell_simple_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":4,"args":[
+    {"filename":"Instantiator.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[
+        {"externalName":"new_game_instance","kind":1,"help":"new_game_instance(gm_runtime_version)","hidden":false,"returnType":1,"argCount":0,"args":[
             1,
-            1,
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"execute_shell_simple_raw","tags":[],"resourceType":"GMExtensionFunction",},
-      ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+          ],"resourceVersion":"1.0","name":"new_game_instance","tags":[],"resourceType":"GMExtensionFunction",},
+      ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
+        {"name":"new_game_instance","path":"extensions/instantiator/instantiator.yy",},
+      ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
-  "tvosclassname": "",
-  "tvosdelegatename": "",
+  "tvosclassname": null,
+  "tvosdelegatename": null,
   "iosdelegatename": "",
   "androidclassname": "",
   "sourcedir": "",
@@ -66,7 +62,7 @@
     "path": "folders/Extensions.yy",
   },
   "resourceVersion": "1.2",
-  "name": "execute_shell_simple",
+  "name": "instantiator",
   "tags": [],
   "resourceType": "GMExtension",
 }

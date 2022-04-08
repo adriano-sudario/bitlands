@@ -1,2 +1,5 @@
+if (global.client == noone)
+	return;
+
 var copulated_input = get_copulated_inputs();
-client.send_packet(CLIENT_EVENT.UPDATE_CLIENT_SELECTION, copulated_input);
+global.client.send_packet_to_server(NETWORK_EVENT.UPDATE, copulated_input);

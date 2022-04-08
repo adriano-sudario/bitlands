@@ -12,7 +12,7 @@ characters_list = [
 	CHARACTER.RAIMUNDO, CHARACTER.SEBASTIAO
 ];
 chosen_characters = [];
-inputs = [
+input_managers = [
 	input_manager(-1), input_manager(0),
 	input_manager(1), input_manager(2),
 	input_manager(3)
@@ -23,11 +23,11 @@ current_right_inputs = [];
 previous_left_inputs = [];
 previous_right_inputs = [];
 
-for (var i = 0; i < array_length(inputs); i++;) {
-	array_insert(current_left_inputs, i, inputs[i].is_left_held());
-	array_insert(current_right_inputs, i, inputs[i].is_right_held());
-	array_insert(previous_left_inputs, i, inputs[i].is_left_held());
-	array_insert(previous_right_inputs, i, inputs[i].is_right_held());
+for (var i = 0; i < array_length(input_managers); i++;) {
+	array_insert(current_left_inputs, i, input_managers[i].is_left_held());
+	array_insert(current_right_inputs, i, input_managers[i].is_right_held());
+	array_insert(previous_left_inputs, i, input_managers[i].is_left_held());
+	array_insert(previous_right_inputs, i, input_managers[i].is_right_held());
 }
 
 selections = [];
@@ -140,9 +140,28 @@ function start() {
 	room_goto(Shooting);
 }
 
+function can_input_back_to_room(_input) {
+	if (_input == noone || _input.input_id_used == noone || _input.input_id == noone)
+		return true;
+	
+	var is_backing_to_room = true;
+				
+	for (var i = 0; i < array_length(selections); i++) {
+		var selection = selections[i];
+		var selection_input = selection.input;
+		
+		if (selection_input != noone && _input.input_id_used == selection_input.input_id) {
+			is_backing_to_room = false;
+			break;
+		}
+	}
+				
+	return is_backing_to_room;
+}
+
 function update_selection() {
-	for (var i = 0; i < array_length(inputs); i++;) {
-		var input = inputs[i];
+	for (var i = 0; i < array_length(input_managers); i++;) {
+		var input = input_managers[i];
 		previous_left_inputs[i] = current_left_inputs[i];
 		previous_right_inputs[i] = current_right_inputs[i];
 		current_left_inputs[i] = input.is_left_held();
@@ -151,7 +170,13 @@ function update_selection() {
 		var selection_with_input = array_find(selections, function(s, c) {
 			return s.input != noone && s.input.input_id == c.input_id;
 		}, input);
-	
+		
+		if (input.is_back_pressed() &&
+			(selection_with_input == noone || can_input_back_to_room(input))) {
+			transition_to_room(Menu);
+			return;
+		}
+		
 		if (input.is_enter_pressed() && selection_with_input == noone)
 			select_input(input);
 	
