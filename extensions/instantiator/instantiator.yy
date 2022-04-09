@@ -7,7 +7,7 @@
   "packageId": "",
   "productId": "",
   "author": "",
-  "date": "2022-04-07T21:53:16.5917012-03:00",
+  "date": "2022-04-09T12:16:42.2645795-03:00",
   "license": "",
   "description": "",
   "helpfile": "",
@@ -17,10 +17,8 @@
   "installdir": "",
   "files": [
     {"filename":"Instantiator.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[
-        {"externalName":"new_game_instance","kind":1,"help":"new_game_instance(gm_runtime_version)","hidden":false,"returnType":1,"argCount":0,"args":[
-            1,
-          ],"resourceVersion":"1.0","name":"new_game_instance","tags":[],"resourceType":"GMExtensionFunction",},
-      ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
+        {"externalName":"new_game_instance","kind":1,"help":"new_game_instance()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"new_game_instance","tags":[],"resourceType":"GMExtensionFunction",},
+      ],"constants":[],"ProxyFiles":[],"copyToTargets":64,"order":[
         {"name":"new_game_instance","path":"extensions/instantiator/instantiator.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
@@ -52,7 +50,7 @@
   "tvosThirdPartyFrameworkEntries": [],
   "IncludedResources": [],
   "androidPermissions": [],
-  "copyToTargets": -1,
+  "copyToTargets": 64,
   "iosCocoaPods": "",
   "tvosCocoaPods": "",
   "iosCocoaPodDependencies": "",
