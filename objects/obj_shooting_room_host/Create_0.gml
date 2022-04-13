@@ -103,10 +103,10 @@ function update_client(_client, _data) {
 			_client.bullets_count--;
 			_client.cartrige.spin_next_bullet();
 			
-			if (_client.aiming_instance.target.object_index == obj_player_host)
-				_client.aiming_instance.target = _client.aiming_instance.target.socket;
+			if (_client.aiming_instance.aiming.target.object_index == obj_player_host)
+				_client.aiming_instance.aiming.target = _client.aiming_instance.aiming.target.socket;
 			else
-				_client.aiming_instance.target = noone;
+				_client.aiming_instance.aiming.target = noone;
 		} else {
 			_client.cartrige.shake();
 			
@@ -117,7 +117,7 @@ function update_client(_client, _data) {
 			event: SHOOTING_CLIENT_EVENT.SHOOT,
 			has_shoot_failed: has_failed,
 			bullets_count: _client.bullets_count,
-			aiming: _client.aiming_instance
+			aiming: _client.aiming_instance.aiming
 		};
 	}
 	

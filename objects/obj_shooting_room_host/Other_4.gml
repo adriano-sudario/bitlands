@@ -8,7 +8,7 @@ for (var i = 0; i < array_length(global.game_state.players); i++) {
 		image_xscale = player_info.spawn_point.image_xscale;
 		x = player_info.spawn_point.x;
 		y = player_info.spawn_point.y;
-		socket = player_info.client.socket;
+		socket = player_info.socket;
 	}
 	
 	if (player.player_info.client == noone)

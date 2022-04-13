@@ -8,6 +8,7 @@ aiming = {
 	endline_x: 0,
 	endline_y: 0
 };
+is_manual_update = false;
 
 function set_target(_target) {
 	aiming.target = _target;

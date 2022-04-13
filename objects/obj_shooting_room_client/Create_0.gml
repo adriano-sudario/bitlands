@@ -1,3 +1,4 @@
+client = noone;
 players = [];
 has_menu_appeared = false;
 winning_player = noone;
@@ -10,7 +11,4 @@ font_countdown = fnt_mono_big;
 font_height = font_get_size(font);
 countdown = 1;
 countdown_scale = 0;
-countdown_growth_speed = .1;
-countdown_fps_stopped = 45;
-current_countdown_fps_stopped = 0;
 has_begun = false;

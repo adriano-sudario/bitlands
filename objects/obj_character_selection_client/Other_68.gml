@@ -4,9 +4,9 @@ if (global.client == noone || network_id != global.client.socket)
 	
 if (obj_transition.mode == TRANSITION_MODE.OFF) {
 	if (timeout_delay != noone)
-		timeout_delay.stop();
-	
-	timeout_delay = wait_for_milliseconds(5000, leave);
+		timeout_delay.reset();
+	else
+		timeout_delay = wait_for_milliseconds(5000, leave);
 }
 
 var buffer = ds_map_find_value(async_load, "buffer"); 
@@ -19,7 +19,7 @@ switch (packet.command) {
 			audio_stop_sound(stk_crujoa);
 			room_goto(ShootingMultiplayer);
 		} else {
-			update(packet.data);
+			self.update(packet.data);
 		}
 		break;
 	

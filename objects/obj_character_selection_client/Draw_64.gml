@@ -8,8 +8,8 @@ for (var i = 0; i < array_length(selections); i++;) {
 	var text_x = selection_spawn.x;
 	var text_y = selection_spawn.y - selection.vertical_margin;
 	
-	if (selection.is_on_room)
-		text = get_character_sprite_description(characters_list[selection.character_index]);;
+	if (selection.is_on_room || i == 0)
+		text = get_character_sprite_description(characters_list[selection.character_index]);
 	
 	if (selection.is_ready)
 		text = "P" + string(selection.index + 1) + " READY";
