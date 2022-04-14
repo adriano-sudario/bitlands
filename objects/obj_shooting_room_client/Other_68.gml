@@ -45,7 +45,7 @@ function update_player_state(_player, _state) {
 	_player.image_index = _state.animation.image_index;
 			
 	if (_player.player_info.socket == global.client.socket)
-		break;
+		return;
 			
 	if (_player.aiming_instance == noone && _state.aiming_instance != noone)
 		_player.insert_aiming_instance();
@@ -68,7 +68,7 @@ function on_reload(_player) {
 function on_shoot(_player, _data) {
 	if (_data.has_shoot_failed) {
 		_player.cartrige.shake();
-		break;
+		return;
 	}
 		
 	if (_data.aiming.target != noone)
@@ -90,7 +90,7 @@ function on_countdown(_data) {
 
 function on_end_match(_data) {
 	if (has_match_ended)
-		break;
+		return;
 			
 	has_match_ended = true;
 	if (_data.winner != noone)

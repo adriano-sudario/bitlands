@@ -2,7 +2,7 @@ if (has_fallen_dead)
 	return;
 
 if (!is_aiming && !is_reloading 
-	&& sprite_index != sprites_indexes.drop_weapon)
+	&& sprite_index != sprites_indexes.draw_gun)
 	update_movement();
 	
 if (!is_input_enabled())
@@ -10,7 +10,7 @@ if (!is_input_enabled())
 
 if (has_gun && input.is_reload_pressed() 
 	&& !is_reloading && bullets_count < cartrige_capacity
-	&& sprite_index != sprites_indexes.drop_weapon
+	&& sprite_index != sprites_indexes.draw_gun
 	&& sprite_index != sprites_indexes.air ) {
 	is_reloading = true;
 	sprite_index = sprites_indexes.reload;

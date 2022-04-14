@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"f70b7066-68c1-4304-abc2-c1bcf0e30315","path":"sprites/spr_sebastiao_aiming_gun/spr_sebastiao_aiming_gun.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"f70b7066-68c1-4304-abc2-c1bcf0e30315","path":"sprites/spr_sebastiao_aiming_gun/spr_sebastiao_aiming_gun.yy",},"LayerId":{"name":"923b590e-544b-4787-9637-e7aa028b6d65","path":"sprites/spr_sebastiao_aiming_gun/spr_sebastiao_aiming_gun.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_sebastiao_aiming_gun","path":"sprites/spr_sebastiao_aiming_gun/spr_sebastiao_aiming_gun.yy",},"resourceVersion":"1.0","name":"f70b7066-68c1-4304-abc2-c1bcf0e30315","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"2d2456b8-e00b-46a5-8c10-cc697480be2a","path":"sprites/spr_severino_aiming_arm/spr_severino_aiming_arm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"2d2456b8-e00b-46a5-8c10-cc697480be2a","path":"sprites/spr_severino_aiming_arm/spr_severino_aiming_arm.yy",},"LayerId":{"name":"97aa0a21-032d-434a-87c3-4e4ccbce082c","path":"sprites/spr_severino_aiming_arm/spr_severino_aiming_arm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_severino_aiming_arm","path":"sprites/spr_severino_aiming_arm/spr_severino_aiming_arm.yy",},"resourceVersion":"1.0","name":"2d2456b8-e00b-46a5-8c10-cc697480be2a","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_sebastiao_aiming_gun","path":"sprites/spr_sebastiao_aiming_gun/spr_sebastiao_aiming_gun.yy",},
+    "spriteId": {"name":"spr_severino_aiming_arm","path":"sprites/spr_severino_aiming_arm/spr_severino_aiming_arm.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 15.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"2632daa1-50d2-437b-94fb-33b5407f423a","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f70b7066-68c1-4304-abc2-c1bcf0e30315","path":"sprites/spr_sebastiao_aiming_gun/spr_sebastiao_aiming_gun.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"ec0605e7-aa2e-4c4e-97eb-7f6601873187","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"2d2456b8-e00b-46a5-8c10-cc697480be2a","path":"sprites/spr_severino_aiming_arm/spr_severino_aiming_arm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,22 +58,22 @@
     "yorigin": 4,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_sebastiao_aiming_gun","path":"sprites/spr_sebastiao_aiming_gun/spr_sebastiao_aiming_gun.yy",},
+    "parent": {"name":"spr_severino_aiming_arm","path":"sprites/spr_severino_aiming_arm/spr_severino_aiming_arm.yy",},
     "resourceVersion": "1.4",
-    "name": "spr_sebastiao_aiming_gun",
+    "name": "spr_severino_aiming_arm",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"923b590e-544b-4787-9637-e7aa028b6d65","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"97aa0a21-032d-434a-87c3-4e4ccbce082c","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Sebastiao",
-    "path": "folders/Sprites/Characters/Sebastiao.yy",
+    "name": "Severino",
+    "path": "folders/Sprites/Characters/Severino.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_sebastiao_aiming_gun",
+  "name": "spr_severino_aiming_arm",
   "tags": [],
   "resourceType": "GMSprite",
 }

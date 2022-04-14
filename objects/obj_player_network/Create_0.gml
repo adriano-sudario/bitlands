@@ -22,7 +22,7 @@ function remove_aiming_instance() {
 
 function insert_aiming_instance() {
 	if (aiming_instance == noone) {
-		aiming_instance = equip_gun(self);
+		aiming_instance = aim(self);
 		aiming_instance.is_manual_update = true;
 		var cartrige_x = x;
 		var catrige_y = y - 40;

@@ -82,7 +82,7 @@ if (is_dead) {
 	if (horizontal_direction != 0)
 		sprite_index = sprites_indexes.run;
 	else if (!is_aiming && !is_reloading 
-		&& sprite_index != sprites_indexes.drop_weapon)
+		&& sprite_index != sprites_indexes.draw_gun)
 		sprite_index = sprites_indexes.idle;
 }
 

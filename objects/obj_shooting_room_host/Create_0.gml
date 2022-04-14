@@ -25,7 +25,7 @@ function update_host() {
 		return;
 
 	if (!host.is_aiming && !host.is_reloading 
-		&& host.sprite_index != host.sprites_indexes.drop_weapon)
+		&& host.sprite_index != host.sprites_indexes.draw_gun)
 		host.update_movement();
 	
 	if (!self.is_input_enabled(host))
@@ -33,8 +33,8 @@ function update_host() {
 
 	if (host.has_gun && host.input.is_reload_pressed() 
 		&& !host.is_reloading && host.bullets_count < host.cartrige_capacity
-		&& host.sprite_index != host.sprites_indexes.drop_weapon
-		&& host.sprite_index != host.sprites_indexes.air ) {
+		&& host.sprite_index != host.sprites_indexes.draw_gun
+		&& host.sprite_index != host.sprites_indexes.air) {
 		host.is_reloading = true;
 		host.sprite_index = host.sprites_indexes.reload;
 		host.cancel_movement();
@@ -56,7 +56,7 @@ function update_client(_client, _data) {
 		&& !_data.is_droping_weapon)
 		_client.update_movement(_data.input);
 	
-	if (!is_input_enabled(_client))
+	if (!self.is_input_enabled(_client))
 		return result;
 
 	if (_client.has_gun && _data.input.is_reload_pressed 
@@ -76,7 +76,7 @@ function update_client(_client, _data) {
 	//	if (_client.is_reloading)
 	//		_client.is_aiming = true;
 	//	else if (_data.is_droping_weapon && _data.is_on_air && !_client.is_aiming) {
-	//		_client.sprite_index = _client.sprites_indexes.drop_weapon;
+	//		_client.sprite_index = _client.sprites_indexes.draw_gun;
 	//		_client.cancel_movement();
 	//	}
 	//} else {

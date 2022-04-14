@@ -26,7 +26,7 @@ function is_input_enabled() {
 }
 
 function update_movement() {
-	if (is_input_enabled()) {
+	if (self.is_input_enabled()) {
 		horizontal_direction = input.is_right_held() - input.is_left_held();
 		horizontal_force = horizontal_direction * walk_speed;
 	}
@@ -78,10 +78,10 @@ function update_aim() {
 	if (input.is_aiming_held()) {
 		if (is_reloading)
 			is_aiming = true;
-		else if (sprite_index != sprites_indexes.drop_weapon
+		else if (sprite_index != sprites_indexes.draw_gun
 			&& sprite_index != sprites_indexes.air
 			&& !is_aiming) {
-			sprite_index = sprites_indexes.drop_weapon;
+			sprite_index = sprites_indexes.draw_gun;
 			cancel_movement();
 		}
 	} else {
@@ -133,7 +133,7 @@ function remove_aiming_instance() {
 function begin_aiming() {
 	if (aiming_instance == noone) {
 		is_aiming = true;
-		aiming_instance = equip_gun(self);
+		aiming_instance = aim(self);
 		var cartrige_x = x;
 		var catrige_y = y - 40;
 		if (image_xscale > 0)

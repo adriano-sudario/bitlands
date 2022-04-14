@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"299640fa-58a7-465b-905b-25ec58c6b07b","path":"sprites/spr_geraldo_aiming_gun/spr_geraldo_aiming_gun.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"299640fa-58a7-465b-905b-25ec58c6b07b","path":"sprites/spr_geraldo_aiming_gun/spr_geraldo_aiming_gun.yy",},"LayerId":{"name":"5f9eb6ec-046d-44d9-883a-7c7850502523","path":"sprites/spr_geraldo_aiming_gun/spr_geraldo_aiming_gun.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_geraldo_aiming_gun","path":"sprites/spr_geraldo_aiming_gun/spr_geraldo_aiming_gun.yy",},"resourceVersion":"1.0","name":"299640fa-58a7-465b-905b-25ec58c6b07b","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"ce2fa74b-fdf7-4f0c-8d55-cf1cab6904da","path":"sprites/spr_raimundo_aiming_arm/spr_raimundo_aiming_arm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"ce2fa74b-fdf7-4f0c-8d55-cf1cab6904da","path":"sprites/spr_raimundo_aiming_arm/spr_raimundo_aiming_arm.yy",},"LayerId":{"name":"5771f756-e458-4b05-a701-58bdcb597b45","path":"sprites/spr_raimundo_aiming_arm/spr_raimundo_aiming_arm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_raimundo_aiming_arm","path":"sprites/spr_raimundo_aiming_arm/spr_raimundo_aiming_arm.yy",},"resourceVersion":"1.0","name":"ce2fa74b-fdf7-4f0c-8d55-cf1cab6904da","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_geraldo_aiming_gun","path":"sprites/spr_geraldo_aiming_gun/spr_geraldo_aiming_gun.yy",},
+    "spriteId": {"name":"spr_raimundo_aiming_arm","path":"sprites/spr_raimundo_aiming_arm/spr_raimundo_aiming_arm.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 15.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"1c267e90-98d7-44c3-a248-8cf25dd381c8","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"299640fa-58a7-465b-905b-25ec58c6b07b","path":"sprites/spr_geraldo_aiming_gun/spr_geraldo_aiming_gun.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"b6768ea6-2019-4e80-b22f-1c14fa7a40cf","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"ce2fa74b-fdf7-4f0c-8d55-cf1cab6904da","path":"sprites/spr_raimundo_aiming_arm/spr_raimundo_aiming_arm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,22 +58,22 @@
     "yorigin": 4,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_geraldo_aiming_gun","path":"sprites/spr_geraldo_aiming_gun/spr_geraldo_aiming_gun.yy",},
+    "parent": {"name":"spr_raimundo_aiming_arm","path":"sprites/spr_raimundo_aiming_arm/spr_raimundo_aiming_arm.yy",},
     "resourceVersion": "1.4",
-    "name": "spr_geraldo_aiming_gun",
+    "name": "spr_raimundo_aiming_arm",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"5f9eb6ec-046d-44d9-883a-7c7850502523","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"5771f756-e458-4b05-a701-58bdcb597b45","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Geraldo",
-    "path": "folders/Sprites/Characters/Geraldo.yy",
+    "name": "Raimundo",
+    "path": "folders/Sprites/Characters/Raimundo.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_geraldo_aiming_gun",
+  "name": "spr_raimundo_aiming_arm",
   "tags": [],
   "resourceType": "GMSprite",
 }

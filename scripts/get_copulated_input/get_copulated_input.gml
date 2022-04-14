@@ -1,8 +1,8 @@
 /// @function get_copulated_inputs(_input_id);
 /// @param {input_id} -1: keyboard / 0~3: gamepads
 
-function get_copulated_inputs(_input_id = noone) {
-	var input = input_manager(_input_id);
+function get_copulated_input(_input = noone) {
+	var input = _input == noone ? input_manager() : _input;
 	var variable_names = variable_struct_get_names(input);
 	var ignored_methods_starting_with = [
 		"check", "directional", "update", "held", "pressed", "update"

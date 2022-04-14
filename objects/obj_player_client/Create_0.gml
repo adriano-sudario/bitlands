@@ -9,11 +9,8 @@ has_gun = false;
 aiming_instance = noone;
 sprites_indexes = noone;
 player_info = noone;
+input = input_manager();
 socket = noone;
-
-function is_input_enabled() {
-	return !is_dead && !obj_shooting_room.has_match_ended && obj_shooting_room.has_begun;
-}
 
 function update_aim() {
 	if (!has_gun)
@@ -22,10 +19,10 @@ function update_aim() {
 	if (input.is_aiming_held()) {
 		if (is_reloading)
 			is_aiming = true;
-		else if (sprite_index != sprites_indexes.drop_weapon
+		else if (sprite_index != sprites_indexes.draw_gun
 			&& sprite_index != sprites_indexes.air
 			&& !is_aiming) {
-			sprite_index = sprites_indexes.drop_weapon;
+			sprite_index = sprites_indexes.draw_gun;
 			cancel_movement();
 		}
 	} else {
@@ -55,11 +52,6 @@ function update_aim() {
 	}
 }
 
-function cancel_movement() {
-	horizontal_force = 0;
-	horizontal_direction = 0;
-}
-
 function remove_aiming_instance() {
 	with (aiming_instance)
 		instance_destroy();
@@ -77,7 +69,7 @@ function remove_aiming_instance() {
 function begin_aiming() {
 	if (aiming_instance == noone) {
 		is_aiming = true;
-		aiming_instance = equip_gun(self);
+		aiming_instance = aim(self);
 		var cartrige_x = x;
 		var catrige_y = y - 40;
 		if (image_xscale > 0)

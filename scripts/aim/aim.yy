@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "equip_gun",
+  "name": "aim",
   "tags": [],
   "resourceType": "GMScript",
 }
