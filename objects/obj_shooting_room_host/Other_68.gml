@@ -16,7 +16,7 @@ switch(type) {
 				var _client = array_find(clients, function(c, s) {
 					return c.socket == s;
 				}, socket);
-				var _result = update_client(_client, packet.data);
+				var _result = update_client(_client, packet.data.input);
 				if (_result != noone) {
 					switch (_result.event) {
 						case SHOOTING_CLIENT_EVENT.RELOAD:

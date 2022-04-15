@@ -46,8 +46,8 @@ function update_host() {
 	host.update_aim();
 }
 
-function client_reload_check(_client) {
-	if (_client.has_gun && _data.input.is_reload_pressed 
+function client_reload_check(_client, _client_input) {
+	if (_client.has_gun && _client_input.is_reload_pressed 
 		&& !_client.is_reloading && _client.bullets_count < _client.cartrige_capacity
 		&& _client.sprite_index != _client.sprites_indexes.draw_gun
 		&& _client.sprite_index != _client.sprites_indexes.air) {
@@ -63,8 +63,8 @@ function client_reload_check(_client) {
 	return noone;
 }
 
-function client_aiming_check(_client, _data) {
-	var is_aiming = _data.input.is_aiming_held;
+function client_aiming_check(_client, _client_input) {
+	var is_aiming = _client_input.is_aiming_held;
 	if (is_aiming) {
 		if (_client.is_reloading)
 			_client.is_aiming = true;
@@ -86,9 +86,9 @@ function client_aiming_check(_client, _data) {
 	return is_aiming;
 }
 
-function client_shoot_check(_client, _data) {
-	_client.aiming_instance.image_angle = _data.input.aiming_angle;
-	if (_data.input.is_shoot_pressed && _data.input.is_aiming_held) {
+function client_shoot_check(_client, _client_input) {
+	_client.aiming_instance.image_angle = _client_input.aiming_angle;
+	if (_client_input.is_shoot_pressed && _client_input.is_aiming_held) {
 		var has_failed = false;
 		if (_client.bullets_count > 0) {
 			_client.aiming_instance.update();
@@ -116,24 +116,24 @@ function client_shoot_check(_client, _data) {
 	return noone;
 }
 
-function update_client(_client, _data) {
+function update_client(_client, _client_input) {
 	if (_client.has_fallen_dead)
 		return noone;
 
 	if (!_client.is_aiming && !_client.is_reloading 
 		&& _client.sprite_index != _client.sprites_indexes.draw_gun)
-		_client.update_movement(_data.input);
+		_client.update_movement(_client_input);
 	
 	if (!self.is_input_enabled(_client))
 		return noone;
 
-	var result = client_reload_check(_client);
+	var result = client_reload_check(_client, _client_input);
 	
 	if (!_client.has_gun ||
-		!client_aiming_check(_client, _data) ||
+		!client_aiming_check(_client, _client_input) ||
 		_client.aiming_instance == noone ||
 		_client.is_reloading)
 		return result;
 	
-	return client_shoot_check(_client, _data);
+	return client_shoot_check(_client, _client_input);
 }
