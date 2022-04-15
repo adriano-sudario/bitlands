@@ -1,3 +1,6 @@
+if (!check_for_host())
+	return;
+
 for (var i = 0; i < array_length(global.game_state.players); i++) {
 	var player = instance_create_layer(x, y, "Players", obj_player_host);
 	
@@ -11,8 +14,10 @@ for (var i = 0; i < array_length(global.game_state.players); i++) {
 		socket = player_info.socket;
 	}
 	
-	if (player.player_info.client == noone)
+	if (player.player_info.socket == global.host.server)
 		host = player;
 	else
 		clients[array_length(clients)] = player;
+	
+	players[i] = player;
 }

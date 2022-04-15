@@ -1,4 +1,4 @@
-if (check_for_host())
+if (!check_for_host())
 	return;
 
 for (var i = 0; i < 4; i++;)

@@ -1,4 +1,4 @@
-if (check_for_client())
+if (!check_for_client())
 	return;
 
 for (var i = 0; i < 4; i++;)

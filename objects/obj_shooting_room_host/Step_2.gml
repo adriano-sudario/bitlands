@@ -77,6 +77,8 @@ if (has_match_ended && !has_menu_appeared
 if (has_match_ended)
 	return;
 
+var teste = host.aiming_instance == noone;
+var teste = host.cartrige == noone;
 var states = [{
 	x: host.x,
 	y: host.y,
@@ -91,12 +93,12 @@ var states = [{
 		sprite_index: host.sprite_index,
 		image_index: host.image_index
 	},
-	aiming_instance: aiming_instance == noone ? noone : {
+	aiming_instance: host.aiming_instance == noone ? noone : {
 		angle: host.aiming_instance.image_angle,
 		recoil: host.aiming_instance.recoil,
 		aiming: host.aiming_instance.aiming
 	},
-	cartrige: {
+	cartrige: host.cartrige == noone ? noone : {
 		shake_params: host.cartrige.shake_params
 	}
 }];
@@ -117,12 +119,12 @@ for (var i = 0; i < array_length(clients); i++) {
 			sprite_index: _client.sprite_index,
 			image_index: _client.image_index
 		},
-		aiming_instance: aiming_instance == noone ? noone : {
+		aiming_instance: _client.aiming_instance == noone ? noone : {
 			angle: _client.aiming_instance.image_angle,
 			recoil: _client.aiming_instance.recoil,
 			aiming: _client.aiming_instance.aiming
 		},
-		cartrige: {
+		cartrige: _client.cartrige == noone ? noone : {
 			shake_params: _client.cartrige.shake_params
 		}
 	});

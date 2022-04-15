@@ -1,4 +1,5 @@
-if (client.has_fallen_dead || !client.is_input_enabled())
+if (!is_input_enabled())
 	return;
 
-global.client.send_packet_to_server(NETWORK_EVENT.UPDATE, get_copulated_input(client.input));
+var copulated_input = get_copulated_input();
+global.client.send_packet_to_server(NETWORK_EVENT.UPDATE, copulated_input);

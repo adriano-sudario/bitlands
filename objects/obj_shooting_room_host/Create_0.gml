@@ -1,5 +1,6 @@
 host = noone;
 clients = [];
+players = [];
 has_menu_appeared = false;
 winning_player = noone;
 has_match_ended = false;

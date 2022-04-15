@@ -180,7 +180,11 @@ function start() {
 				index: selection_ready.index,
 				socket: selection_ready.client == noone ? global.host.server :
 					selection_ready.client.socket,
-				spawn_point: selection_ready.spawn_point
+				spawn_point: {
+					image_xscale: selection_ready.spawn_point.image_xscale,
+					x: selection_ready.spawn_point.x,
+					y: selection_ready.spawn_point.y
+				}
 			});
 		else
 			break;

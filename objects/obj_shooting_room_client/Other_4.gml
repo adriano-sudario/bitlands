@@ -1,3 +1,6 @@
+if (!check_for_client())
+	return;
+
 for (var i = 0; i < array_length(global.game_state.players); i++) {
 	var info = global.game_state.players[i];
 	var is_client = info.socket == global.client.socket;
