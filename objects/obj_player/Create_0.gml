@@ -33,7 +33,7 @@ function update_movement() {
 
 	var platform = instance_place(x, y + 1, obj_wall);
 	is_on_floor = platform != noone && !is_passing_through_plank;
-	var is_holding_jump = input.is_jump_held() && is_input_enabled();
+	var is_holding_jump = input.is_jump_held() && self.is_input_enabled();
 	var is_leaving_plank = is_on_floor && platform.object_index == obj_plank
 		&& is_holding_jump && input.is_down_held();
 	
@@ -43,7 +43,7 @@ function update_movement() {
 		y++;
 	}
 	
-	if (!is_input_enabled()) {
+	if (!self.is_input_enabled()) {
 		vertical_force += grv;
 		return;
 	}

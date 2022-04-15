@@ -88,6 +88,17 @@ function on_countdown(_data) {
 	has_begun = _data.has_begun;
 }
 
+function on_pickup_gun(_data) {
+	for (var i = 0; i < instance_number(obj_gun); ++i;)
+	{
+	    var gun = instance_find(obj_gun, i);
+		if (gun.x == _data.x && gun.y == _data.y) {
+			instance_destroy(gun);
+			break;
+		}
+	}
+}
+
 function on_end_match(_data) {
 	if (has_match_ended)
 		return;
@@ -111,6 +122,11 @@ function on_event(_data, _player) {
 		
 		case SHOOTING_CLIENT_EVENT.COUNTDOWN:
 			on_countdown(_data);
+			break;
+			break;
+		
+		case SHOOTING_CLIENT_EVENT.PICKUP_GUN:
+			on_pickup_gun(_data);
 			break;
 	
 		case SHOOTING_CLIENT_EVENT.END_MATCH:

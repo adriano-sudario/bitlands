@@ -5,7 +5,7 @@ if (!is_aiming && !is_reloading
 	&& sprite_index != sprites_indexes.draw_gun)
 	update_movement();
 	
-if (!is_input_enabled())
+if (!self.is_input_enabled())
 	return;
 
 if (has_gun && input.is_reload_pressed() 

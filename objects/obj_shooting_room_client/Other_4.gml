@@ -1,16 +1,10 @@
 for (var i = 0; i < array_length(global.game_state.players); i++) {
 	var info = global.game_state.players[i];
-	var player_type = obj_player_network;
+	var is_client = info.socket == global.client.socket;
 	
-	if (info.socket == global.client.socket)
-		player_type = obj_player_client;
-	
-	var player = instance_create_layer(x, y, "Players", player_type);
+	var player = instance_create_layer(x, y, "Players", obj_player_client);
 	
 	with (player) {
-		if (player_type == obj_player_client)
-			input = input_manager();
-		
 		player_info = info;
 		sprites_indexes = get_character_sprites(player_info.character);
 		image_xscale = player_info.spawn_point.image_xscale;
@@ -19,8 +13,8 @@ for (var i = 0; i < array_length(global.game_state.players); i++) {
 		socket = player_info.socket;
 	}
 	
-	if (player_type == obj_player_client)
+	if (is_client)
 		client = player;
 	
-	players[i] = instance_create_layer(x, y, "Players", player_type);
+	players[i] = player;
 }

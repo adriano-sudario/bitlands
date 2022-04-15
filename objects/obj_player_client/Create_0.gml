@@ -1,75 +1,29 @@
+horizontal_force = 0;
 is_dead = false;
 has_fallen_dead = false;
-is_aiming = false;
-is_reloading = false;
+aiming_instance = noone;
 cartrige_capacity = 4;
 cartrige = noone;
 bullets_count = cartrige_capacity;
-has_gun = false;
-aiming_instance = noone;
-sprites_indexes = noone;
 player_info = noone;
-input = input_manager();
 socket = noone;
-
-function update_aim() {
-	if (!has_gun)
-		return;
-	
-	if (input.is_aiming_held()) {
-		if (is_reloading)
-			is_aiming = true;
-		else if (sprite_index != sprites_indexes.draw_gun
-			&& sprite_index != sprites_indexes.air
-			&& !is_aiming) {
-			sprite_index = sprites_indexes.draw_gun;
-			cancel_movement();
-		}
-	} else {
-		if (is_aiming) {
-			is_aiming = false;
-			if (!is_reloading) {
-				sprite_index = sprites_indexes.idle;
-				remove_aiming_instance()
-			}
-		}
-		return;
-	}
-	
-	if (aiming_instance == noone || is_reloading)
-		return;
-	
-	input.update_aiming_angle(x, y);
-	aiming_instance.image_angle = input.aiming_angle;
-	if (input.is_shoot_pressed() && input.is_aiming_held()) {
-		if (bullets_count > 0) {
-			aiming_instance.shoot();
-			bullets_count--;
-			cartrige.spin_next_bullet();
-		} else {
-			cartrige.shake();
-		}
-	}
-}
+image_speed = 0;
 
 function remove_aiming_instance() {
 	with (aiming_instance)
 		instance_destroy();
-	aiming_instance = noone;
 	
 	with (cartrige)
 		instance_destroy();
-	cartrige = noone;
 	
-	if (!input.is_gamepad && obj_game.show_aim)
-		with(obj_target)
-			instance_destroy();
+	aiming_instance = noone;
+	cartrige = noone;
 }
 
-function begin_aiming() {
+function insert_aiming_instance() {
 	if (aiming_instance == noone) {
-		is_aiming = true;
 		aiming_instance = aim(self);
+		aiming_instance.is_manual_update = true;
 		var cartrige_x = x;
 		var catrige_y = y - 40;
 		if (image_xscale > 0)
@@ -81,20 +35,6 @@ function begin_aiming() {
 			angle = 360 - (90 * image_index);
 			image_angle = angle;
 		}
-		sprite_index = sprites_indexes.aim;
-		if (input.is_gamepad) {
-			if (image_xscale < 0) {
-				input.aiming_angle = 180;
-				aiming_instance.image_angle = 180;
-			}
-			else {
-				input.aiming_angle = 0;
-				aiming_instance.image_angle = 0;
-			}
-		} else if (obj_game.show_aim) {
-			instance_create_layer(mouse_x, mouse_y, layer, obj_target);
-		}
 	}
 }
-
 

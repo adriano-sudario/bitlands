@@ -46,54 +46,47 @@ function update_host() {
 	host.update_aim();
 }
 
-function update_client(_client, _data) {
-	var result = noone;
-	
-	if (_client.has_fallen_dead)
-		return result;
-
-	if (!_client.is_aiming && !_client.is_reloading 
-		&& !_data.is_droping_weapon)
-		_client.update_movement(_data.input);
-	
-	if (!self.is_input_enabled(_client))
-		return result;
-
+function client_reload_check(_client) {
 	if (_client.has_gun && _data.input.is_reload_pressed 
 		&& !_client.is_reloading && _client.bullets_count < _client.cartrige_capacity
-		&& !_data.is_droping_weapon
-		&& !_data.is_on_air) {
-		result = { event: SHOOTING_CLIENT_EVENT.RELOAD };
+		&& _client.sprite_index != _client.sprites_indexes.draw_gun
+		&& _client.sprite_index != _client.sprites_indexes.air) {
 		_client.is_reloading = true;
 		_client.sprite_index = _client.sprites_indexes.reload;
 		_client.cancel_movement();
+		
+		if (_client.is_aiming)
+			_client.remove_aiming_instance();
+			
+		return { event: SHOOTING_CLIENT_EVENT.RELOAD };
 	}
-	
-	if (!_client.has_gun)
-		return result;
-	
-	//if (_data.input.is_aiming_held) {
-	//	if (_client.is_reloading)
-	//		_client.is_aiming = true;
-	//	else if (_data.is_droping_weapon && _data.is_on_air && !_client.is_aiming) {
-	//		_client.sprite_index = _client.sprites_indexes.draw_gun;
-	//		_client.cancel_movement();
-	//	}
-	//} else {
-	//	if (_client.is_aiming) {
-	//		_client.is_aiming = false;
-	//		if (!_client.is_reloading) {
-	//			_client.sprite_index = _client.sprites_indexes.idle;
-	//			_client.remove_aiming_instance()
-	//		}
-	//	}
-	//	return;
-	//}
-	
-	if (_client.aiming_instance == noone || _client.is_reloading)
-		return result;
-	
-	//input.update_aiming_angle(x, y);
+	return noone;
+}
+
+function client_aiming_check(_client, _data) {
+	var is_aiming = _data.input.is_aiming_held;
+	if (is_aiming) {
+		if (_client.is_reloading)
+			_client.is_aiming = true;
+		else if (_client.sprite_index != _client.sprites_indexes.draw_gun
+			&& _client.sprite_index != _client.sprites_indexes.air 
+			&& !_client.is_aiming) {
+			_client.sprite_index = _client.sprites_indexes.draw_gun;
+			_client.cancel_movement();
+		}
+	} else {
+		if (_client.is_aiming) {
+			_client.is_aiming = false;
+			if (!_client.is_reloading) {
+				_client.sprite_index = _client.sprites_indexes.idle;
+				_client.remove_aiming_instance()
+			}
+		}
+	}
+	return is_aiming;
+}
+
+function client_shoot_check(_client, _data) {
 	_client.aiming_instance.image_angle = _data.input.aiming_angle;
 	if (_data.input.is_shoot_pressed && _data.input.is_aiming_held) {
 		var has_failed = false;
@@ -113,13 +106,34 @@ function update_client(_client, _data) {
 			has_failed = true;
 		}
 		
-		result = {
+		return {
 			event: SHOOTING_CLIENT_EVENT.SHOOT,
 			has_shoot_failed: has_failed,
 			bullets_count: _client.bullets_count,
 			aiming: _client.aiming_instance.aiming
 		};
 	}
+	return noone;
+}
+
+function update_client(_client, _data) {
+	if (_client.has_fallen_dead)
+		return noone;
+
+	if (!_client.is_aiming && !_client.is_reloading 
+		&& _client.sprite_index != _client.sprites_indexes.draw_gun)
+		_client.update_movement(_data.input);
 	
-	return result;
+	if (!self.is_input_enabled(_client))
+		return noone;
+
+	var result = client_reload_check(_client);
+	
+	if (!_client.has_gun ||
+		!client_aiming_check(_client, _data) ||
+		_client.aiming_instance == noone ||
+		_client.is_reloading)
+		return result;
+	
+	return client_shoot_check(_client, _data);
 }
