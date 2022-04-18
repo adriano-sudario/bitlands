@@ -120,6 +120,7 @@ function spawn_dust() {
 	var dust_type = 
 		aiming.target.object_index == owner.object_index ? PARTICLE_TYPE.BLOOD
 		: aiming.target.terrain;
+	var _particles = [];
 	repeat(round(random_range(4, 7)))
 		with (instance_create_layer(dust_x, dust_y, "Dusts", obj_particle)) {
 			var dust_speed = random_range(1, 3);
@@ -129,7 +130,19 @@ function spawn_dust() {
 			horizontal_speed = lengthdir_x(dust_speed, dir);
 			vertical_speed = lengthdir_y(dust_speed, dir);
 			set_type(dust_type);
+			array_push(_particles, {
+				x: x,
+				y: y,
+				index: image_index,
+				xscale: image_xscale,
+				yscale: image_yscale,
+				horizontal_speed: horizontal_speed,
+				vertical_speed: vertical_speed,
+				type: dust_type
+			});
 		}
+	
+	return _particles;
 }
 
 function shoot() {
@@ -137,13 +150,13 @@ function shoot() {
 		recoil = 4;
 	
 	if (aiming.target == noone)
-		return;
+		return noone;
 	
 	audio_sound_pitch(sfx_shoot, choose(.8, 1, 1.2));
-	audio_play_sound(sfx_shoot, 5, false);
+	play_sound(sfx_shoot, 5, false);
 	
 	if (aiming.target != noone && aiming.target.object_index == owner.object_index)
 		hit_player(aiming.target, aiming.x, image_angle);
 	
-	spawn_dust();
+	return spawn_dust();
 }

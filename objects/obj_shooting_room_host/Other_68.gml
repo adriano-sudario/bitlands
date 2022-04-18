@@ -16,23 +16,7 @@ switch(type) {
 				var _client = array_find(clients, function(c, s) {
 					return c.socket == s;
 				}, socket);
-				var _result = update_client(_client, packet.data);
-				if (_result != noone) {
-					switch (_result.event) {
-						case SHOOTING_CLIENT_EVENT.RELOAD:
-							send_packet(socket, NETWORK_EVENT.UPDATE, { event: _result.event });
-							break;
-						
-						case SHOOTING_CLIENT_EVENT.SHOOT:
-							send_packet(socket, NETWORK_EVENT.UPDATE, {
-								event: _result.event,
-								has_shoot_failed: _result.has_shoot_failed,
-								bullets_count: _result.bullets_count,
-								aiming: _result.aiming
-							});
-							break;
-					}
-				}
+				update_client(_client, packet.data);
 				break;
 		}
 	    break;

@@ -2,11 +2,6 @@ var network_id = ds_map_find_value(async_load, "id");
 if (global.client == noone || network_id != global.client.socket)
 	return;
 	
-//if (room != ShootingCharacterSelectionMultiplayer) {
-//	instance_destroy();
-//	return;
-//}
-	
 if (obj_transition.mode == TRANSITION_MODE.OFF) {
 	if (timeout_delay != noone)
 		timeout_delay.reset();

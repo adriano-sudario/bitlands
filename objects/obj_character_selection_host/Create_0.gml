@@ -88,7 +88,7 @@ function go_to_left_character(_selection) {
 }
 
 function select_character(_selection) {
-	audio_play_sound(sfx_menu_change, 5, false);
+	play_sound(sfx_menu_change, 5, false);
 	_selection.is_ready = true;
 	_selection.chosen_index = array_length(chosen_characters);
 	array_insert(chosen_characters, _selection.chosen_index,

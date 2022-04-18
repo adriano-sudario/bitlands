@@ -3,7 +3,7 @@ if (!has_begun) {
 	if (countdown_scale >= 1) {
 		if (!has_bipped) {
 			var sfx = countdown == 3 ? sfx_countdown_high : sfx_countdown_low;
-			audio_play_sound(sfx, 5, false);
+			play_sound(sfx, 5, false);
 			has_bipped = true;
 		}
 		countdown_scale = 1;
@@ -13,7 +13,7 @@ if (!has_begun) {
 			countdown++;
 			if (countdown > 3) {
 				has_begun = true;
-				audio_play_sound(stk_chaesd_by_teh_rievr, 100, true);
+				play_sound(stk_chaesd_by_teh_rievr, 100, true);
 			} else {
 				countdown_scale = 0;
 				current_countdown_fps_stopped = 0;

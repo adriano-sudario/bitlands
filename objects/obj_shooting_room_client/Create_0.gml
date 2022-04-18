@@ -14,13 +14,24 @@ countdown_scale = 0;
 has_begun = false;
 timeout_delay = noone;
 
-function is_input_enabled(_player) {
+function is_input_enabled() {
 	return !client.is_dead && !has_match_ended && has_begun;
 }
 
 function leave() {
 	global.client.send_packet_to_server(NETWORK_EVENT.REMOVE);
 	room_goto(Menu);
+}
+
+function instantiate_particle(_particle) {
+	with (instance_create_layer(_particle.x, _particle.y, "Dusts", obj_particle)) {
+		image_index = _particle.index;
+		image_xscale = _particle.xscale;
+		image_yscale = _particle.yscale;
+		horizontal_speed = _particle.horizontal_speed;
+		vertical_speed = _particle.vertical_speed;
+		set_type(_particle.type);
+	}
 }
 
 function update_player_state(_player, _state) {
@@ -35,42 +46,23 @@ function update_player_state(_player, _state) {
 	_player.sprite_index = _state.animation.sprite_index;
 	_player.image_index = _state.animation.image_index;
 			
-	if (_player.player_info.socket == global.client.socket)
-		return;
-			
-	if (_player.aiming_instance == noone && _state.aiming_instance != noone)
+	if (_player.aiming_instance == noone && _state.is_aiming)
 		_player.insert_aiming_instance();
-	else if (_player.aiming_instance != noone && _state.aiming_instance == noone)
+	else if (_player.aiming_instance != noone && 
+		(!_state.is_aiming || _state.is_reloading || has_match_ended))
 		_player.remove_aiming_instance();
 			
 	if (_player.aiming_instance != noone) {
-		_player.aiming_instance.image_angle = _state.angle;
-		_player.aiming_instance.recoil = _state.recoil;
-		_player.aiming_instance.aiming = _state.aiming;
+		if (_state.aiming_instance.angle > 90 && _state.aiming_instance.angle <= 270)
+			_player.aiming_instance.image_yscale = -1;
+		else
+			_player.aiming_instance.image_yscale = 1;
+		
+		_player.aiming_instance.image_angle = _state.aiming_instance.angle;
+		_player.aiming_instance.recoil = _state.aiming_instance.recoil;
+		_player.aiming_instance.aiming = _state.aiming_instance.aiming;
 		_player.cartrige.shake_params = _state.cartrige.shake_params;
 	}
-}
-
-function on_reload(_player) {
-	_player.is_reloading = true;
-	_player.sprite_index = _player.sprites_indexes.reload;
-}
-
-function on_shoot(_player, _data) {
-	if (_data.has_shoot_failed) {
-		_player.cartrige.shake();
-		return;
-	}
-		
-	if (_data.aiming.target != noone)
-		_data.aiming.target = array_find(players, function(c, s) {
-			return c.socket == s;
-		}, _data.aiming.target);
-			
-	_player.aiming_instance.aiming = _data.aiming;
-	_player.aiming_instance.shoot();
-	_player.bullets_count = _data.bullets_count;
-	_player.cartrige.spin_next_bullet();
 }
 
 function on_countdown(_data) {
@@ -79,14 +71,11 @@ function on_countdown(_data) {
 	has_begun = _data.has_begun;
 }
 
-function on_pickup_gun(_data) {
-	for (var i = 0; i < instance_number(obj_gun); ++i;)
-	{
-	    var gun = instance_find(obj_gun, i);
-		if (gun.x == _data.x && gun.y == _data.y) {
-			instance_destroy(gun);
-			break;
-		}
+function on_match_update(_data) {
+	for (var i = 0; i < array_length(_data.guns_to_remove); i++;) {
+		var _gun_to_remove = _data.guns_to_remove[i];
+		var _gun_found = instance_position(_gun_to_remove.x, _gun_to_remove.y, obj_gun);
+		instance_destroy(_gun_found);
 	}
 }
 
@@ -103,21 +92,12 @@ function on_end_match(_data) {
 
 function on_event(_data, _player) {
 	switch (_data.event) {
-		case SHOOTING_CLIENT_EVENT.RELOAD:
-			on_reload(_player);
-			break;
-	
-		case SHOOTING_CLIENT_EVENT.SHOOT:
-			on_shoot(_player, _data);
-			break;
-		
 		case SHOOTING_CLIENT_EVENT.COUNTDOWN:
 			on_countdown(_data);
 			break;
-			break;
 		
-		case SHOOTING_CLIENT_EVENT.PICKUP_GUN:
-			on_pickup_gun(_data);
+		case SHOOTING_CLIENT_EVENT.MATCH_UPDATE:
+			on_match_update(_data);
 			break;
 	
 		case SHOOTING_CLIENT_EVENT.END_MATCH:

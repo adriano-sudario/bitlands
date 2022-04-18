@@ -16,9 +16,47 @@ countdown_growth_speed = .1;
 countdown_fps_stopped = 45;
 current_countdown_fps_stopped = 0;
 has_begun = false;
+particles = [];
+sounds = [];
+guns_to_remove = [];
 
 function is_input_enabled(_player) {
 	return !_player.is_dead && !has_match_ended && has_begun;
+}
+
+function get_player_state(_player) {
+	return {
+		x: _player.x,
+		y: _player.y,
+		image_xscale: _player.image_xscale,
+		is_dead: _player.is_dead,
+		is_aiming: _player.is_aiming,
+		is_reloading: _player.is_reloading,
+		has_gun: _player.has_gun,
+		bullets_count: _player.bullets_count,
+		socket: _player.socket,
+		animation: {
+			sprite_index: _player.sprite_index,
+			image_index: _player.image_index
+		},
+		aiming_instance: _player.aiming_instance == noone ? noone : {
+			angle: _player.aiming_instance.image_angle,
+			recoil: _player.aiming_instance.recoil,
+			aiming: _player.aiming_instance.aiming
+		},
+		cartrige: _player.cartrige == noone ? noone : {
+			shake_params: _player.cartrige.shake_params
+		}
+	}
+}
+
+function get_players_states() {
+	var _states = [get_player_state(host)];
+
+	for (var i = 0; i < array_length(clients); i++)
+		array_push(_states, get_player_state(clients[i]));
+	
+	return _states;
 }
 
 function update_host() {
@@ -58,10 +96,7 @@ function client_reload_check(_client, _client_input) {
 		
 		if (_client.is_aiming)
 			_client.remove_aiming_instance();
-			
-		return { event: SHOOTING_CLIENT_EVENT.RELOAD };
 	}
-	return noone;
 }
 
 function client_aiming_check(_client, _client_input) {
@@ -87,13 +122,25 @@ function client_aiming_check(_client, _client_input) {
 	return is_aiming;
 }
 
+function add_shooting_particles_and_sound(_shoot_particles) {
+	if (_shoot_particles != noone)
+		for (var i = 0; i < array_length(_shoot_particles); i++)
+			array_push(particles, _shoot_particles[i]);
+	
+	array_push(sounds, {
+		index: sfx_shoot,
+		pitch: audio_sound_get_pitch(sfx_shoot),
+		priority: 5,
+		is_loop: false
+	});
+}
+
 function client_shoot_check(_client, _client_input) {
-	_client.aiming_instance.image_angle = _client_input.aiming_angle;
 	if (_client_input.is_shoot_pressed && _client_input.is_aiming_held) {
 		var has_failed = false;
 		if (_client.bullets_count > 0) {
-			_client.aiming_instance.update();
-			_client.aiming_instance.shoot();
+			add_shooting_particles_and_sound(
+				_client.aiming_instance.shoot());
 			_client.bullets_count--;
 			_client.cartrige.spin_next_bullet();
 			
@@ -106,35 +153,29 @@ function client_shoot_check(_client, _client_input) {
 			
 			has_failed = true;
 		}
-		
-		return {
-			event: SHOOTING_CLIENT_EVENT.SHOOT,
-			has_shoot_failed: has_failed,
-			bullets_count: _client.bullets_count,
-			aiming: _client.aiming_instance.aiming
-		};
 	}
-	return noone;
 }
 
 function update_client(_client, _client_input) {
 	if (_client.has_fallen_dead)
-		return noone;
+		return;
 
 	if (!_client.is_aiming && !_client.is_reloading 
 		&& _client.sprite_index != _client.sprites_indexes.draw_gun)
 		_client.update_movement(_client_input);
 	
 	if (!self.is_input_enabled(_client))
-		return noone;
+		return;
 
-	var result = client_reload_check(_client, _client_input);
+	client_reload_check(_client, _client_input);
 	
 	if (!_client.has_gun ||
 		!client_aiming_check(_client, _client_input) ||
 		_client.aiming_instance == noone ||
 		_client.is_reloading)
-		return result;
+		return;
 	
-	return client_shoot_check(_client, _client_input);
+	_client.aiming_instance.image_angle = _client_input.aiming_angle;
+	_client.aiming_instance.update();
+	client_shoot_check(_client, _client_input);
 }

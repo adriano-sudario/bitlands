@@ -1,6 +1,9 @@
 if (!check_for_client())
 	return;
 
+if (!layer_exists("Dusts"))
+	layer_create(-1, "Dusts");
+
 for (var i = 0; i < array_length(global.game_state.players); i++) {
 	var info = global.game_state.players[i];
 	var is_client = info.socket == global.client.socket;

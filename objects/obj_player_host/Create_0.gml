@@ -31,15 +31,15 @@ function update_movement(_input = noone) {
 		horizontal_force = horizontal_direction * walk_speed;
 	}
 
-	var platform = instance_place(x, y + 1, obj_wall);
-	is_on_floor = platform != noone && !is_passing_through_plank;
-	var is_jump_held = _input == noone ? input.is_jump_held() : _input.is_jump_held;
-	var is_holding_jump = is_jump_held && _is_input_enabled;
-	var is_down_held = _input == noone ? input.is_down_held() : _input.is_down_held;
-	var is_leaving_plank = is_on_floor && platform.object_index == obj_plank
-		&& is_holding_jump && is_down_held;
+	var _platform = instance_place(x, y + 1, obj_wall);
+	is_on_floor = _platform != noone && !is_passing_through_plank;
+	var _is_jump_held = _input == noone ? input.is_jump_held() : _input.is_jump_held;
+	var _is_holding_jump = _is_jump_held && _is_input_enabled;
+	var _is_down_held = _input == noone ? input.is_down_held() : _input.is_down_held;
+	var _is_leaving_plank = is_on_floor && _platform.object_index == obj_plank
+		&& _is_holding_jump && _is_down_held;
 	
-	if (is_leaving_plank) {
+	if (_is_leaving_plank) {
 		is_on_floor = false;
 		is_passing_through_plank = true;
 		y++;
@@ -50,21 +50,21 @@ function update_movement(_input = noone) {
 		return;
 	}
 	
-	var has_released_jump = is_jump_held && !is_holding_jump;
-	is_jump_held = is_holding_jump;
+	var _has_released_jump = is_jump_held && !_is_holding_jump;
+	is_jump_held = _is_holding_jump;
 
 	if (is_on_floor && !input.is_aiming_held()) {
-		if (is_holding_jump && !has_jump) {
+		if (_is_holding_jump && !has_jump) {
 			vertical_force = JUMP_FORCE;
 			has_jump = true;
 		} else {
-			if (has_jump && has_released_jump)
+			if (has_jump && _has_released_jump)
 				has_jump = false;
 			vertical_force = 0;
 		}
 	} else {
 		vertical_force += grv;
-		if (has_jump && has_released_jump) {
+		if (has_jump && _has_released_jump) {
 			var minimal_jump_force = -1.5;
 			if (vertical_force < minimal_jump_force)
 				vertical_force = minimal_jump_force;
@@ -104,7 +104,8 @@ function update_aim() {
 	aiming_instance.image_angle = input.aiming_angle;
 	if (input.is_shoot_pressed() && input.is_aiming_held()) {
 		if (bullets_count > 0) {
-			aiming_instance.shoot();
+			obj_shooting_room_host.add_shooting_particles_and_sound(
+				aiming_instance.shoot());
 			bullets_count--;
 			cartrige.spin_next_bullet();
 		} else {

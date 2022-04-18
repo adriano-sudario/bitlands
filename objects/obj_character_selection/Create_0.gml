@@ -61,7 +61,7 @@ function select_input(_input) {
 	}
 	
 	if (last_selection_with_input != noone) {
-		audio_play_sound(sfx_menu_change, 5, false);
+		play_sound(sfx_menu_change, 5, false);
 		last_selection_with_input.input = _input;
 		last_selection_with_input.spawn_point = last_spawn_with_input;
 		last_selection_with_input.spawn_point.visible = true;
@@ -97,7 +97,7 @@ function go_to_left_character(_selection) {
 }
 
 function select_character(_selection) {
-	audio_play_sound(sfx_menu_change, 5, false);
+	play_sound(sfx_menu_change, 5, false);
 	_selection.is_ready = true;
 	_selection.chosen_index = array_length(chosen_characters);
 	array_insert(chosen_characters, _selection.chosen_index,

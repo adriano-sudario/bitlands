@@ -73,8 +73,19 @@ if (is_dead) {
 } else {
 	if (sprite_index == sprites_indexes.air && !is_passing_through_plank) {
 		repeat(round(random_range(4, 7)))
-			with (instance_create_layer(x, bbox_bottom, layer, obj_particle))
+			with (instance_create_layer(x, bbox_bottom, layer, obj_particle)) {
 				vertical_speed = 0;
+				array_push(obj_shooting_room_host.particles, {
+					x: x,
+					y: y,
+					index: image_index,
+					xscale: image_xscale,
+					yscale: image_yscale,
+					horizontal_speed: horizontal_speed,
+					vertical_speed: vertical_speed,
+					type: PARTICLE_TYPE.DUST
+				});
+			}
 	}
 	
 	image_speed = 1;

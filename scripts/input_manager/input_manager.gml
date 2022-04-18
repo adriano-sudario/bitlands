@@ -32,28 +32,27 @@ function input_manager(_input_id = noone) {
 			return is_true;
 		},
 		update_all_aiming_angle: function(_x, _y) {
-			var inputs = [-1, 0, 1, 2, 3];
+			var _inputs = [-1, 0, 1, 2, 3];
 			
-			for (var i = 0; i < array_length(inputs); i++) {
+			for (var i = 0; i < array_length(_inputs); i++) {
 				if (i == 0) {
 					update_keyboard_aiming_angle(_x, _y);
-					input_id_used = i;
+					input_id_used = _inputs[i];
 				} else {
-					if (update_gamepad_aiming_angle(_x, _y)) {
+					if (update_gamepad_aiming_angle(_inputs[i])) {
 						is_gamepad = true;
-						input_id_used = i;
+						input_id_used = _inputs[i];
 						break;
 					}
 				}
 			}
 		},
-		update_gamepad_aiming_angle: function(_x, _y) {
-			var horizontal_axis = gamepad_axis_value(input_id, gp_axislh);
-			var vertical_axis = gamepad_axis_value(input_id, gp_axislv);
+		update_gamepad_aiming_angle: function(_input_id) {
+			var horizontal_axis = gamepad_axis_value(_input_id, gp_axislh);
+			var vertical_axis = gamepad_axis_value(_input_id, gp_axislv);
 			
 			if (abs(horizontal_axis) > .5 || abs(vertical_axis) > .5) {
-				aiming_angle = point_direction(0, 0, 
-					horizontal_axis, vertical_axis);
+				aiming_angle = point_direction(0, 0, horizontal_axis, vertical_axis);
 				return true;
 			}
 		},
@@ -64,7 +63,7 @@ function input_manager(_input_id = noone) {
 			if (input_id == noone)
 				update_all_aiming_angle(_x, _y);
 			else if (input_id >= 0)
-				update_gamepad_aiming_angle(_x, _y);
+				update_gamepad_aiming_angle(input_id);
 			else
 				update_keyboard_aiming_angle(_x, _y);
 		},

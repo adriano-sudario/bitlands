@@ -19,7 +19,15 @@ switch (packet.command) {
 				return c.socket == s;
 			}, _socket);
 			on_event(packet.data, _player);
-			break;
+		}
+		
+		for (var i = 0; i < array_length(packet.data.particles); i++)
+			instantiate_particle(packet.data.particles[i]);
+			
+		for (var i = 0; i < array_length(packet.data.sounds); i++) {
+			var _sound = packet.data.sounds[i];
+			audio_sound_pitch(_sound.index, _sound.pitch);
+			play_sound(_sound.index, _sound.priority, _sound.is_loop);
 		}
 		
 		for (var i = 0; i < array_length(packet.data.states); i++) {

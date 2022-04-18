@@ -1,9 +1,16 @@
 if (!has_begun) {
 	countdown_scale += countdown_growth_speed;
+	var _sound = [];
 	if (countdown_scale >= 1) {
 		if (!has_bipped) {
 			var sfx = countdown == 3 ? sfx_countdown_high : sfx_countdown_low;
-			audio_play_sound(sfx, 5, false);
+			play_sound(sfx, 5, false);
+			array_push(_sound, {
+				index: sfx,
+				pitch: audio_sound_get_pitch(sfx),
+				priority: 5,
+				is_loop: false
+			});
 			has_bipped = true;
 		}
 		countdown_scale = 1;
@@ -13,7 +20,13 @@ if (!has_begun) {
 			countdown++;
 			if (countdown > 3) {
 				has_begun = true;
-				audio_play_sound(stk_chaesd_by_teh_rievr, 100, true);
+				play_sound(stk_chaesd_by_teh_rievr, 100, true);
+				array_push(_sound, {
+					index: stk_chaesd_by_teh_rievr,
+					pitch: audio_sound_get_pitch(stk_chaesd_by_teh_rievr),
+					priority: 100,
+					is_loop: true
+				});
 			} else {
 				countdown_scale = 0;
 				current_countdown_fps_stopped = 0;
@@ -26,7 +39,10 @@ if (!has_begun) {
 		countdown: {
 			scale: countdown_scale,
 			value: countdown
-		}
+		},
+		states: get_players_states(),
+		particles: [],
+		sounds: _sound
 	});
 	return;
 }
@@ -70,67 +86,23 @@ if (has_match_ended && !has_menu_appeared
 	
 	global.host.send_packet_to_clients(NETWORK_EVENT.UPDATE, {
 		event: SHOOTING_CLIENT_EVENT.END_MATCH,
-		winner: winning_player != noone ? winning_player.socket : noone
+		winner: winning_player != noone ? winning_player.socket : noone,
+		states: get_players_states(),
+		particles: [],
+		sounds: []
 	});
-}
-
-if (has_match_ended)
+	
 	return;
-
-var teste = host.aiming_instance == noone;
-var teste = host.cartrige == noone;
-var states = [{
-	x: host.x,
-	y: host.y,
-	image_xscale: host.image_xscale,
-	is_dead: host.is_dead,
-	is_aiming: host.is_aiming,
-	is_reloading: host.is_reloading,
-	has_gun: host.has_gun,
-	bullets_count: host.bullets_count,
-	socket: global.host.server,
-	animation: {
-		sprite_index: host.sprite_index,
-		image_index: host.image_index
-	},
-	aiming_instance: host.aiming_instance == noone ? noone : {
-		angle: host.aiming_instance.image_angle,
-		recoil: host.aiming_instance.recoil,
-		aiming: host.aiming_instance.aiming
-	},
-	cartrige: host.cartrige == noone ? noone : {
-		shake_params: host.cartrige.shake_params
-	}
-}];
-
-for (var i = 0; i < array_length(clients); i++) {
-	var _client = clients[i];
-	array_push(states, {
-		x: _client.x,
-		y: _client.y,
-		image_xscale: _client.image_xscale,
-		is_dead: _client.is_dead,
-		is_aiming: _client.is_aiming,
-		is_reloading: _client.is_reloading,
-		has_gun: _client.has_gun,
-		bullets_count: _client.bullets_count,
-		socket: _client.socket,
-		animation: {
-			sprite_index: _client.sprite_index,
-			image_index: _client.image_index
-		},
-		aiming_instance: _client.aiming_instance == noone ? noone : {
-			angle: _client.aiming_instance.image_angle,
-			recoil: _client.aiming_instance.recoil,
-			aiming: _client.aiming_instance.aiming
-		},
-		cartrige: _client.cartrige == noone ? noone : {
-			shake_params: _client.cartrige.shake_params
-		}
-	});
 }
 
 global.host.send_packet_to_clients(NETWORK_EVENT.UPDATE, {
-	event: noone,
-	states: states
+	event: SHOOTING_CLIENT_EVENT.MATCH_UPDATE,
+	states: get_players_states(),
+	particles: particles,
+	sounds: sounds,
+	guns_to_remove: guns_to_remove
 });
+
+particles = [];
+sounds = [];
+guns_to_remove = [];
