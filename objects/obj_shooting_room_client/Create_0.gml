@@ -13,6 +13,7 @@ countdown = 1;
 countdown_scale = 0;
 has_begun = false;
 timeout_delay = noone;
+input = input_manager();
 
 function is_input_enabled() {
 	return !client.is_dead && !has_match_ended && has_begun;
@@ -46,10 +47,9 @@ function update_player_state(_player, _state) {
 	_player.sprite_index = _state.animation.sprite_index;
 	_player.image_index = _state.animation.image_index;
 			
-	if (_player.aiming_instance == noone && _state.is_aiming)
+	if (_player.aiming_instance == noone && _state.aiming_instance != noone)
 		_player.insert_aiming_instance();
-	else if (_player.aiming_instance != noone && 
-		(!_state.is_aiming || _state.is_reloading || has_match_ended))
+	else if (_player.aiming_instance != noone && _state.aiming_instance == noone)
 		_player.remove_aiming_instance();
 			
 	if (_player.aiming_instance != noone) {

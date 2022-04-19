@@ -16,12 +16,15 @@ function input_manager(_input_id = noone) {
 				
 				if (input_id < 0) {
 					is_true = _keyboard_check(_bind_type.keyboard);
-					is_gamepad = !is_true;
-					input_id_used = i;
+					if (is_true)
+						is_gamepad = false;
+					input_id_used = input_id;
 				} else {
 					is_true = _gamepad_check(_bind_type.gamepad);
+					if (is_true)
+						is_gamepad = true;
 					is_gamepad = is_true;
-					input_id_used = i;
+					input_id_used = input_id;
 				}
 				
 				if (is_true)
@@ -35,15 +38,15 @@ function input_manager(_input_id = noone) {
 			var _inputs = [-1, 0, 1, 2, 3];
 			
 			for (var i = 0; i < array_length(_inputs); i++) {
-				if (i == 0) {
+				var _input_id = _inputs[i];
+				if (_input_id < 0) {
+					if (is_gamepad)
+						continue;
 					update_keyboard_aiming_angle(_x, _y);
-					input_id_used = _inputs[i];
-				} else {
-					if (update_gamepad_aiming_angle(_inputs[i])) {
-						is_gamepad = true;
-						input_id_used = _inputs[i];
-						break;
-					}
+					input_id_used = _input_id;
+				} else if (update_gamepad_aiming_angle(_input_id)) {
+					input_id_used = _input_id;
+					break;
 				}
 			}
 		},
@@ -72,7 +75,7 @@ function input_manager(_input_id = noone) {
 				var axis_result = gamepad_axis_value(input_id, _bind_key[0]) < -.5;
 			else
 				var axis_result = gamepad_axis_value(input_id, _bind_key[0]) > .5;
-				
+			
 			return axis_result || gamepad_button_check(input_id, _bind_key[1]);
 		},
 		directional_keyboard_check: function(_bind_key) {
