@@ -1,7 +1,7 @@
 if (sprite_index == sprites_indexes.draw_gun) {
 	begin_aiming();
 } else if (sprite_index == sprites_indexes.reload) {
-	bullets_count = cartrige_capacity;
+	bullets_count = cartridge_capacity;
 	is_reloading = false;
 	if (is_aiming)
 		begin_aiming();

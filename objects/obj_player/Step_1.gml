@@ -9,7 +9,7 @@ if (!self.is_input_enabled())
 	return;
 
 if (has_gun && input.is_reload_pressed() 
-	&& !is_reloading && bullets_count < cartrige_capacity
+	&& !is_reloading && bullets_count < cartridge_capacity
 	&& sprite_index != sprites_indexes.draw_gun
 	&& sprite_index != sprites_indexes.air ) {
 	is_reloading = true;

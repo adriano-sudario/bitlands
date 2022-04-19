@@ -61,7 +61,9 @@ function update_player_state(_player, _state) {
 		_player.aiming_instance.image_angle = _state.aiming_instance.angle;
 		_player.aiming_instance.recoil = _state.aiming_instance.recoil;
 		_player.aiming_instance.aiming = _state.aiming_instance.aiming;
-		_player.cartrige.shake_params = _state.cartrige.shake_params;
+		_player.cartridge.shake_params = _state.cartridge.shake_params;
+		_player.cartridge.angle = _state.cartridge.angle;
+		_player.cartridge.image_index = _state.cartridge.image_index;
 	}
 }
 

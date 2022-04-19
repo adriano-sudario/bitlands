@@ -44,8 +44,10 @@ function get_player_state(_player) {
 			recoil: _player.aiming_instance.recoil,
 			aiming: _player.aiming_instance.aiming
 		},
-		cartrige: _player.cartrige == noone ? noone : {
-			shake_params: _player.cartrige.shake_params
+		cartridge: _player.cartridge == noone ? noone : {
+			shake_params: _player.cartridge.shake_params,
+			angle: _player.cartridge.angle,
+			image_index: _player.cartridge.image_index
 		}
 	}
 }
@@ -71,7 +73,7 @@ function update_host() {
 		return;
 
 	if (host.has_gun && host.input.is_reload_pressed() 
-		&& !host.is_reloading && host.bullets_count < host.cartrige_capacity
+		&& !host.is_reloading && host.bullets_count < host.cartridge_capacity
 		&& host.sprite_index != host.sprites_indexes.draw_gun
 		&& host.sprite_index != host.sprites_indexes.air) {
 		host.is_reloading = true;
@@ -87,7 +89,7 @@ function update_host() {
 
 function client_reload_check(_client, _client_input) {
 	if (_client.has_gun && _client_input.is_reload_pressed 
-		&& !_client.is_reloading && _client.bullets_count < _client.cartrige_capacity
+		&& !_client.is_reloading && _client.bullets_count < _client.cartridge_capacity
 		&& _client.sprite_index != _client.sprites_indexes.draw_gun
 		&& _client.sprite_index != _client.sprites_indexes.air) {
 		_client.is_reloading = true;
@@ -142,14 +144,14 @@ function client_shoot_check(_client, _client_input) {
 			add_shooting_particles_and_sound(
 				_client.aiming_instance.shoot());
 			_client.bullets_count--;
-			_client.cartrige.spin_next_bullet();
+			_client.cartridge.spin_next_bullet();
 			
 			if (_client.aiming_instance.aiming.target.object_index == obj_player_host)
 				_client.aiming_instance.aiming.target = _client.aiming_instance.aiming.target.socket;
 			else
 				_client.aiming_instance.aiming.target = noone;
 		} else {
-			_client.cartrige.shake();
+			_client.cartridge.shake();
 			
 			has_failed = true;
 		}

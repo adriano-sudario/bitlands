@@ -86,7 +86,7 @@
     {"id":{"name":"spr_sebastiao_aiming_arm","path":"sprites/spr_sebastiao_aiming_arm/spr_sebastiao_aiming_arm.yy",},"order":5,},
     {"id":{"name":"array_order_by","path":"scripts/array_order_by/array_order_by.yy",},"order":1,},
     {"id":{"name":"spr_raimundo_idle","path":"sprites/spr_raimundo_idle/spr_raimundo_idle.yy",},"order":0,},
-    {"id":{"name":"obj_cartrige","path":"objects/obj_cartrige/obj_cartrige.yy",},"order":5,},
+    {"id":{"name":"obj_cartridge","path":"objects/obj_cartridge/obj_cartridge.yy",},"order":5,},
     {"id":{"name":"spr_sebastiao_air","path":"sprites/spr_sebastiao_air/spr_sebastiao_air.yy",},"order":1,},
     {"id":{"name":"spr_geraldo_dead","path":"sprites/spr_geraldo_dead/spr_geraldo_dead.yy",},"order":7,},
     {"id":{"name":"obj_plank","path":"objects/obj_plank/obj_plank.yy",},"order":2,},

@@ -31,7 +31,7 @@
     "path": "folders/Objects/Weapons.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_cartrige",
+  "name": "obj_cartridge",
   "tags": [],
   "resourceType": "GMObject",
 }

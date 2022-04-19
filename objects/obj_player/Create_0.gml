@@ -11,10 +11,10 @@ is_jump_held = false;
 has_jump = false;
 is_aiming = false;
 is_reloading = false;
-cartrige_capacity = 4;
-cartrige = noone;
+cartridge_capacity = 4;
+cartridge = noone;
 is_passing_through_plank = false;
-bullets_count = cartrige_capacity;
+bullets_count = cartridge_capacity;
 has_gun = false;
 aiming_instance = noone;
 sprites_indexes = noone;
@@ -104,9 +104,9 @@ function update_aim() {
 		if (bullets_count > 0) {
 			aiming_instance.shoot();
 			bullets_count--;
-			cartrige.spin_next_bullet();
+			cartridge.spin_next_bullet();
 		} else {
-			cartrige.shake();
+			cartridge.shake();
 		}
 	}
 }
@@ -121,9 +121,9 @@ function remove_aiming_instance() {
 		instance_destroy();
 	aiming_instance = noone;
 	
-	with (cartrige)
+	with (cartridge)
 		instance_destroy();
-	cartrige = noone;
+	cartridge = noone;
 	
 	if (!input.is_gamepad && obj_game.show_aim)
 		with(obj_target)
@@ -134,14 +134,14 @@ function begin_aiming() {
 	if (aiming_instance == noone) {
 		is_aiming = true;
 		aiming_instance = aim(self);
-		var cartrige_x = x;
+		var cartridge_x = x;
 		var catrige_y = y - 40;
 		if (image_xscale > 0)
-			cartrige_x += 5;
-		cartrige = instance_create_layer(cartrige_x, catrige_y, layer, obj_cartrige);
-		with (cartrige) {
+			cartridge_x += 5;
+		cartridge = instance_create_layer(cartridge_x, catrige_y, layer, obj_cartridge);
+		with (cartridge) {
 			owner = other;
-			image_index = other.cartrige_capacity - other.bullets_count;
+			image_index = other.cartridge_capacity - other.bullets_count;
 			angle = 360 - (90 * image_index);
 			image_angle = angle;
 		}
