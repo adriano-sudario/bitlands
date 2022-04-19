@@ -1,2 +1,2 @@
-if (!is_manual_update)
+if (!is_update_disabled)
 	update();

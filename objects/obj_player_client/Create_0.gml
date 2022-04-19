@@ -23,7 +23,7 @@ function remove_aiming_instance() {
 function insert_aiming_instance() {
 	if (aiming_instance == noone) {
 		aiming_instance = aim(self);
-		aiming_instance.is_manual_update = true;
+		aiming_instance.is_update_disabled = true;
 		var cartridge_x = x;
 		var catrige_y = y - 40;
 		if (image_xscale > 0)

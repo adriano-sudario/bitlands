@@ -41,8 +41,9 @@ function get_player_state(_player) {
 		},
 		aiming_instance: _player.aiming_instance == noone ? noone : {
 			angle: _player.aiming_instance.image_angle,
-			recoil: _player.aiming_instance.recoil,
-			aiming: _player.aiming_instance.aiming
+			aiming: _player.aiming_instance.aiming,
+			x: _player.aiming_instance.x,
+			y: _player.aiming_instance.y,
 		},
 		cartridge: _player.cartridge == noone ? noone : {
 			shake_params: _player.cartridge.shake_params,
@@ -178,6 +179,5 @@ function update_client(_client, _client_input) {
 		return;
 	
 	_client.aiming_instance.image_angle = _client_input.aiming_angle;
-	_client.aiming_instance.update();
 	client_shoot_check(_client, _client_input);
 }

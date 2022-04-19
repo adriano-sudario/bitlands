@@ -8,7 +8,7 @@ aiming = {
 	endline_x: 0,
 	endline_y: 0
 };
-is_manual_update = false;
+is_update_disabled = false;
 
 function set_target(_target) {
 	aiming.target = _target;
@@ -40,7 +40,7 @@ function update() {
 	else
 		image_yscale = 1;
 
-	recoil = max(0, recoil -1);
+	recoil = max(0, recoil - .75);
 
 	x -= lengthdir_x(recoil, image_angle);
 	y -= lengthdir_y(recoil, image_angle);
@@ -147,7 +147,7 @@ function spawn_dust() {
 
 function shoot() {
 	if (recoil == 0)
-		recoil = 4;
+		recoil = 3;
 	
 	if (aiming.target == noone)
 		return noone;

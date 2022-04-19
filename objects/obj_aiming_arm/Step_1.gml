@@ -1,4 +1,4 @@
-if (owner == noone)
+if (owner == noone || is_update_disabled)
 	return;
 
 x = owner.x;

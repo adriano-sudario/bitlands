@@ -59,7 +59,8 @@ function update_player_state(_player, _state) {
 			_player.aiming_instance.image_yscale = 1;
 		
 		_player.aiming_instance.image_angle = _state.aiming_instance.angle;
-		_player.aiming_instance.recoil = _state.aiming_instance.recoil;
+		_player.aiming_instance.x = _state.aiming_instance.x;
+		_player.aiming_instance.y = _state.aiming_instance.y;
 		_player.aiming_instance.aiming = _state.aiming_instance.aiming;
 		_player.cartridge.shake_params = _state.cartridge.shake_params;
 		_player.cartridge.angle = _state.cartridge.angle;
@@ -76,8 +77,15 @@ function on_countdown(_data) {
 function on_match_update(_data) {
 	for (var i = 0; i < array_length(_data.guns_to_remove); i++;) {
 		var _gun_to_remove = _data.guns_to_remove[i];
-		var _gun_found = instance_position(_gun_to_remove.x, _gun_to_remove.y, obj_gun);
-		instance_destroy(_gun_found);
+		
+		for (var i = 0; i < instance_number(obj_gun); i++;) {
+		    var _gun = instance_find(obj_gun, i);
+			if (_gun.starting_position.x == _gun_to_remove.x &&
+				_gun.starting_position.y == _gun_to_remove.y) {
+				instance_destroy(_gun);
+				break;
+			}
+		}
 	}
 }
 
