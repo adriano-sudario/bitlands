@@ -95,9 +95,21 @@ function on_end_match(_data) {
 			
 	has_match_ended = true;
 	if (_data.winner != noone)
-		winner = array_find(players, function(c, s) {
+		winning_player = array_find(players, function(c, s) {
 			return c.socket == s;
 		}, _data.winner);
+	
+	with (instance_create_layer(0, 0, "Helpers", obj_menu_simple)) {
+		margin = 0;
+		horizontal_position = gui_width * .5;
+		vertical_position = gui_height * .5 - font_height - 25;
+		horizontal_align = fa_center;
+		vertical_align = fa_center;
+		options = get_ending_menu_items_client();
+		items = [options.back_to_main_menu, options.rematch];
+		mount_items(0);
+	}
+	has_menu_appeared = true;
 }
 
 function on_event(_data, _player) {

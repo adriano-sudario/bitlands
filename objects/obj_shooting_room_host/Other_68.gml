@@ -18,6 +18,11 @@ switch(type) {
 				}, socket);
 				update_client(_client, packet.data);
 				break;
+			
+			case NETWORK_EVENT.REMATCH:
+				audio_stop_all();
+				room_restart();
+				break;
 		}
 	    break;
 }

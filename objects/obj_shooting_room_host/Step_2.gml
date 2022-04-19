@@ -78,7 +78,7 @@ if (has_match_ended && !has_menu_appeared
 		vertical_position = gui_height * .5 - font_height - 25;
 		horizontal_align = fa_center;
 		vertical_align = fa_center;
-		options = get_ending_menu_items();
+		options = get_ending_menu_items_host();
 		items = [options.back_to_main_menu, options.rematch];
 		mount_items(0);
 	}

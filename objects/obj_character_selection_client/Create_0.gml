@@ -30,6 +30,7 @@ for (var i = 0; i < 4; i++;) {
 function leave() {
 	global.client.send_packet_to_server(NETWORK_EVENT.REMOVE);
 	room_goto(Menu);
+	instance_destroy();
 }
 
 function update(_host_data) {

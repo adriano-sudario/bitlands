@@ -114,6 +114,7 @@ function disconnect_client(_client_socket) {
 			array_delete(global.host.client_sockets, i, 1);
 	
 	clients_in_room_count--;
+	network_destroy(_client_socket);
 }
 
 function leave_room(_client_socket) {
@@ -135,9 +136,9 @@ function back_to_character_selection(_selection) {
 
 function back_to_menu(_socket = noone) {
 	if (_socket == noone) {
-		update_clients();
 		close_server();
 		transition_to_room(Menu);
+		instance_destroy();
 	} else {
 		send_packet(_socket, NETWORK_EVENT.REMOVE);
 	}

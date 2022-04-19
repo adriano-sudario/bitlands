@@ -38,4 +38,9 @@ switch (packet.command) {
 			update_player_state(_player, _state);
 		}
 		break;
+	
+	case NETWORK_EVENT.REMATCH:
+		audio_stop_all();
+		room_restart();
+		break;
 }
