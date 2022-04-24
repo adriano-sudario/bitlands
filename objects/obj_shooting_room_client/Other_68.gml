@@ -14,12 +14,8 @@ var packet = json_parse(buffer_read(buffer, buffer_string));
 
 switch (packet.command) {
 	case NETWORK_EVENT.UPDATE:
-		if (packet.data.event != noone) {
-			var _player = array_find(players, function(c, s) {
-				return c.socket == s;
-			}, _socket);
-			on_event(packet.data, _player);
-		}
+		if (packet.data.event != noone)
+			on_event(packet.data);
 		
 		for (var i = 0; i < array_length(packet.data.particles); i++)
 			instantiate_particle(packet.data.particles[i]);

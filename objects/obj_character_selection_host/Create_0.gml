@@ -179,6 +179,7 @@ function start() {
 			array_insert(_players, array_length(_players), {
 				character: characters_list[selection_ready.character_index],
 				index: selection_ready.index,
+				is_client: false,
 				socket: selection_ready.client == noone ? global.host.server :
 					selection_ready.client.socket,
 				spawn_point: {
@@ -191,10 +192,26 @@ function start() {
 			break;
 	}
 	
-	global.host.send_packet_to_clients(NETWORK_EVENT.UPDATE, {
-		players: _players,
-		has_match_started: true
-	});
+	for (var i = 0; i < array_length(global.host.client_sockets); i++;) {
+		var _previous_client = array_find(_players, function(c, s) {
+			return c.is_client == true;
+		});
+		
+		if (_previous_client != noone)
+			_previous_client.is_client = false;
+		
+		var _client = array_find(_players, function(c, s) {
+			return c.socket == s;
+		}, global.host.client_sockets[i]);
+		
+		_client.is_client = true;
+		
+		send_packet(global.host.client_sockets[i], NETWORK_EVENT.UPDATE, {
+			players: _players,
+			has_match_started: true
+		})
+	}
+	
 	global.game_state = { players: _players };
 	audio_stop_sound(stk_crujoa);
 	room_goto(ShootingMultiplayer);

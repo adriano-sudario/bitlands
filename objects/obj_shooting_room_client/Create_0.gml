@@ -112,7 +112,7 @@ function on_end_match(_data) {
 	has_menu_appeared = true;
 }
 
-function on_event(_data, _player) {
+function on_event(_data) {
 	switch (_data.event) {
 		case SHOOTING_CLIENT_EVENT.COUNTDOWN:
 			on_countdown(_data);
