@@ -1,6 +1,6 @@
 /// @function array_find(array, assertion, send_back_object)
 
-function array_find(_array, _assertion){
+function array_find(_array, _assertion) {
 	var item = noone;
 	
 	for (var i = 0; i < array_length(_array); i++) {

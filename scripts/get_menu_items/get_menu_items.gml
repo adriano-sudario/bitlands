@@ -1,6 +1,6 @@
 /// @function get_menu_items()
 
-function get_menu_items(){
+function get_menu_items() {
 	var quit_item = {
 		x: 0,
 		y: 0,

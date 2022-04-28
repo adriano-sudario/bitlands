@@ -1,6 +1,6 @@
 /// @function draw_outlined_text(x, y, text, text_color, alpha, border_color)
 
-function draw_outlined_text(_x, _y, _text){
+function draw_outlined_text(_x, _y, _text) {
 	var offset = 2;
 	var alpha = 1;
 	var border_color = c_black;

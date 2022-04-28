@@ -1,6 +1,6 @@
 /// @function get_ending_menu_items()
 
-function get_ending_menu_items(){
+function get_ending_menu_items() {
 	var rematch_item = {
 		x: 0,
 		y: 0,

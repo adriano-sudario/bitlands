@@ -1,6 +1,6 @@
 /// @function aim(owner)
 
-function aim(_owner){
+function aim(_owner) {
 	var aiming_arm = instance_create_layer(_owner.x, _owner.y + 10, layer, obj_aiming_arm);
 	aiming_arm.owner = _owner;
 	aiming_arm.depth = -1;

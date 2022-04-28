@@ -1,6 +1,6 @@
 /// @function draw_outlined_text_transformed(x, y, text, text_color, border_color, scale, angle)
 
-function draw_outlined_text_transformed(_x, _y, _text, _scale){
+function draw_outlined_text_transformed(_x, _y, _text, _scale) {
 	var offset = 2;
 	var border_color = c_black;
 	var text_color = c_white;
