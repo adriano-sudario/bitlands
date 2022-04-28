@@ -6,6 +6,7 @@ function get_options_items() {
 		y: 0,
 		text: "Back",
 		on_selected: function() {
+			save_game_preferences();
 			room_goto(Menu);
 		}
 	};

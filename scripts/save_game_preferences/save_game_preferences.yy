@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Objects",
-    "path": "folders/Scripts/Objects.yy",
+    "name": "Save",
+    "path": "folders/Scripts/Save.yy",
   },
   "resourceVersion": "1.0",
-  "name": "transition_to_room",
+  "name": "save_game_preferences",
   "tags": [],
   "resourceType": "GMScript",
 }
