@@ -9,28 +9,12 @@ function get_menu_items(){
 			game_end();
 		}
 	};
-	var fullscreen_item = {
+	var options_item = {
 		x: 0,
 		y: 0,
-		text: window_get_fullscreen() ? "Fullscreen: on" : "Fullscreen: off",
+		text: "Options",
 		on_selected: function() {
-			obj_game.toggle_fullscreen();
-			if (window_get_fullscreen())
-				text = "Fullscreen: on";
-			else
-				text = "Fullscreen: off";
-		}
-	};
-	var show_aim_item = {
-		x: 0,
-		y: 0,
-		text: obj_game.show_aim ? "Show aim: on" : "Show aim: off",
-		on_selected: function() {
-			obj_game.show_aim = !obj_game.show_aim;
-			if (obj_game.show_aim)
-				text = "Show aim: on";
-			else
-				text = "Show aim: off";
+			room_goto(MenuOptions);
 		}
 	};
 	var join_game_item = {
@@ -55,7 +39,7 @@ function get_menu_items(){
 	var new_game_item = {
 		x: 0,
 		y: 0,
-		text: "New match",
+		text: "Local match",
 		on_selected: function(_menu_id) {
 			instance_destroy(_menu_id);
 			transition_to_room(ShootingCharacterSelection);
@@ -66,8 +50,7 @@ function get_menu_items(){
 		new_game: new_game_item,
 		host_game: host_game_item,
 		join_game: join_game_item,
-		fullscreen: fullscreen_item,
-		show_aim: show_aim_item,
+		options: options_item,
 		quit: quit_item
 	};
 }

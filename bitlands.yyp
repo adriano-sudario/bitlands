@@ -32,6 +32,7 @@
     {"id":{"name":"JoinGame","path":"rooms/JoinGame/JoinGame.yy",},"order":5,},
     {"id":{"name":"spr_severino_draw_gun","path":"sprites/spr_severino_draw_gun/spr_severino_draw_gun.yy",},"order":3,},
     {"id":{"name":"get_copulated_input","path":"scripts/get_copulated_input/get_copulated_input.yy",},"order":0,},
+    {"id":{"name":"MenuOptions","path":"rooms/MenuOptions/MenuOptions.yy",},"order":8,},
     {"id":{"name":"obj_gun","path":"objects/obj_gun/obj_gun.yy",},"order":2,},
     {"id":{"name":"sfx_shoot","path":"sounds/sfx_shoot/sfx_shoot.yy",},"order":9,},
     {"id":{"name":"draw_outlined_text","path":"scripts/draw_outlined_text/draw_outlined_text.yy",},"order":0,},
@@ -67,6 +68,7 @@
     {"id":{"name":"obj_player_client","path":"objects/obj_player_client/obj_player_client.yy",},"order":2,},
     {"id":{"name":"create_host","path":"scripts/create_host/create_host.yy",},"order":0,},
     {"id":{"name":"string_replace_at","path":"scripts/string_replace_at/string_replace_at.yy",},"order":0,},
+    {"id":{"name":"get_options_items","path":"scripts/get_options_items/get_options_items.yy",},"order":2,},
     {"id":{"name":"spr_severino_idle","path":"sprites/spr_severino_idle/spr_severino_idle.yy",},"order":0,},
     {"id":{"name":"draw_outlined_text_transformed","path":"scripts/draw_outlined_text_transformed/draw_outlined_text_transformed.yy",},"order":1,},
     {"id":{"name":"spr_severino_aim","path":"sprites/spr_severino_aim/spr_severino_aim.yy",},"order":4,},
@@ -140,6 +142,7 @@
     {"roomId":{"name":"JoinGame","path":"rooms/JoinGame/JoinGame.yy",},},
     {"roomId":{"name":"ShootingCharacterSelectionMultiplayer","path":"rooms/ShootingCharacterSelectionMultiplayer/ShootingCharacterSelectionMultiplayer.yy",},},
     {"roomId":{"name":"ShootingMultiplayer","path":"rooms/ShootingMultiplayer/ShootingMultiplayer.yy",},},
+    {"roomId":{"name":"MenuOptions","path":"rooms/MenuOptions/MenuOptions.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
