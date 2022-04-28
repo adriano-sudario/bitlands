@@ -39,7 +39,7 @@ switch (packet.command) {
 	
 	case NETWORK_EVENT.REMOVE:
 		audio_stop_all();
-		transition_to_room(Menu);
+		room_goto(Menu);
 		instance_destroy();
 		break;
 }

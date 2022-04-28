@@ -31,12 +31,28 @@ function disconnect_client(_client_socket) {
 	
 	network_destroy(_client_socket);
 	
-	if (array_length(global.host.client_sockets) > 0)
-		global.host.send_packet_to_clients(NETWORK_EVENT.SET_PLAYERS, {
-			players: global.game_state.players
-		});
-	else if (instance_exists(obj_menu_simple))
+	if (array_length(global.host.client_sockets) > 0) {
+		for (var i = 0; i < array_length(global.host.client_sockets); i++;) {
+			var _previous_client = array_find(global.game_state.players, function(c, s) {
+				return c.is_client == true;
+			});
+		
+			if (_previous_client != noone)
+				_previous_client.is_client = false;
+		
+			var _client = array_find(global.game_state.players, function(c, s) {
+				return c.socket == s;
+			}, global.host.client_sockets[i]);
+		
+			_client.is_client = true;
+		
+			send_packet(global.host.client_sockets[i], NETWORK_EVENT.SET_PLAYERS, {
+				players: global.game_state.players
+			})
+		}
+	} else if (instance_exists(obj_menu_simple)) {
 		obj_menu_simple.options.back_to_main_menu.on_selected(instance_id);
+	}
 }
 
 function is_input_enabled(_player) {
