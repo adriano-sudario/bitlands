@@ -7,8 +7,6 @@ function get_ending_menu_items_client() {
 		text: "Rematch",
 		on_selected: function() {
 			global.client.send_packet_to_server(NETWORK_EVENT.REMATCH);
-			audio_stop_all();
-			room_restart();
 		}
 	};
 	var back_to_main_menu_item = {
@@ -16,7 +14,7 @@ function get_ending_menu_items_client() {
 		y: 0,
 		text: "Back to main menu",
 		on_selected: function(_menu_id) {
-			leave();
+			global.client.send_packet_to_server(NETWORK_EVENT.REMOVE);
 			audio_stop_all();
 			instance_destroy(_menu_id);
 			transition_to_room(Menu);

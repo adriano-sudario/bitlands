@@ -16,6 +16,7 @@ function get_ending_menu_items_host() {
 		y: 0,
 		text: "Back to main menu",
 		on_selected: function(_menu_id) {
+			global.host.send_packet_to_clients(NETWORK_EVENT.REMOVE);
 			close_server();
 			audio_stop_all();
 			instance_destroy(_menu_id);

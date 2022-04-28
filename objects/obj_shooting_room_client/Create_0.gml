@@ -19,11 +19,6 @@ function is_input_enabled() {
 	return !client.is_dead && !has_match_ended && has_begun;
 }
 
-function leave() {
-	global.client.send_packet_to_server(NETWORK_EVENT.REMOVE);
-	room_goto(Menu);
-}
-
 function instantiate_particle(_particle) {
 	with (instance_create_layer(_particle.x, _particle.y, "Dusts", obj_particle)) {
 		image_index = _particle.index;

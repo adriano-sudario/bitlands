@@ -29,5 +29,6 @@ switch (packet.command) {
 	case NETWORK_EVENT.REMOVE:
 		global.client.send_packet_to_server(NETWORK_EVENT.REMOVE);
 		room_goto(Menu);
+		instance_destroy();
 		break;
 }

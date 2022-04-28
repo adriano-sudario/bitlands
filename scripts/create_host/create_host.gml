@@ -3,6 +3,7 @@
 function create_host() {
 	var server_socket = network_create_server(network_socket_tcp, 6510, 4);
 	var has_connection_failed = server_socket < 0;
+	
 	if (has_connection_failed)
 		return false;
 	

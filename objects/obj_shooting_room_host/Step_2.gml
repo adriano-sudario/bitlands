@@ -1,3 +1,6 @@
+if (obj_transition.mode != TRANSITION_MODE.OFF)
+	return;
+
 if (!has_begun) {
 	countdown_scale += countdown_growth_speed;
 	var _sound = [];

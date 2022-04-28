@@ -20,8 +20,13 @@ switch(type) {
 				break;
 			
 			case NETWORK_EVENT.REMATCH:
+				global.host.send_packet_to_clients(NETWORK_EVENT.REMATCH);
 				audio_stop_all();
 				room_restart();
+				break;
+			
+			case NETWORK_EVENT.REMOVE:
+				disconnect_client(socket);
 				break;
 		}
 	    break;

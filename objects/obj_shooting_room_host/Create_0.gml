@@ -20,6 +20,25 @@ particles = [];
 sounds = [];
 guns_to_remove = [];
 
+function disconnect_client(_client_socket) {
+	for (var i = 0; i < array_length(global.host.client_sockets); i++)
+		if (global.host.client_sockets[i] == _client_socket)
+			array_delete(global.host.client_sockets, i, 1);
+	
+	for (var i = 0; i < array_length(global.game_state.players); i++)
+		if (global.game_state.players[i].socket == _client_socket)
+			array_delete(global.game_state.players, i, 1);
+	
+	network_destroy(_client_socket);
+	
+	if (array_length(global.host.client_sockets) > 0)
+		global.host.send_packet_to_clients(NETWORK_EVENT.SET_PLAYERS, {
+			players: global.game_state.players
+		});
+	else if (instance_exists(obj_menu_simple))
+		obj_menu_simple.options.back_to_main_menu.on_selected(instance_id);
+}
+
 function is_input_enabled(_player) {
 	return !_player.is_dead && !has_match_ended && has_begun;
 }
