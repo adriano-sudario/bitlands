@@ -1,12 +1,5 @@
 /// @function get_character_sprites(character)
 
-enum CHARACTER {
-	GERALDO,
-	RAIMUNDO,
-	SEBASTIAO,
-	SEVERINO
-}
-
 function get_character_sprites(_character) {
 	switch (_character) {
 		case CHARACTER.GERALDO:
@@ -14,9 +7,9 @@ function get_character_sprites(_character) {
 				idle: spr_geraldo_idle,
 				run: spr_geraldo_run,
 				air: spr_geraldo_air,
-				drop_weapon: spr_geraldo_drop_weapon,
+				draw_gun: spr_geraldo_draw_gun,
 				aim: spr_geraldo_aim,
-				aiming_gun: spr_geraldo_aiming_gun,
+				aiming_arm: spr_geraldo_aiming_arm,
 				reload: spr_geraldo_reload,
 				dead: spr_geraldo_dead
 			};
@@ -26,9 +19,9 @@ function get_character_sprites(_character) {
 				idle: spr_raimundo_idle,
 				run: spr_raimundo_run,
 				air: spr_raimundo_air,
-				drop_weapon: spr_raimundo_drop_weapon,
+				draw_gun: spr_raimundo_draw_gun,
 				aim: spr_raimundo_aim,
-				aiming_gun: spr_raimundo_aiming_gun,
+				aiming_arm: spr_raimundo_aiming_arm,
 				reload: spr_raimundo_reload,
 				dead: spr_raimundo_dead
 			};
@@ -38,9 +31,9 @@ function get_character_sprites(_character) {
 				idle: spr_sebastiao_idle,
 				run: spr_sebastiao_run,
 				air: spr_sebastiao_air,
-				drop_weapon: spr_sebastiao_drop_weapon,
+				draw_gun: spr_sebastiao_draw_gun,
 				aim: spr_sebastiao_aim,
-				aiming_gun: spr_sebastiao_aiming_gun,
+				aiming_arm: spr_sebastiao_aiming_arm,
 				reload: spr_sebastiao_reload,
 				dead: spr_sebastiao_dead
 			};
@@ -50,9 +43,9 @@ function get_character_sprites(_character) {
 				idle: spr_severino_idle,
 				run: spr_severino_run,
 				air: spr_severino_air,
-				drop_weapon: spr_severino_drop_weapon,
+				draw_gun: spr_severino_draw_gun,
 				aim: spr_severino_aim,
-				aiming_gun: spr_severino_aiming_gun,
+				aiming_arm: spr_severino_aiming_arm,
 				reload: spr_severino_reload,
 				dead: spr_severino_dead
 			};

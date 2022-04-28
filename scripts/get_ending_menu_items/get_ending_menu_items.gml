@@ -17,10 +17,7 @@ function get_ending_menu_items(){
 		on_selected: function(_menu_id) {
 			audio_stop_all();
 			instance_destroy(_menu_id);
-			slide_transition(TRANSITION_MODE.CLOSE, function() {
-				room_goto(Menu);
-				slide_transition(TRANSITION_MODE.OPEN);
-			}, 250);
+			transition_to_room(Menu);
 		}
 	};
 	

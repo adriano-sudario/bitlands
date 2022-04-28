@@ -6,42 +6,52 @@ grv = .3;
 walk_speed = 4;
 horizontal_direction = 0;
 is_dead = false;
-has_fallen = false;
+has_fallen_dead = false;
 is_jump_held = false;
 has_jump = false;
 is_aiming = false;
 is_reloading = false;
-cartrige_capacity = 4;
-cartrige = noone;
+cartridge_capacity = 4;
+cartridge = noone;
 is_passing_through_plank = false;
-bullets_count = cartrige_capacity;
+bullets_count = cartridge_capacity;
 has_gun = false;
 aiming_instance = noone;
 sprites_indexes = noone;
-controls = noone;
+input = noone;
 player_info = noone;
 
+function is_input_enabled() {
+	return !is_dead && !obj_shooting_room.has_match_ended && obj_shooting_room.has_begun;
+}
+
 function update_movement() {
-	if (!is_dead) {
-		horizontal_direction = controls.is_right_held() - controls.is_left_held();
+	if (self.is_input_enabled()) {
+		horizontal_direction = input.is_right_held() - input.is_left_held();
 		horizontal_force = horizontal_direction * walk_speed;
 	}
 
 	var platform = instance_place(x, y + 1, obj_wall);
 	is_on_floor = platform != noone && !is_passing_through_plank;
-	var is_holding_jump = controls.is_jump_held() && !is_dead;
-	if (is_on_floor 
-		&& platform.object_index == obj_plank
-		&& controls.is_down_held()
-		&& is_holding_jump) {
+	var is_holding_jump = input.is_jump_held() && self.is_input_enabled();
+	var is_leaving_plank = is_on_floor && platform.object_index == obj_plank
+		&& is_holding_jump && input.is_down_held();
+	
+	if (is_leaving_plank) {
 		is_on_floor = false;
 		is_passing_through_plank = true;
 		y++;
 	}
+	
+	if (!self.is_input_enabled()) {
+		vertical_force += grv;
+		return;
+	}
+	
 	var has_released_jump = is_jump_held && !is_holding_jump;
 	is_jump_held = is_holding_jump;
 
-	if (is_on_floor && !is_dead && !controls.is_aiming_held()) {
+	if (is_on_floor && !input.is_aiming_held()) {
 		if (is_holding_jump && !has_jump) {
 			vertical_force = JUMP_FORCE;
 			has_jump = true;
@@ -65,13 +75,13 @@ function update_aim() {
 	if (!has_gun)
 		return;
 	
-	if (controls.is_aiming_held()) {
+	if (input.is_aiming_held()) {
 		if (is_reloading)
 			is_aiming = true;
-		else if (sprite_index != sprites_indexes.drop_weapon
+		else if (sprite_index != sprites_indexes.draw_gun
 			&& sprite_index != sprites_indexes.air
 			&& !is_aiming) {
-			sprite_index = sprites_indexes.drop_weapon;
+			sprite_index = sprites_indexes.draw_gun;
 			cancel_movement();
 		}
 	} else {
@@ -88,15 +98,15 @@ function update_aim() {
 	if (aiming_instance == noone || is_reloading)
 		return;
 	
-	controls.update_aiming_angle(x, y);
-	aiming_instance.image_angle = controls.aiming_angle;
-	if (controls.is_shoot_pressed() && controls.is_aiming_held()) {
+	input.update_aiming_angle(x, y);
+	aiming_instance.image_angle = input.aiming_angle;
+	if (input.is_shoot_pressed() && input.is_aiming_held()) {
 		if (bullets_count > 0) {
 			aiming_instance.shoot();
 			bullets_count--;
-			cartrige.spin_next_bullet();
+			cartridge.spin_next_bullet();
 		} else {
-			cartrige.shake();
+			cartridge.shake();
 		}
 	}
 }
@@ -111,11 +121,11 @@ function remove_aiming_instance() {
 		instance_destroy();
 	aiming_instance = noone;
 	
-	with (cartrige)
+	with (cartridge)
 		instance_destroy();
-	cartrige = noone;
+	cartridge = noone;
 	
-	if (controls.input < 0 && obj_game.show_aim)
+	if (!input.is_gamepad && obj_game.show_aim)
 		with(obj_target)
 			instance_destroy();
 }
@@ -123,26 +133,26 @@ function remove_aiming_instance() {
 function begin_aiming() {
 	if (aiming_instance == noone) {
 		is_aiming = true;
-		aiming_instance = equip_gun(self);
-		var cartrige_x = x;
+		aiming_instance = aim(self);
+		var cartridge_x = x;
 		var catrige_y = y - 40;
 		if (image_xscale > 0)
-			cartrige_x += 5;
-		cartrige = instance_create_layer(cartrige_x, catrige_y, layer, obj_cartrige);
-		with (cartrige) {
+			cartridge_x += 5;
+		cartridge = instance_create_layer(cartridge_x, catrige_y, layer, obj_cartridge);
+		with (cartridge) {
 			owner = other;
-			image_index = other.cartrige_capacity - other.bullets_count;
+			image_index = other.cartridge_capacity - other.bullets_count;
 			angle = 360 - (90 * image_index);
 			image_angle = angle;
 		}
 		sprite_index = sprites_indexes.aim;
-		if (controls.input >= 0) {
+		if (input.is_gamepad) {
 			if (image_xscale < 0) {
-				controls.aiming_angle = 180;
+				input.aiming_angle = 180;
 				aiming_instance.image_angle = 180;
 			}
 			else {
-				controls.aiming_angle = 0;
+				input.aiming_angle = 0;
 				aiming_instance.image_angle = 0;
 			}
 		} else if (obj_game.show_aim) {

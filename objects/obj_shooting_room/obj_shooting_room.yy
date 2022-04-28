@@ -25,8 +25,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Helpers",
-    "path": "folders/Objects/Helpers.yy",
+    "name": "Managers",
+    "path": "folders/Objects/Managers.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_shooting_room",

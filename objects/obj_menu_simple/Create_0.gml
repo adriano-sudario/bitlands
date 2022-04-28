@@ -13,30 +13,25 @@ horizontal_align = fa_center;
 vertical_align = fa_center;
 
 options = get_menu_items();
-items = [options.quit, options.show_aim, options.fullscreen, options.new_game];
-
-controls = [
-	controller(-1), controller(0),
-	controller(1), controller(2),
-	controller(3)
+items = [
+	options.quit,
+	options.show_aim,
+	options.fullscreen,
+	options.join_game,
+	options.host_game,
+	options.new_game
 ];
 
-current_down_controls = [];
-current_up_controls = [];
-previous_down_controls = [];
-previous_up_controls = [];
+input = input_manager();
+current_down_input = input.is_down_held();
+current_up_input = input.is_up_held();
+previous_down_input = input.is_down_held();
+previous_up_input = input.is_up_held();
 
-for (var i = 0; i < array_length(controls); i++;) {
-	array_insert(current_down_controls, i, controls[i]);
-	array_insert(current_up_controls, i, controls[i]);
-	array_insert(previous_down_controls, i, controls[i]);
-	array_insert(previous_up_controls, i, controls[i]);
-}
-
-function mount_items() {
+function mount_items(_vertical_margin = noone) {
 	var vertical_margin = (font_height * .5);
-	if (argument_count > 0)
-		vertical_margin = argument0;
+	if (_vertical_margin != noone)
+		vertical_margin = _vertical_margin;
 	for (var i = 0; i < array_length(items); i++) {
 		var item = items[i];
 		item.x = horizontal_position;

@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "Array",
+    "path": "folders/Scripts/Extensions/Array.yy",
   },
   "resourceVersion": "1.0",
   "name": "array_find",

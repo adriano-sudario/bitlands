@@ -18,6 +18,6 @@ if (percent > 1) {
 	mode = TRANSITION_MODE.OFF;
 	percent = 0;
 	is_on_hold = true;
-	on_finish();
+	on_finish(send_back_object);
 	on_finish = function() { };
 }

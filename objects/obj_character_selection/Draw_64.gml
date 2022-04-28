@@ -8,13 +8,11 @@ for (var i = 0; i < array_length(selections); i++;) {
 	var text_x = selection_spawn.x;
 	var text_y = selection_spawn.y - selection.vertical_margin;
 	
-	if (selection.input != noone) {
-		text = "CHOOSING";
-	}
+	if (selection.input != noone)
+		text = get_character_sprite_description(characters_list[selection.character_index]);
 	
-	if (selection.is_ready) {
+	if (selection.is_ready)
 		text = "READY";
-	}
 	
 	prepare_text_draw(font, fa_center, fa_center);
 	draw_outlined_text(text_x, text_y, text);
