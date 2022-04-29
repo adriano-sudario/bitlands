@@ -1,4 +1,4 @@
-if (!self.is_input_enabled())
+if (!self.is_input_enabled() || global.client == noone)
 	return;
 
 var _copulated_input = get_copulated_input(input, client);

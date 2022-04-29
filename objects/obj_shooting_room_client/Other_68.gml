@@ -2,6 +2,16 @@ var _socket = ds_map_find_value(async_load, "id");
 if (global.client == noone || _socket != global.client.socket)
 	return;
 
+if (obj_transition.mode == TRANSITION_MODE.OFF) {
+	if (timeout_delay != noone)
+		timeout_delay.reset();
+	else
+		timeout_delay = wait_for_milliseconds(5000, function() {
+			close_client();
+			transition_to_room(Menu);
+		});
+}
+
 var buffer = ds_map_find_value(async_load, "buffer"); 
 var packet = json_parse(buffer_read(buffer, buffer_string));
 

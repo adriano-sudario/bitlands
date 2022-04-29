@@ -1,3 +1,13 @@
+if ((keyboard_check_pressed(vk_backspace) && string_length(ip) == 0) ||
+	keyboard_check_pressed(vk_escape) ||
+	gamepad_button_check_pressed(0, gp_face2) ||
+	gamepad_button_check_pressed(1, gp_face2) ||
+	gamepad_button_check_pressed(2, gp_face2) ||
+	gamepad_button_check_pressed(3, gp_face2)) {
+	transition_to_room(Menu)
+	return;
+}
+
 if (!has_joined && keyboard_check_pressed(vk_enter) && is_valid_ip_format()) {
 	has_joined = create_client(ip);
 	if (has_joined) {
