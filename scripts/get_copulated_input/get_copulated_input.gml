@@ -1,14 +1,14 @@
-/// @function get_copulated_inputs(_input_id);
+/// @function get_populated_inputs(_input_id);
 /// @param {input_id} -1: keyboard / 0~3: gamepads
 
-function get_copulated_input(_input = noone, _player = noone) {
+function get_populated_input(_input = noone, _player = noone) {
 	if (_input == noone)
 		_input = input_manager();
 	var _variable_names = variable_struct_get_names(_input);
 	var _ignored_methods_starting_with = [
 		"check", "directional", "update", "held", "pressed", "update"
 	];
-	var _copulated_input = {};
+	var _populated_input = {};
 	
 	for (var i = 0; i < array_length(_variable_names); i++;)
 	{
@@ -25,7 +25,7 @@ function get_copulated_input(_input = noone, _player = noone) {
 		}
 		
 		if (typeof(_value) != "method" || _name == "input_bind")
-			variable_struct_set(_copulated_input, _name, _value);
+			variable_struct_set(_populated_input, _name, _value);
 	}
 	
 	for (var i = 0; i < array_length(_variable_names); i++;)
@@ -49,9 +49,9 @@ function get_copulated_input(_input = noone, _player = noone) {
 			continue;
 		
 		var _input_method = method(_input, _value);
-		variable_struct_set(_copulated_input, _name, _input_method());
+		variable_struct_set(_populated_input, _name, _input_method());
 	}
 	
-	_copulated_input.is_gamepad = _input.is_gamepad;
-	return _copulated_input;
+	_populated_input.is_gamepad = _input.is_gamepad;
+	return _populated_input;
 }
