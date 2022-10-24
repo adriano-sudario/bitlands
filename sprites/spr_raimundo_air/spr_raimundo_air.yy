@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSprite",
+  "resourceVersion": "1.0",
+  "name": "spr_raimundo_air",
   "bboxMode": 2,
   "collisionKind": 1,
   "type": 0,
@@ -14,6 +17,7 @@
   "HTile": false,
   "VTile": false,
   "For3D": false,
+  "DynamicTexturePage": false,
   "width": 48,
   "height": 48,
   "textureGroupId": {
@@ -24,15 +28,13 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"f66bf9e6-9ec8-458e-ae0e-12c42059b517","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"f66bf9e6-9ec8-458e-ae0e-12c42059b517","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},"LayerId":{"name":"6a7c77cb-9a50-4004-bbe9-fbb2e269b890","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_raimundo_air","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},"resourceVersion":"1.0","name":"f66bf9e6-9ec8-458e-ae0e-12c42059b517","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"47c8635e-ca0d-4f55-aabe-905fadf3d763","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"47c8635e-ca0d-4f55-aabe-905fadf3d763","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},"LayerId":{"name":"6a7c77cb-9a50-4004-bbe9-fbb2e269b890","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_raimundo_air","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},"resourceVersion":"1.0","name":"47c8635e-ca0d-4f55-aabe-905fadf3d763","tags":[],"resourceType":"GMSpriteFrame",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"f66bf9e6-9ec8-458e-ae0e-12c42059b517",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"47c8635e-ca0d-4f55-aabe-905fadf3d763",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_raimundo_air","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},
+    "resourceType": "GMSequence",
+    "resourceVersion": "1.4",
+    "name": "spr_raimundo_air",
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 10.0,
@@ -43,10 +45,10 @@
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
-      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+      {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"c33b40e1-83c8-41fb-a6d8-477b0d70783f","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f66bf9e6-9ec8-458e-ae0e-12c42059b517","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"69e5a141-05a5-441a-808f-2c4459c10ccd","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"47c8635e-ca0d-4f55-aabe-905fadf3d763","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
     "lockOrigin": false,
@@ -62,22 +64,13 @@
     "yorigin": 27,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_raimundo_air","path":"sprites/spr_raimundo_air/spr_raimundo_air.yy",},
-    "resourceVersion": "1.4",
-    "name": "spr_raimundo_air",
-    "tags": [],
-    "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"6a7c77cb-9a50-4004-bbe9-fbb2e269b890","tags":[],"resourceType":"GMImageLayer",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"6a7c77cb-9a50-4004-bbe9-fbb2e269b890","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
   ],
   "nineSlice": null,
   "parent": {
     "name": "Raimundo",
     "path": "folders/Sprites/Characters/Raimundo.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "spr_raimundo_air",
-  "tags": [],
-  "resourceType": "GMSprite",
 }

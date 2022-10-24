@@ -13,13 +13,22 @@ horizontal_align = fa_center;
 vertical_align = fa_center;
 
 options = get_menu_items();
-items = [
-	options.quit,
-	options.options,
-	options.join_game,
-	options.host_game,
-	options.new_game
-];
+
+if (os_type == os_gxgames)
+	items = [
+		options.quit,
+		options.options,
+		options.multiplayer,
+		options.new_game
+	];
+else
+	items = [
+		options.quit,
+		options.options,
+		options.join_game,
+		options.host_game,
+		options.new_game
+	];
 
 input = input_manager();
 current_down_input = input.is_down_held();

@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSprite",
+  "resourceVersion": "1.0",
+  "name": "spr_geraldo_air",
   "bboxMode": 2,
   "collisionKind": 1,
   "type": 0,
@@ -14,6 +17,7 @@
   "HTile": false,
   "VTile": false,
   "For3D": false,
+  "DynamicTexturePage": false,
   "width": 48,
   "height": 48,
   "textureGroupId": {
@@ -24,15 +28,13 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"3c527b69-5faa-4382-9760-7157f09b21fb","path":"sprites/spr_geraldo_air/spr_geraldo_air.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"3c527b69-5faa-4382-9760-7157f09b21fb","path":"sprites/spr_geraldo_air/spr_geraldo_air.yy",},"LayerId":{"name":"b62c018d-2e09-4ac1-83ec-4c3fdb864f5f","path":"sprites/spr_geraldo_air/spr_geraldo_air.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_geraldo_air","path":"sprites/spr_geraldo_air/spr_geraldo_air.yy",},"resourceVersion":"1.0","name":"3c527b69-5faa-4382-9760-7157f09b21fb","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"27db7e96-9168-40fc-8763-06cd246ea8e7","path":"sprites/spr_geraldo_air/spr_geraldo_air.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"27db7e96-9168-40fc-8763-06cd246ea8e7","path":"sprites/spr_geraldo_air/spr_geraldo_air.yy",},"LayerId":{"name":"b62c018d-2e09-4ac1-83ec-4c3fdb864f5f","path":"sprites/spr_geraldo_air/spr_geraldo_air.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_geraldo_air","path":"sprites/spr_geraldo_air/spr_geraldo_air.yy",},"resourceVersion":"1.0","name":"27db7e96-9168-40fc-8763-06cd246ea8e7","tags":[],"resourceType":"GMSpriteFrame",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"3c527b69-5faa-4382-9760-7157f09b21fb",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"27db7e96-9168-40fc-8763-06cd246ea8e7",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_geraldo_air","path":"sprites/spr_geraldo_air/spr_geraldo_air.yy",},
+    "resourceType": "GMSequence",
+    "resourceVersion": "1.4",
+    "name": "spr_geraldo_air",
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 10.0,
@@ -43,10 +45,10 @@
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
-      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+      {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"f1ecbb05-0e78-44e2-a424-2849d6817d41","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"3c527b69-5faa-4382-9760-7157f09b21fb","path":"sprites/spr_geraldo_air/spr_geraldo_air.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"a0840c53-a914-4097-9c28-cd2914637ec7","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"27db7e96-9168-40fc-8763-06cd246ea8e7","path":"sprites/spr_geraldo_air/spr_geraldo_air.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
     "lockOrigin": false,
@@ -62,22 +64,13 @@
     "yorigin": 27,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_geraldo_air","path":"sprites/spr_geraldo_air/spr_geraldo_air.yy",},
-    "resourceVersion": "1.4",
-    "name": "spr_geraldo_air",
-    "tags": [],
-    "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"b62c018d-2e09-4ac1-83ec-4c3fdb864f5f","tags":[],"resourceType":"GMImageLayer",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"b62c018d-2e09-4ac1-83ec-4c3fdb864f5f","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
   ],
   "nineSlice": null,
   "parent": {
     "name": "Geraldo",
     "path": "folders/Sprites/Characters/Geraldo.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "spr_geraldo_air",
-  "tags": [],
-  "resourceType": "GMSprite",
 }

@@ -4,7 +4,7 @@
 
 function string_starts_with(_string, _start_string) {
 	if (string_length(_start_string) > string_length(_string))
-		return;
+		return false;
 	
 	for (var i = 1; i <= string_length(_start_string); i++) {
 		if (string_char_at(_string, i) != string_char_at(_start_string, i))

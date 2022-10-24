@@ -17,6 +17,15 @@ function get_menu_items() {
 			room_goto(MenuOptions);
 		}
 	};
+	var multiplayer_item = {
+		x: 0,
+		y: 0,
+		text: "Multiplayer",
+		on_selected: function(_menu_id) {
+			instance_destroy(_menu_id);
+			transition_to_room(ShootingCharacterSelectionRollback);
+		}
+	};
 	var join_game_item = {
 		x: 0,
 		y: 0,
@@ -32,8 +41,7 @@ function get_menu_items() {
 		text: "Host match",
 		on_selected: function(_menu_id) {
 			instance_destroy(_menu_id);
-			if (create_host())
-				transition_to_room(ShootingCharacterSelectionMultiplayer);
+			transition_to_room(ShootingCharacterSelectionMultiplayer);
 		}
 	};
 	var new_game_item = {
@@ -48,6 +56,7 @@ function get_menu_items() {
 	
 	return {
 		new_game: new_game_item,
+		multiplayer: multiplayer_item,
 		host_game: host_game_item,
 		join_game: join_game_item,
 		options: options_item,
