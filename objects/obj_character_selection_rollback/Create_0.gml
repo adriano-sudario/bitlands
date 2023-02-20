@@ -148,14 +148,14 @@ function start() {
 function update_selection(_player_id) {
 	var _input = rollback_get_input(_player_id);
 	var _selection = selections[_player_id];
-	previous_left_input = current_left_input[_player_id];
-	previous_right_input = current_right_input[_player_id];
-	current_left_input = _input.left;
-	current_right_input = _input.right;
+	previous_left_inputs[_player_id] = current_left_inputs[_player_id];
+	previous_right_inputs[_player_id] = current_right_inputs[_player_id];
+	current_left_inputs[_player_id] = _input.left;
+	current_right_inputs[_player_id] = _input.right;
 	
 	if (!_selection.is_ready) {
-		var is_left_pressed = !previous_left_input && current_left_input;
-		var is_right_pressed = !previous_right_input && current_right_input;
+		var is_left_pressed = !previous_left_inputs[_player_id] && current_left_inputs[_player_id];
+		var is_right_pressed = !previous_right_inputs[_player_id] && current_right_inputs[_player_id];
 			
 		if (is_left_pressed)
 			go_to_left_character(_selection);
@@ -166,13 +166,13 @@ function update_selection(_player_id) {
 		if (_input.select_pressed)
 			select_character(_selection);
 		
-		if (_input.back_pressed)
-			back_to_menu();
+		//if (_input.back_pressed)
+		//	back_to_menu();
 	} else {
-		if (_input.back_pressed)
-			back_to_character_selection(_selection);
+		//if (_input.back_pressed)
+		//	back_to_character_selection(_selection);
 			
-		if (_input.enter_pressed && can_start)
-			start();
+		//if (_input.enter_pressed && can_start)
+		//	start();
 	}
 }
