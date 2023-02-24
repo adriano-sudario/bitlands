@@ -1,1 +1,0 @@
-//players_in_room_count = rollback_event_param.num_players;

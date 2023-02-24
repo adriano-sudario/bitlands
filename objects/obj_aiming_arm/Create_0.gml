@@ -15,7 +15,7 @@ function set_target(_target) {
 	
 	aiming.length = 0;
 	var target_id = _target.id;
-	_target = noone
+	_target = noone;
 	
 	var endline_x = aiming.x + lengthdir_x(aiming.length, image_angle);
 	var endline_y = aiming.y + lengthdir_y(aiming.length, image_angle);

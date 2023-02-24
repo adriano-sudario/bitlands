@@ -1,10 +1,25 @@
-function InputManagerRollback(_id) constructor {
+function InputManagerRollback(_id = undefined, _owner = other) constructor {
+	owner = _owner;
 	input_id = _id;
 	is_gamepad = false;
 	dead_zone = .5;
-	rollback_input = rollback_get_input(input_id);
-	//rollback_input = input_id == noone ? rollback_get_input() : rollback_get_input(input_id);
-	rollback_previous_input = rollback_input;
+	rollback_previous_input = undefined;
+	rollback_input = undefined;
+	state = undefined;
+	
+	function _updateRollbackInput() {
+		rollback_previous_input = rollback_input;
+		
+		if (input_id == undefined)
+			with (owner)
+				other.rollback_input = rollback_get_input();
+		else
+			rollback_input = rollback_get_input(input_id);
+	}
+	
+	if (_id != noone)
+		_updateRollbackInput();
+	
 	state = undefined;
 	
 	static Setup = function() {
@@ -100,7 +115,7 @@ function InputManagerRollback(_id) constructor {
 		} else {
 			var _value = _input[$ _bind_value];
 			
-			if (string_contains(_bind_value[i], "axis")) {
+			if (string_contains(_bind_value, "axis")) {
 				if (_is_negative_dead_zone)
 					return _value <= -dead_zone;
 				else
@@ -151,8 +166,7 @@ function InputManagerRollback(_id) constructor {
 	}
 	
 	function Update() {
-		rollback_previous_input = rollback_input;
-		rollback_input = rollback_get_input(input_id);
+		_updateRollbackInput();
 		state = {
 			is_left_held: _isInputHeld(bind.left, true),
 			is_right_held: _isInputHeld(bind.right),
@@ -175,3 +189,5 @@ function InputManagerRollback(_id) constructor {
 		}
 	}
 }
+
+var _ = new InputManagerRollback(noone);
