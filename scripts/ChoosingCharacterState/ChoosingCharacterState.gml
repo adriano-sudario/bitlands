@@ -1,5 +1,4 @@
-function ChoosingCharacterState() constructor {
-	owner = other;
+function ChoosingCharacterState() : State() constructor {
 	font = fnt_mono_small;
 	font_start_match = fnt_mono;
 	font_height = font_get_size(font);
@@ -81,24 +80,26 @@ function ChoosingCharacterState() constructor {
 		//transition_to_room(Menu);
 	}
 	
-	function can_start() {
-		with (obj_rollback_manager) {
-			var _characters_picked = 0;
-			
-			for (var i =0; i < array_length(global.characters); i++)
-				if (global.characters[i].has_been_picked)
-					_characters_picked++;
-		
-			return players_connected == _characters_picked;
-		}
+	function can_start_match() {
+		with (obj_rollback_manager)
+			return state.can_start_match();
 	}
 
-	function start() {
-		return;
-		//var _players = [];
-		//global.game_state = { players: _players };
+	function start_match() {
 		audio_stop_sound(stk_crujoa);
-		//room_goto(ShootingMultiplayer);
+		
+		var _players = [];
+		
+		for (var i = 0; i < instance_number(obj_player_rollback); i++) {
+			var _player = instance_find(obj_player_rollback, i);
+			array_push(_players, _player);
+			
+			with (_player)
+				state = new OnMatchState();
+		}
+		
+		with (obj_rollback_manager)
+			state = new MatchManagerState(_players);
 	}
 
 	function on_begin_step() {
@@ -120,8 +121,8 @@ function ChoosingCharacterState() constructor {
 			if (input.state.is_back_pressed)
 				back_to_character_selection();
 			
-			if (input.state.is_enter_pressed && can_start())
-				start();
+			if (input.state.is_enter_pressed && can_start_match())
+				start_match();
 		}
 	}
 	

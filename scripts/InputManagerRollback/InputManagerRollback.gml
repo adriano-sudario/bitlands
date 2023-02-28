@@ -81,6 +81,14 @@ function InputManagerRollback(_id = undefined, _owner = other) constructor {
 			gamepad: ["gamepad_face_one", "gamepad_start"],
 			keyboard_and_mouse: ["keyboard_space", "keyboard_enter"]
 		},
+		aiming_angle_horizontal: {
+			gamepad: "gamepad_left_horizontal_axis",
+			keyboard_and_mouse: "mouse_horizontal_axis"
+		},
+		aiming_angle_vertical: {
+			gamepad: "gamepad_left_vertical_axis",
+			keyboard_and_mouse: "mouse_vertical_axis"
+		},
 		jump: { gamepad: "gamepad_face_one", keyboard_and_mouse: "keyboard_space" },
 		aiming: { gamepad: "gamepad_shoulder_right", keyboard_and_mouse: "mouse_button_right" },
 		shooting: { gamepad: "gamepad_face_three", keyboard_and_mouse: "mouse_button_left" },

@@ -160,5 +160,3 @@ function begin_aiming() {
 		}
 	}
 }
-
-
