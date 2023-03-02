@@ -2,7 +2,7 @@
   "resourceType": "GMOperaGXOptions",
   "resourceVersion": "1.0",
   "name": "operagx",
-  "option_operagx_display_cursor": true,
+  "option_operagx_display_cursor": false,
   "option_operagx_editUrl": "https://create.gx.games/game/b031f121-8220-4214-ada2-53292f3f654e/edit",
   "option_operagx_game_name": "Bitlands",
   "option_operagx_guid": "b031f121-8220-4214-ada2-53292f3f654e",

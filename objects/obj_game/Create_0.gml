@@ -14,5 +14,5 @@ if (os_type == os_gxgames) {
 	gx_rollback_setup();
 	
 	if (rollback_join_game(true))
-		room_goto(RollbackWaitingRoom);
+		room_goto(RollbackRoom);
 }

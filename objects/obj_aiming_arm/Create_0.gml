@@ -145,7 +145,7 @@ function spawn_dust() {
 	return _particles;
 }
 
-function shoot() {
+function shoot(_is_rollback = false) {
 	if (recoil == 0)
 		recoil = 3;
 	
@@ -156,7 +156,10 @@ function shoot() {
 	play_sound(sfx_shoot, 5, false);
 	
 	if (aiming.target != noone && aiming.target.object_index == owner.object_index)
-		hit_player(aiming.target, aiming.x, image_angle);
+		if (_is_rollback)
+			hit_player_rollback(aiming.target, aiming.x, image_angle);
+		else
+			hit_player(aiming.target, aiming.x, image_angle);
 	
 	return spawn_dust();
 }

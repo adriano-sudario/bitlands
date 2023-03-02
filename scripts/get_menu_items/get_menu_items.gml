@@ -23,7 +23,7 @@ function get_menu_items() {
 		text: "Multiplayer",
 		on_selected: function(_menu_id) {
 			instance_destroy(_menu_id);
-			transition_to_room(RollbackWaitingRoom);
+			transition_to_room(RollbackRoom);
 		}
 	};
 	var join_game_item = {

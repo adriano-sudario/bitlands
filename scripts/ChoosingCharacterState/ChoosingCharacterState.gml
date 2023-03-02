@@ -26,6 +26,10 @@ function ChoosingCharacterState() : State() constructor {
 	}
 	
 	spawn();
+	
+	function get_current_character_sprite() {
+		return get_character_sprites(global.characters[character_index].id);
+	}
 
 	function go_to_right_character() {
 		character_index++;
@@ -37,7 +41,7 @@ function ChoosingCharacterState() : State() constructor {
 			return;
 		}
 				
-		var _sprite = get_character_sprites(global.characters[character_index].id);
+		var _sprite = get_current_character_sprite();
 		owner.sprite_index = _sprite.idle;
 	}
 
@@ -51,7 +55,7 @@ function ChoosingCharacterState() : State() constructor {
 			return;
 		}
 				
-		var _sprite = get_character_sprites(global.characters[character_index].id);
+		var _sprite = get_current_character_sprite();
 		owner.sprite_index = _sprite.idle;
 	}
 
@@ -95,11 +99,28 @@ function ChoosingCharacterState() : State() constructor {
 			array_push(_players, _player);
 			
 			with (_player)
-				state = new OnMatchState();
+				state = new OnMatchState(state.get_current_character_sprite());
 		}
 		
 		with (obj_rollback_manager)
 			state = new MatchManagerState(_players);
+		
+		var _number_of_players = array_length(_players);
+		var _guns = [];
+		
+		for (var i = 0; i < instance_number(obj_gun); i++;)
+			with (instance_find(obj_gun, i)) {
+				if (_number_of_players >= number_of_players_to_appear) {
+					instance_create_layer(x, y, layer, obj_gun_rollback);
+					array_push(_guns, { x: x, y: y });
+				}
+			}
+		
+		global.rollback_guns_on_match = _guns;
+		
+		for (var i = 0; i < instance_number(obj_gun); i++;)
+			with (instance_find(obj_gun, i))
+				instance_destroy();
 	}
 
 	function on_begin_step() {

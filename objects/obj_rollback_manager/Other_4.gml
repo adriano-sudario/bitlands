@@ -22,3 +22,7 @@ global.spawn_points = array_order_by(global.spawn_points, "order");
 
 if (!rollback_join_game())
 	rollback_create_game(4, false);
+
+for (var i = 0; i < instance_number(obj_gun); i++;)
+	with (instance_find(obj_gun, i))
+		visible = false;

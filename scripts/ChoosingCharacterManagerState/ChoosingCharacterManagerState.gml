@@ -2,7 +2,7 @@ function ChoosingCharacterManagerState() : ManagerState() constructor {
 	show_text = false;
 	blink_frames_count = 15;
 	blink_current_frame = 0;
-	is_GUI_active = false;
+	is_choosing_characters = false;
 	
 	function can_start_match() {
 		with (owner) {
@@ -17,13 +17,13 @@ function ChoosingCharacterManagerState() : ManagerState() constructor {
 	}
 	
 	function on_step() {
-		var _was_GUI_active = is_GUI_active;
-		is_GUI_active = can_start_match();
+		var _was_choosing_characters = is_choosing_characters;
+		is_choosing_characters = can_start_match();
 		
-		if (!is_GUI_active)
+		if (!is_choosing_characters)
 			return;
 		
-		if (is_GUI_active && !_was_GUI_active)
+		if (is_choosing_characters && !_was_choosing_characters)
 			show_text = true;
 		
 		blink_current_frame++;
@@ -35,10 +35,11 @@ function ChoosingCharacterManagerState() : ManagerState() constructor {
 	}
 	
 	function on_draw_GUI() {
-		if (!is_GUI_active || !show_text)
+		if (!show_text)
 			return;
 		
 		prepare_text_draw(font, fa_center, fa_center);
-		draw_outlined_text(gui_width * .5, gui_height * .5 + 280, "START MATCH");
+		var _text = is_choosing_characters ? "CHOOSING CHARACTERS" : "START MATCH";
+		draw_outlined_text(gui_width * .5, gui_height * .5 + 280, _text);
 	}
 }

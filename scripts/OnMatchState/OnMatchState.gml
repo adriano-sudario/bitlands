@@ -1,4 +1,4 @@
-function OnMatchState() : State() constructor {
+function OnMatchState(_sprites_indexes) : State() constructor {
 	horizontal_force = 0;
 	vertical_force = 0;
 	grv = .3;
@@ -7,7 +7,10 @@ function OnMatchState() : State() constructor {
 	is_dead = false;
 	has_fallen_dead = false;
 	is_jump_held = false;
-	is_on_floor = place_meeting(owner.x, owner.y + 1, obj_wall);
+	
+	with (owner)
+		other.is_on_floor = place_meeting(x, y + 1, obj_wall);
+	
 	has_jump = false;
 	is_aiming = false;
 	aiming_angle = 0;
@@ -18,24 +21,29 @@ function OnMatchState() : State() constructor {
 	bullets_count = cartridge_capacity;
 	has_gun = false;
 	aiming_instance = noone;
-	sprites_indexes = noone;
-	input = new InputManagerRollback(owner.player_id, other);
+	sprites_indexes = _sprites_indexes;
+	input = new InputManagerRollback(owner.player_id, owner);
 
 	function is_input_enabled() {
 		return !is_dead && obj_rollback_manager.state.has_begun;
 	}
 
 	function update_movement() {
+		show_debug_message("update_movement start.. ");
 		if (is_input_enabled()) {
-			horizontal_direction = input.is_right_held - input.is_left_held;
+			horizontal_direction = input.state.is_right_held - input.state.is_left_held;
 			horizontal_force = horizontal_direction * walk_speed;
 		}
 
-		var _platform = instance_place(owner.x, owner.y + 1, obj_wall);
+		var _platform = noone;
+		
+		with (owner)
+			_platform = instance_place(x, y + 1, obj_wall);
+		
 		is_on_floor = _platform != noone && !is_passing_through_plank;
-		var _is_holding_jump = input.is_jump_held && is_input_enabled();
+		var _is_holding_jump = input.state.is_jump_held && is_input_enabled();
 		var _is_leaving_plank = is_on_floor && _platform.object_index == obj_plank
-			&& _is_holding_jump && input.is_down_held;
+			&& _is_holding_jump && input.state.is_down_held;
 	
 		if (_is_leaving_plank) {
 			is_on_floor = false;
@@ -51,7 +59,7 @@ function OnMatchState() : State() constructor {
 		var _has_released_jump = is_jump_held && !_is_holding_jump;
 		is_jump_held = _is_holding_jump;
 
-		if (is_on_floor && !input.is_aiming_held) {
+		if (is_on_floor && !input.state.is_aiming_held) {
 			if (_is_holding_jump && !has_jump) {
 				vertical_force = JUMP_FORCE;
 				has_jump = true;
@@ -63,6 +71,7 @@ function OnMatchState() : State() constructor {
 			}
 		} else {
 			vertical_force += grv;
+			
 			if (has_jump && _has_released_jump) {
 				var minimal_jump_force = -1.5;
 				
@@ -76,14 +85,14 @@ function OnMatchState() : State() constructor {
 	
 	function update_aiming_angle() {
 		if (input.is_gamepad) {
-			var _horizontal_axis = input.rollback_input[$ input.bind.gamepad.aiming_angle_horizontal];
-			var _vertical_axis = input.rollback_input[$ input.bind.gamepad.aiming_angle_vertical];
+			var _horizontal_axis = input.rollback_input[$ input.bind.aiming_angle_horizontal.gamepad];
+			var _vertical_axis = input.rollback_input[$ input.bind.aiming_angle_vertical.gamepad];
 			
 			if (abs(_horizontal_axis) > .5 || abs(_vertical_axis) > .5)
 				aiming_angle = point_direction(0, 0, _horizontal_axis, _vertical_axis);
 		} else {
-			var _mouse_x = input.rollback_input[$ input.bind.keyboard_and_mouse.aiming_angle_horizontal];
-			var _mouse_y = input.rollback_input[$ input.bind.keyboard_and_mouse.aiming_angle_vertical];
+			var _mouse_x = input.rollback_input[$ input.bind.aiming_angle_horizontal.keyboard_and_mouse];
+			var _mouse_y = input.rollback_input[$ input.bind.aiming_angle_vertical.keyboard_and_mouse];
 			aiming_angle = point_direction(owner.x, owner.y, _mouse_x, _mouse_y);
 		}
 	}
@@ -92,7 +101,7 @@ function OnMatchState() : State() constructor {
 		if (!has_gun)
 			return;
 	
-		if (input.is_aiming_held) {
+		if (input.state.is_aiming_held) {
 			if (is_reloading) {
 				is_aiming = true;
 			} else if (owner.sprite_index != sprites_indexes.draw_gun
@@ -110,6 +119,7 @@ function OnMatchState() : State() constructor {
 					remove_aiming_instance()
 				}
 			}
+			
 			return;
 		}
 	
@@ -119,9 +129,9 @@ function OnMatchState() : State() constructor {
 		update_aiming_angle();
 		aiming_instance.image_angle = aiming_angle;
 		
-		if (input.is_shoot_pressed && input.is_aiming_held) {
+		if (input.state.is_shoot_pressed && input.state.is_aiming_held) {
 			if (bullets_count > 0) {
-				aiming_instance.shoot();
+				aiming_instance.shoot(true);
 				bullets_count--;
 				cartridge.spin_next_bullet();
 			} else {
@@ -156,18 +166,18 @@ function OnMatchState() : State() constructor {
 			return;
 		
 		is_aiming = true;
-		aiming_instance = aim(owner);
+		aiming_instance = aim(owner, true);
 		var _cartridge_x = owner.x;
 		var _catrige_y = owner.y - 40;
 			
 		if (owner.image_xscale > 0)
 			_cartridge_x += 5;
 			
-		cartridge = instance_create_layer(_cartridge_x, _catrige_y, layer, obj_cartridge);
+		cartridge = instance_create_layer(_cartridge_x, _catrige_y, owner.layer, obj_cartridge);
 			
 		with (cartridge) {
 			owner = other.owner;
-			owner.image_index = owner.cartridge_capacity - owner.bullets_count;
+			owner.image_index = owner.state.cartridge_capacity - owner.state.bullets_count;
 			angle = 360 - (90 * owner.image_index);
 			owner.image_angle = angle;
 		}
@@ -182,8 +192,8 @@ function OnMatchState() : State() constructor {
 				aiming_angle = 0;
 				aiming_instance.image_angle = 0;
 			}
-		} else {
-			instance_create_layer(mouse_x, mouse_y, layer, obj_target);
+		} else if (owner.player_local) {
+			instance_create_layer(mouse_x, mouse_y, owner.layer, obj_target);
 		}
 	}
 
@@ -200,7 +210,7 @@ function OnMatchState() : State() constructor {
 		if (!is_input_enabled())
 			return;
 
-		if (has_gun && input.is_reload_pressed
+		if (has_gun && input.state.is_reload_pressed
 			&& !is_reloading && bullets_count < cartridge_capacity
 			&& owner.sprite_index != sprites_indexes.draw_gun
 			&& owner.sprite_index != sprites_indexes.air) {
@@ -220,11 +230,14 @@ function OnMatchState() : State() constructor {
 			return;
 
 		if (is_passing_through_plank)
-			is_passing_through_plank = place_meeting(owner.x, owner.y, obj_plank);
+			with(owner)
+				other.is_passing_through_plank = place_meeting(x, y, obj_plank);
 
 		var _horizontal_blocks = ds_list_create();
-		instance_place_list(
-			owner.x + horizontal_force, owner.y, obj_wall, _horizontal_blocks, false);
+		
+		with (owner)
+			instance_place_list(
+				x + other.horizontal_force, y, obj_wall, _horizontal_blocks, false);
 
 		for (var i = 0; i < ds_list_size(_horizontal_blocks); ++i;)
 		{
@@ -243,7 +256,9 @@ function OnMatchState() : State() constructor {
 		}
 
 		var _vertical_blocks = ds_list_create();
-		instance_place_list(owner.x, owner.y + vertical_force, obj_wall, _vertical_blocks, false);
+		
+		with (owner)
+			instance_place_list(x, y + other.vertical_force, obj_wall, _vertical_blocks, false);
 
 		for (var i = 0; i < ds_list_size(_vertical_blocks); ++i;)
 		{
@@ -312,10 +327,10 @@ function OnMatchState() : State() constructor {
 			owner.image_xscale = is_dead ? -horizontal_direction : horizontal_direction;
 	
 			if (!is_dead && aiming_instance != noone) {
-				var is_looking_right = sign(aiming_instance.image_yscale) > 0;
-				var is_walking_right = sign(horizontal_direction) > 0;
+				var _is_looking_right = sign(aiming_instance.image_yscale) > 0;
+				var _is_walking_right = sign(horizontal_direction) > 0;
 	
-				if (is_looking_right != is_walking_right) {
+				if (_is_looking_right != _is_walking_right) {
 					owner.image_xscale = -owner.image_xscale;
 					owner.image_speed = -1;
 				}

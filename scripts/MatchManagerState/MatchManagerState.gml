@@ -70,9 +70,13 @@ function MatchManagerState(_players) : ManagerState() constructor {
 					_winning_player.remove_aiming_instance();
 			}
 			
+			for (var i = 0; i < instance_number(obj_player_rollback); i++)
+				with (instance_find(obj_player_rollback, i))
+					state = new OnMatchEndedState(state.sprites_indexes);
+			
 			var _winner_description = _players_standing_length == 0 ? "IT'S A DRAW!" 
 				: string(_winning_player.owner.player_name) + " WINS!";
-				
+			
 			with (owner)
 				state = new MatchEndedManagerState(_winner_description);
 		}
