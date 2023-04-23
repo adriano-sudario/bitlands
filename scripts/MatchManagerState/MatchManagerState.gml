@@ -1,5 +1,5 @@
-function MatchManagerState(_players) : ManagerState() constructor {
-	players = _players;
+function MatchManagerState() : ManagerState() constructor {
+	players = [];
 	has_bipped = false;
 	font_height = font_get_size(font);
 	countdown = 1;
@@ -8,6 +8,13 @@ function MatchManagerState(_players) : ManagerState() constructor {
 	countdown_fps_stopped = 45;
 	current_countdown_fps_stopped = 0;
 	has_begun = false;
+	
+	function set_players() {
+		for (var i = 0; i < instance_number(obj_player_rollback); i++)
+			array_push(players, instance_find(obj_player_rollback, i));
+	}
+	
+	set_players();
 	
 	function update_countdown() {
 		countdown_scale += countdown_growth_speed;
@@ -44,10 +51,6 @@ function MatchManagerState(_players) : ManagerState() constructor {
 		}
 
 		var _players_length = array_length(players);
-
-		if (_players_length == 0)
-			return;
-
 		var _players_standing = [];
 
 		for (var i = 0; i < _players_length; i++) {
@@ -70,8 +73,8 @@ function MatchManagerState(_players) : ManagerState() constructor {
 					_winning_player.remove_aiming_instance();
 			}
 			
-			for (var i = 0; i < instance_number(obj_player_rollback); i++)
-				with (instance_find(obj_player_rollback, i))
+			for (var i = 0; i < _players_length; i++)
+				with (players[i])
 					state = new OnMatchEndedState(state.sprites_indexes);
 			
 			var _winner_description = _players_standing_length == 0 ? "IT'S A DRAW!" 

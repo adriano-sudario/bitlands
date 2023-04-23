@@ -26,7 +26,7 @@ function OnMatchEndedState(_sprites_indexes) : State() constructor {
 		}
 		
 		with (obj_rollback_manager)
-			state = new MatchManagerState(_players);
+			state = new MatchManagerState();
 		
 		for (var i = 0; i < instance_number(obj_gun_rollback); i++)
 			with (instance_find(obj_gun_rollback, i))

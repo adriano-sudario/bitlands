@@ -2,9 +2,6 @@ function ChoosingCharacterState() : State() constructor {
 	font = fnt_mono_small;
 	font_start_match = fnt_mono;
 	font_height = font_get_size(font);
-	blink_frames_count = 15;
-	blink_current_frame = 0;
-	show_text = true;
 	input = new InputManagerRollback(owner.player_id, other);
 	spawn_point = noone;
 	is_ready = false;
@@ -91,21 +88,8 @@ function ChoosingCharacterState() : State() constructor {
 
 	function start_match() {
 		audio_stop_sound(stk_crujoa);
+		var _number_of_players = instance_number(obj_player_rollback);
 		
-		var _players = [];
-		
-		for (var i = 0; i < instance_number(obj_player_rollback); i++) {
-			var _player = instance_find(obj_player_rollback, i);
-			array_push(_players, _player);
-			
-			with (_player)
-				state = new OnMatchState(state.get_current_character_sprite());
-		}
-		
-		with (obj_rollback_manager)
-			state = new MatchManagerState(_players);
-		
-		var _number_of_players = array_length(_players);
 		var _guns = [];
 		
 		for (var i = 0; i < instance_number(obj_gun); i++;)
@@ -121,6 +105,16 @@ function ChoosingCharacterState() : State() constructor {
 		for (var i = 0; i < instance_number(obj_gun); i++;)
 			with (instance_find(obj_gun, i))
 				instance_destroy();
+		
+		for (var i = 0; i < _number_of_players; i++) {
+			var _player = instance_find(obj_player_rollback, i);
+			
+			with (_player)
+				state = new OnMatchState(state.get_current_character_sprite());
+		}
+		
+		with (obj_rollback_manager)
+			state = new MatchManagerState();
 	}
 
 	function on_begin_step() {
@@ -147,16 +141,11 @@ function ChoosingCharacterState() : State() constructor {
 		}
 	}
 	
-	function on_step() {
-		blink_current_frame++;
-
-		if (blink_current_frame >= blink_frames_count) {
-			blink_current_frame = 0;
-			show_text = !show_text;
-		}
-	}
-	
 	function on_draw_GUI() {
+		if (instanceof(obj_rollback_manager.state) != "ChoosingCharacterManagerState"
+			|| !obj_rollback_manager.state.show_text)
+			return;
+		
 		var _text = "";
 	
 		if (character_index >= 0)

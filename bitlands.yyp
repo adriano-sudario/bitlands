@@ -70,7 +70,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.200.0.299",
+    "IDEVersion": "2023.400.0.321",
   },
   "resources": [
     {"id":{"name":"stk_chaesd_by_teh_rievr","path":"sounds/stk_chaesd_by_teh_rievr/stk_chaesd_by_teh_rievr.yy",},},
@@ -79,7 +79,6 @@
     {"id":{"name":"string_split","path":"scripts/string_split/string_split.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
     {"id":{"name":"obj_character_selection_rollback","path":"objects/obj_character_selection_rollback/obj_character_selection_rollback.yy",},},
-    {"id":{"name":"ShootingCharacterSelectionRollback","path":"rooms/ShootingCharacterSelectionRollback/ShootingCharacterSelectionRollback.yy",},},
     {"id":{"name":"get_ending_menu_items_host","path":"scripts/get_ending_menu_items_host/get_ending_menu_items_host.yy",},},
     {"id":{"name":"send_packet","path":"scripts/send_packet/send_packet.yy",},},
     {"id":{"name":"slide_transition","path":"scripts/slide_transition/slide_transition.yy",},},
@@ -225,7 +224,6 @@
     {"roomId":{"name":"ShootingMultiplayer","path":"rooms/ShootingMultiplayer/ShootingMultiplayer.yy",},},
     {"roomId":{"name":"MenuOptions","path":"rooms/MenuOptions/MenuOptions.yy",},},
     {"roomId":{"name":"RollbackRoom","path":"rooms/RollbackRoom/RollbackRoom.yy",},},
-    {"roomId":{"name":"ShootingCharacterSelectionRollback","path":"rooms/ShootingCharacterSelectionRollback/ShootingCharacterSelectionRollback.yy",},},
   ],
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},

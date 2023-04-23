@@ -29,7 +29,6 @@ function OnMatchState(_sprites_indexes) : State() constructor {
 	}
 
 	function update_movement() {
-		show_debug_message("update_movement start.. ");
 		if (is_input_enabled()) {
 			horizontal_direction = input.state.is_right_held - input.state.is_left_held;
 			horizontal_force = horizontal_direction * walk_speed;
@@ -177,9 +176,9 @@ function OnMatchState(_sprites_indexes) : State() constructor {
 			
 		with (cartridge) {
 			owner = other.owner;
-			owner.image_index = owner.state.cartridge_capacity - owner.state.bullets_count;
-			angle = 360 - (90 * owner.image_index);
-			owner.image_angle = angle;
+			image_index = owner.state.cartridge_capacity - owner.state.bullets_count;
+			angle = 360 - (90 * image_index);
+			image_angle = angle;
 		}
 			
 		owner.sprite_index = sprites_indexes.aim;
@@ -193,12 +192,12 @@ function OnMatchState(_sprites_indexes) : State() constructor {
 				aiming_instance.image_angle = 0;
 			}
 		} else if (owner.player_local) {
-			instance_create_layer(mouse_x, mouse_y, owner.layer, obj_target);
+			instance_create_layer(mouse_x, mouse_y, "Helpers", obj_target);
 		}
 	}
 
 	function on_begin_step() {
-		if (has_fallen_dead)
+		if (has_fallen_dead || instanceof(obj_rollback_manager.state) != "MatchManagerState")
 			return;
 		
 		input.Update();

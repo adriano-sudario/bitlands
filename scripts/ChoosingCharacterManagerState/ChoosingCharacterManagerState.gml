@@ -18,10 +18,10 @@ function ChoosingCharacterManagerState() : ManagerState() constructor {
 	
 	function on_step() {
 		var _was_choosing_characters = is_choosing_characters;
-		is_choosing_characters = can_start_match();
+		is_choosing_characters = !can_start_match();
 		
-		if (!is_choosing_characters)
-			return;
+		//if (!is_choosing_characters)
+		//	return;
 		
 		if (is_choosing_characters && !_was_choosing_characters)
 			show_text = true;
